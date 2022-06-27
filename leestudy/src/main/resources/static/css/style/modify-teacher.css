@@ -1,0 +1,87 @@
+.container {
+    width: 800px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-modify-teacher {
+    margin-top: 30px;
+    width: 100%;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border: 1px solid lightgray;
+    border-top: 2px solid grey;
+}
+
+.form-modify-teacher-picture {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+}
+
+.form-modify-teacher-picture img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.form-modify-teacher-picturechange {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.form-modify-teacher-question {
+    width: 100%;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.form-modify-teacher-furtherexplanation {
+    width: 100%;
+    font-size: 10px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.form-modify-teacher-checklist-categorypart{
+    border: 1px solid lightgrey;
+    margin-bottom: 10px;
+    padding: 6px 10px;
+}
+
+.form-modify-teacher-checklist-categorypart p {
+    font-size: 18px;
+    text-align: center;
+}
+
+/* 가로로 배치할 항목들 */
+.form-modify-teacher-address, .form-modify-teacher-password {
+    display: flex;
+}
+
+
+/* 라디오버튼에 대한 */
+.form-check {
+}
+
+.form-check-label {
+    font-size: 14px;
+}
+
+/* 체크버튼에 대한 */
+.btn-check {
+    width: 100%
+}
+
+/* 텍스트 장문입력란에 대한 */
+textarea {
+    resize: none;
+}

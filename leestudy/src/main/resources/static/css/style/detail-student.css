@@ -1,0 +1,77 @@
+.container {
+    width: 600px;
+}
+
+.student-profile {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    height: 200px;
+    border: 1px solid lightgray;
+    border-top: 2px solid gray;
+    display: flex;
+}
+
+.student-profile img {
+    width: 200px;
+    height: 100%;
+}
+
+.student-profile-right {
+    width: 100%;
+    padding: 10px;
+}
+
+.student-profile-info {
+    padding: 6px;
+    box-sizing: border-box;
+}
+
+.student-profile-info img {
+    width: 20px;
+    height: 20px;
+}
+
+.student-profile-info p{
+    width: 340px;
+    font-size: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow:ellipsis;
+}
+
+.student-profile-studentgrade, .student-profile-subject, .student-profile-location, .student-profile-availableremote, .student-profile-price {
+    display: flex;
+}
+
+
+/* 텍스트 장문입력란에 대한 */
+textarea {
+    resize: none;
+}
+
+.studentgrade-text1, .subject-text1, .location-text1, .availableremote-text1, .price-text1 {
+    width: 120px;
+    font-size: 14px;
+    margin-left: 4px;
+}
+
+
+.studentgrade-text2, .subject-text2, .location-text2,.availableremote-text2,.price-text2 {
+    width: 200px;
+    font-size: 14px;
+    margin-left: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow:ellipsis;
+}
+
+.student-btns{
+    margin-top: 10px;
+    text-align: center;
+}
+
+.student-detail-title {
+    font-size: 18px;
+    margin-bottom: 8px;
+}

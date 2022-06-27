@@ -1,0 +1,99 @@
+.container {
+    width: 800px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-signup-intro1 {
+    display: flex;
+    justify-content: center;
+}
+
+.form-signup-intro2 {
+    display: flex;
+    justify-content: center;
+    font-size: 12px;
+}
+
+.form-signup-intro3 {
+    display: flex;
+    justify-content: space-around;
+}
+
+.form-signup-intro3 img {
+    width: 120px;
+    height: 120px;
+}
+
+.form-signup-intro3-population {
+    display: flex;
+    justify-content: center;
+}
+.form-signup-intro3-description {
+    display: flex;
+    justify-content: center;
+    font-size: 12px;
+}
+
+
+
+.form-signup-teacher {
+    margin-top: 30px;
+    width: 100%;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border: 1px solid lightgray;
+    border-top: 2px solid grey;
+}
+
+.form-signup-teacher-question {
+    width: 100%;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.form-signup-teacher-furtherexplanation {
+    width: 100%;
+    font-size: 10px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.form-signup-teacher-checklist-categorypart{
+    border: 1px solid lightgrey;
+    margin-bottom: 10px;
+    padding: 6px 10px;
+}
+
+.form-signup-teacher-checklist-categorypart p {
+    font-size: 18px;
+    text-align: center;
+}
+
+/* 가로로 배치할 항목들 */
+.form-signup-teacher-address, .form-signup-teacher-password {
+    display: flex;
+}
+
+
+/* 라디오버튼에 대한 */
+.form-check {
+}
+
+.form-check-label {
+    font-size: 14px;
+}
+
+/* 체크버튼에 대한 */
+.btn-check {
+    width: 100%
+}
+
+/* 텍스트 장문입력란에 대한 */
+textarea {
+    resize: none;
+}

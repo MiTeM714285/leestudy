@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>로그인 | 이과외</title>
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../static/css/style/login.css" />
+  </head>
+  <body>
+
+	<nav th:replace="fragments/nav-notlogin :: nav"><!-- thymeleaf header will be inserted here. --></nav>
+
+    <div class="container">
+      <main class="form-signin">
+        <form action="" method="post">
+           <div class="student-or-teacher">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radio_student" value="check-student" checked>
+              <label class="form-check-label" for="inlineRadio1">학생</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radio_teacher" value="check-teacher">
+              <label class="form-check-label" for="inlineRadio2">선생님</label>
+            </div>
+         </div>
+           <div class="form-floating">
+              <input type="text" class="form-control" id="email" placeholder="이메일">
+              <label for="email">이메일</label>
+           </div>
+           <div class="form-floating">
+              <input type="password" class="form-control" id="pwd" placeholder="비밀번호">
+              <label for="pwd">비밀번호</label>
+           </div>
+           <button class="w-100 btn btn-lg btn-secondary" type="submit">로그인</button>
+        </form>
+      </main>
+      <div class="signupbtn">
+        <p>계정이 없으신가요?</p>
+        <button class="w-100 btn btn-lg btn-secondary" type="button">학생 회원가입</button>
+        <button class="w-100 btn btn-lg btn-secondary" type="button">선생님 회원가입</button>
+      </div>
+    </div>
+
+	<footer th:replace="fragments/footer :: footer"><!-- thymeleaf header will be inserted here. --></footer>
+
+    <script src='../../static/js/bootstrap.min.js'></script>
+  </body>
+</html>

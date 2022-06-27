@@ -1,0 +1,70 @@
+.container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-signin {
+    margin-top: 50px;
+    width: 100%;
+    max-width: 330px;
+    padding: 30px 30px 20px 30px;
+    display: flex;
+    justify-content: center;
+    border: 1px solid lightgray;
+    border-top: 2px solid grey;
+}
+  
+.form-signin .checkbox {
+    font-weight: 400;
+}
+  
+.form-signin .form-floating:focus-within {
+    z-index: 2;
+}
+
+.form-floating {
+    margin-bottom: 10px;
+}
+  
+.form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.checkbox {
+    display: flex;
+    justify-content: center;
+}
+  
+.student-or-teacher {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.signupbtn {
+    margin-top: 50px;
+    width: 100%;
+    max-width: 330px;
+    padding: 30px 30px 20px 30px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border: 1px solid lightgray;
+    text-align: center;
+    border: 1px solid lightgray;
+    border-top: 2px solid grey;
+}
+
+button {
+    margin-bottom: 10px;
+}

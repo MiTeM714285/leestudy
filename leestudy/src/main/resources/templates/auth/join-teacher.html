@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>선생님 회원가입 | 이과외</title>
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../static/css/style/join-teacher.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Ninth navbar example">
+      <div class="container-xl">
+        <a class="navbar-brand" href="#">이과외</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07XL" aria-controls="navbarsExample07XL" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarsExample07XL">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="#">로그인</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown07XL" data-bs-toggle="dropdown" aria-expanded="false">회원가입</a>
+              <ul class="dropdown-menu" aria-labelledby="dropdown07XL">
+                <li><a class="dropdown-item" href="#">학생 가입</a></li>
+                <li><a class="dropdown-item" href="#">선생님 가입</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    
+    <div class="container">
+
+
+      <!-- 이과외는 많은 분께 신뢰받고 있습니다 -->
+      <div class="form-signup-teacher">
+        <div class="form-signup-intro1">
+          이과외는 많은 분께 신뢰받고 있습니다.
+        </div>
+        <div class="form-signup-intro2">
+          학생 이용 압도적 1위, 선생님 풀 압도적 1위 과외 플랫폼입니다.
+        </div>
+        <div class="form-signup-intro3">
+          <div class="form-signup-intro3-teacher">
+            <img src="../../static/images/join/tutor.png" alt="tutor">
+            <div class="form-signup-intro3-population">
+              000,000명
+            </div>
+            <div class="form-signup-intro3-description">
+              선생님 회원
+            </div>
+          </div>
+          <div class="form-signup-intro3-teacher">
+            <img src="../../static/images/join/tutee.png" alt="tutee">
+            <div class="form-signup-intro3-population">
+              000,000명
+            </div>
+            <div class="form-signup-intro3-description">
+              학생 회원
+            </div>
+          </div>
+          <div class="form-signup-intro3-satisfaction">
+            <img src="../../static/images/join/satisfaction.png" alt="satisfaction">
+            <div class="form-signup-intro3-population">
+              99.9%
+            </div>
+            <div class="form-signup-intro3-description">
+              고객만족도
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 로그인에 사용될 이메일을 입력해주세요. -->
+      <div class="form-signup-teacher">
+        <div class="form-signup-teacher-question">
+          로그인에 사용될 이메일을 입력해주세요.
+        </div>
+        <div class="form-signup-teacher-furtherexplanation" style="color: red;">
+          *이후 수정할 수 없습니다.
+        </div>
+        <div class="input-group">
+          <input type="email" class="form-control" placeholder="name@example.com">
+          <button type="button" class="btn btn-outline-secondary">중복 조회하기</button>
+        </div>
+      </div>
+
+      <!-- 비밀번호를 입력해주세요. -->
+      <div class="form-signup-teacher">
+        <div class="form-signup-teacher-question">
+          비밀번호를 입력해주세요.
+        </div>
+        <div class="form-signup-teacher-password">
+          <input type="password" class="form-control" style="margin-right: 20px;" placeholder="비밀번호 입력">
+          <input type="password" class="form-control" placeholder="비밀번호 확인">
+        </div>
+      </div>
+
+      <!-- 표시할 닉네임을 입력해주세요. -->
+      <div class="form-signup-teacher">
+        <div class="form-signup-teacher-question">
+          표시할 닉네임을 입력해주세요.
+        </div>
+          <input type="text" class="form-control">
+      </div>
+
+      <!-- 화상과외(온라인과외) 가능여부 -->
+      <div class="form-signup-teacher">
+        <div class="form-signup-teacher-question">
+          화상과외(온라인과외) 가능여부
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" value="1" id="radio-teacher-availableremote">
+          <label class="form-check-label" for="radio-teacher-availableremote">
+            가능
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" value="0" id="radio-teacher-noavailableremote">
+          <label class="form-check-label" for="radio-teacher-noavailableremote">
+            불가능
+          </label>
+        </div>
+      </div>
+
+
+
+      <!-- 과외를 진행할 알려주세요 -->
+      <div class="form-signup-teacher">
+        <div class="form-signup-teacher-question">
+          과외를 진행할 주소를 알려주세요
+        </div>
+        <div class="form-signup-teacher-address">
+          <select class="form-select" aria-label="Default select example" style="margin-right: 20px;">
+            <option selected>시 선택</option>
+            <option value="서울">서울</option>
+          </select>
+          <select class="form-select" aria-label="Default select example">
+            <option selected>구 선택</option>
+            <option value="강남구">강남구</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- 선생님의 성별을 알려주세요 -->
+      <div class="form-signup-teacher">
+        <div class="form-signup-teacher-question">
+          선생님의 성별을 알려주세요
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="radio-teacher-gender" value="남자" id="radio-teacher-male">
+          <label class="form-check-label" for="radio-teacher-male">
+            남자
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="radio-teacher-gender" value="여자" id="radio-teacher-female">
+          <label class="form-check-label" for="radio-teacher-female">
+            여자
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="radio-teacher-gender" value="기타" id="radio-teacher-thirdgender">
+          <label class="form-check-label" for="radio-teacher-thirdgender">
+            기타(제 3의 성 등)
+          </label>
+        </div>
+      </div>
+
+      <!-- 선생님의 나이는 무엇인가요? -->
+      <div class="form-signup-teacher">
+        <div class="form-signup-teacher-question">
+          선생님의 나이는 무엇인가요?
+        </div>
+        <select class="form-select" aria-label="Default select example">
+          <option value="0">20이하</option>
+          <option value="21">21~25</option>
+          <option value="26">26~30</option>
+          <option value="31">31~35</option>
+          <option value="36">36~40</option>
+          <option value="41">41~45</option>
+          <option value="46">46~50</option>
+          <option value="51">51이상</option>
+        </select>
+      </div>
+
+
+
+      <!-- 선생님의 성격은 어떠한가요? -->
+      <div class="form-signup-teacher">
+        <div class="form-signup-teacher-question">
+          선생님의 성격은 어떠한가요?
+        </div>
+        <div class="form-signup-teacher-furtherexplanation">
+          *2개까지 체크 가능
+        </div>
+        <div class="row row-cols-4">
+          <div class="col">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="지적인">
+              <label class="form-check-label">
+                지적인
+              </label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="차분한">
+              <label class="form-check-label">
+                차분한
+              </label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="유머있는">
+              <label class="form-check-label">
+                유머있는
+              </label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="낙천적인">
+              <label class="form-check-label">
+                낙천적인
+              </label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="내향적인">
+              <label class="form-check-label">
+                내향적인
+              </label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="외향적인">
+              <label class="form-check-label">
+                외향적인
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 최소 페이를 알려주세요 -->
+      <div class="form-signup-teacher">
+        <div class="form-signup-teacher-question">
+          최소 페이를 알려주세요
+        </div>
+        <select class="form-select" aria-label="Default select example">
+          <option selected>선택해주세요</option>
+          <option value="100만원 이상">100만원 이상</option>
+          <option value="80만원">80만원</option>
+          <option value="70만원">70만원</option>
+          <option value="60만원">60만원</option>
+          <option value="50만원">50만원</option>
+          <option value="40만원">40만원</option>
+          <option value="30만원">30만원</option>
+          <option value="20만원 이하">20만원 이하</option>
+        </select>
+      </div>
+
+      <!-- 자세한 수업료 기준은 어떻게 되나요? -->
+      <div class="form-signup-teacher">
+        <div class="form-signup-teacher-question">
+          자세한 수업료 기준은 어떻게 되나요?
+        </div>
+        <div class="mb-3">
+          <textarea class="form-control" placeholder="예)고3 / 수학 : 시간당 30000원, 영어: 시간당 25000원 (300자 내)" rows="5"></textarea>
+        </div>
+      </div>
+
+      <!-- 어떤 과목이 과외가 가능하신가요? -->
+      <div class="form-signup-teacher">
+        <div class="form-signup-teacher-question">
+          어떤 과목이 과외가 가능하신가요?
+        </div>
+        <div class="form-signup-teacher-furtherexplanation">
+          *5개까지 체크 가능
+        </div>
+        <div class="form-signup-teacher-checklist">
+          <div class="form-signup-teacher-checklist-categorypart">
+            <p>카테고리명</p>
+            <div class="row row-cols-5">
+              <div class="col">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="자기소개서">
+                  <label class="form-check-label">자기소개서</label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="면접">
+                  <label class="form-check-label">면접</label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="논술">
+                  <label class="form-check-label">논술</label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="학습코칭">
+                  <label class="form-check-label">학습코칭</label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="영어회화">
+                  <label class="form-check-label">영어회화</label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="토익">
+                  <label class="form-check-label">토익</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-signup-teacher-checklist-categorypart">
+            <p>카테고리명</p>
+            <div class="row row-cols-5">
+              <div class="col">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="자기소개서">
+                  <label class="form-check-label">자기소개서</label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="면접">
+                  <label class="form-check-label">면접</label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="논술">
+                  <label class="form-check-label">논술</label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="학습코칭">
+                  <label class="form-check-label">학습코칭</label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="영어회화">
+                  <label class="form-check-label">영어회화</label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="토익">
+                  <label class="form-check-label">토익</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        
+      </div>
+
+      <!-- 선생님의 출신 대학교는 어디인가요? -->
+      <div class="form-signup-teacher">
+        <div class="form-signup-teacher-question">
+          선생님의 출신 대학교는 어디인가요?
+        </div>
+        <select class="form-select" size="3" aria-label="size 3 select example">
+          <option value="출신대학교 없음" selected>출신대학교 없음</option>
+          <option value="고려대학교">고려대학교</option>
+          <option value="연세대학교">연세대학교</option>
+          <option value="서강대학교">서강대학교</option>
+          <option value="숭실대학교">숭실대학교</option>
+        </select>
+      </div>
+
+      <!-- 선생님의 전공 학과는 무엇인가요? -->
+      <div class="form-signup-teacher">
+        <div class="form-signup-teacher-question">
+          선생님의 전공 학과는 무엇인가요?
+        </div>
+          <input type="text" class="form-control" placeholder="예)수학교육과">
+      </div>
+
+      <!-- 선생님의 학번은 무엇인가요? -->
+      <div class="form-signup-teacher">
+        <div class="form-signup-teacher-question">
+          선생님의 학번은 무엇인가요?
+        </div>
+        <select class="form-select" aria-label="Default select example">
+          <option selected>선택해주세요</option>
+          <option value="출신대학교 없음">출신대학교 없음</option>
+          <option value="22학번 이하">22학번 이하</option>
+          <option value="21학번">21학번</option>
+          <option value="20학번">20학번</option>
+          <option value="20학번">19학번</option>
+          <option value="20학번">18학번</option>
+          <option value="20학번">17학번</option>
+          <option value="20학번">16학번</option>
+          <option value="20학번">15학번</option>
+          <option value="20학번">14학번</option>
+          <option value="20학번">13학번</option>
+          <option value="20학번">12학번</option>
+          <option value="20학번">11학번</option>
+          <option value="20학번">10학번</option>
+          <option value="20학번">09학번</option>
+          <option value="20학번">08학번</option>
+          <option value="20학번">07학번</option>
+          <option value="20학번">06학번</option>
+          <option value="20학번">05학번</option>
+          <option value="20학번">04학번 이상</option>
+        </select>
+      </div>
+
+      <!-- 한줄소개 -->
+      <div class="form-signup-teacher">
+        <div class="form-signup-teacher-question">
+          한줄소개 (생략가능)
+        </div>
+          <input type="text" class="form-control" placeholder="예) 강한수학 고대여신 데굴데굴">
+      </div>
+
+      <!-- 과외가능 요일 및 시간 -->
+      <div class="form-signup-teacher">
+        <div class="form-signup-teacher-question">
+          과외가능 요일 및 시간
+        </div>
+        <div class="mb-3">
+          <textarea class="form-control" placeholder="예)화/목요일 18시, 주말 모두 가능(협의가능) (15자~300자 내)" rows="5"></textarea>
+        </div>
+      </div>
+
+      <!-- 과목별 수업내용 -->
+      <div class="form-signup-teacher">
+        <div class="form-signup-teacher-question">
+          과목별 수업내용
+        </div>
+        <div class="mb-3">
+          <textarea class="form-control" placeholder="예)국어:문학 해석법/비문학 독해법, 화작문강의 영어:수능 영문법 기초~심화 까지 진행 (100자~300자 내)" rows="5"></textarea>
+        </div>
+      </div>
+
+      <!-- 과외 스타일 -->
+      <div class="form-signup-teacher">
+        <div class="form-signup-teacher-question">
+          과외 스타일
+        </div>
+        <div class="mb-3">
+          <textarea class="form-control" placeholder="예)개념 설명 자세하게 적어서 해주고, 응용문제 풀이 잘함. 못알아들어도 화 안냄. (50자~300자 내)" rows="5"></textarea>
+        </div>
+      </div>
+
+      <!-- 휴대폰 번호 인증을 해주세요 -->
+      <div class="form-signup-teacher">
+        <div class="form-signup-teacher-question">
+          휴대폰 번호 인증을 해주세요
+        </div>
+        <div class="form-signup-teacher-furtherexplanation">
+          *연락처는 학생들에게 선공개되지 않습니다. 가입 및 인증 용도입니다.
+        </div>
+        <div class="input-group">
+          <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" placeholder="예)01012345678">
+          <button type="button" class="btn btn-outline-secondary">인증번호 요청</button>
+          <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" placeholder="인증번호 입력">
+          <button type="button" class="btn btn-outline-secondary">인증완료</button>
+        </div>
+        
+      </div>
+
+      <!-- 회원가입 버튼 -->
+      <button class="w-100 btn btn-lg btn-secondary" type="button" style="margin-top:30px;">가입완료하고 과외 학생분 찾기</button>
+    </div>
+
+    <div class="footer">
+      <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <div class="col-md-4 d-flex align-items-center">
+          <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+            <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+          </a>
+          <span class="text-muted">© 2022 Company, Inc</span>
+        </div>
+    
+        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+          <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"></use></svg></a></li>
+          <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"></use></svg></a></li>
+          <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
+        </ul>
+      </footer>
+    </div>
+
+    <script src='../../static/js/bootstrap.min.js'></script>
+  </body>
+</html>

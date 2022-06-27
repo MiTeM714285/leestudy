@@ -1,0 +1,138 @@
+.container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-review {
+    margin-top: 50px;
+    width: 700px;
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    border: 1px solid lightgray;
+    border-top: 2px solid grey;
+    display: flex;
+    flex-direction: column;
+}
+
+/* part1 : 선생님 프로필 */
+.form-review-part1 {
+    width: 100%;
+    height: 30%;
+    border: 1px solid lightgrey;
+    margin-bottom: 20px;
+    background-color: azure;
+    display: flex;
+}
+
+.form-review-part1 img {
+    width: 140px;
+    height: 140px;
+    margin: 10px;
+}
+
+.form-review-part1-info {
+    margin: 15px 10px 10px 10px;
+}
+.form-review-part1-name {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.form-review-part1-teacherproperties {
+    display: flex;
+    flex-direction: column;
+}
+.form-review-part1-teacherproperties img {
+    width: 20px;
+    height: 20px;
+    margin: 2px;
+}
+.form-review-part1-teacherproperties-element {
+    height: 28px;
+    display: flex;
+}
+
+
+
+
+/* part2 : 평점 */
+.form-review-part2-title {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.form-review-part2 {
+    width: 100%;
+    height: 30%;
+    margin-bottom: 20px;
+    background-color:cornsilk;
+    border: 1px solid lightgrey;
+    display: flex;
+}
+
+.form-review-part2-half {
+    width: 50%;
+    height: 100%;
+}
+
+.form-review-part2-element {
+    width: 100%;
+    height: 50%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-review-part2-rate {
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-review-part2-stars img {
+    width: 28px;
+    height: 28px;
+}
+
+/* part3 : 내용 */
+
+.form-review-part3-title {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.form-review-part3 {
+    width: 100%;
+    height: 30%;
+    border: 1px solid lightgrey;
+    margin-bottom: 20px;
+    background-color: aliceblue;
+}
+
+.form-review-part3-date {
+    padding-top: 8px;
+    padding-right: 8px;
+    font-size: 12px;
+    text-align: right;
+}
+
+.form-review-part3 textarea {
+    resize: none;
+    border: none;
+    font-size: 14px;
+    background-color: none;
+}
+
+/* part4 : 이 선생님 프로필 보러가기 버튼 */
+.form-review-part4 {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+}
