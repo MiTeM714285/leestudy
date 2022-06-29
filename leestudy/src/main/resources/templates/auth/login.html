@@ -15,19 +15,10 @@
     <div class="container">
       <main class="form-signin">
         <form action="" method="post">
-           <div class="student-or-teacher">
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radio_student" value="check-student" checked>
-              <label class="form-check-label" for="inlineRadio1">학생</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radio_teacher" value="check-teacher">
-              <label class="form-check-label" for="inlineRadio2">선생님</label>
-            </div>
-         </div>
+        	<p>로그인</p>
            <div class="form-floating">
-              <input type="text" class="form-control" id="email" placeholder="이메일">
-              <label for="email">이메일</label>
+              <input type="text" class="form-control" id="username" placeholder="아이디">
+              <label for="username">아이디</label>
            </div>
            <div class="form-floating">
               <input type="password" class="form-control" id="pwd" placeholder="비밀번호">
@@ -38,8 +29,8 @@
       </main>
       <div class="signupbtn">
         <p>계정이 없으신가요?</p>
-        <button class="w-100 btn btn-lg btn-secondary" type="button">학생 회원가입</button>
-        <button class="w-100 btn btn-lg btn-secondary" type="button">선생님 회원가입</button>
+        <button class="w-100 btn btn-lg btn-secondary" type="button" onclick="location.href='/auth/join-student'">학생 회원가입</button>
+        <button class="w-100 btn btn-lg btn-secondary" type="button" onclick="location.href='/auth/join-teacher'">선생님 회원가입</button>
       </div>
     </div>
 

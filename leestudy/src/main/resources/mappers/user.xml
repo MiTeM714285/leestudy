@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springboot.leestudy.domain.user.UserRepository">
+	<insert id="saveUserCommon" parameterType="com.springboot.leestudy.domain.user.Entity.UserCommon" useGeneratedKeys="true" keyProperty="usercode">
+  		insert into user_common 
+  		values(
+  			0,
+  			#{username},
+  			#{password}, 
+  			#{nickname}, 
+  			null, 
+  			#{gender}, 
+  			#{age}, 
+  			#{address_part1}, 
+  			#{address_part2}, 
+  			1, 
+  			#{role}, 
+  			now(), 
+  			now()
+  			)																																																																																																																										
+  	</insert>
+  	
+  	<insert id="saveUserStudent" parameterType="com.springboot.leestudy.domain.user.Entity.UserStudent">
+  		insert into user_student 
+  		values(
+  			#{username}, 
+  			#{studentEmail}, 
+  			#{studentPhonenum}, 
+  			#{studentIsurgent}, 
+  			#{studentGrade}, 
+  			#{studentSubject}, 
+  			#{studentPrice}, 
+  			#{studentAvailableTime}, 
+  			#{studentAvailableRemote}, 
+  			#{studentRequest}
+  			)																																																																																																																										
+  	</insert>
+  	
+  	<insert id="saveUserTeacher" parameterType="com.springboot.leestudy.domain.user.Entity.UserTeacher">
+  		insert into user_teacher 
+  		values(
+			#{username},
+			#{teacherEmail}, 
+			#{teacherPhonenum},
+			#{teacherIntroduction},
+			#{teacherUniversity}, 
+			#{teacherUniversityIsgraduate}, 
+			#{teacherUniversityMajor}, 
+			#{teacherUniversityStudentnum}, 
+			#{teacherPrice}, 
+			#{teacherDetailprice}, 
+			#{teacherPersonality}, 
+			#{teacherAvailableRemote}, 
+			#{teacherSubject}, 
+			#{teacherAvailableTime}, 
+			#{teacherTeachingDetail}, 
+			#{teacherTeachingStyle}, 
+			#{teacherAvailableDemonstration}
+  			)																																																																																																																										
+  	</insert>
+
+  	<select id="findUserCommonByUsername" parameterType="String" resultType="com.springboot.leestudy.domain.user.Entity.UserCommon">
+  		select usercode, username, password, nickname, picture, gender, age, address_part1, address_part2, isactive, role, createdate, updatedate
+  		from user_common
+  		where username = #{username}
+  	</select>
+</mapper>

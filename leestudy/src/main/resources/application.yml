@@ -28,3 +28,7 @@ spring:
       static-locations:
       - classpath:/static/ # 프론트엔드 영역 static디렉토리 시작영역
       add-mappings: true
+      
+mybatis:
+  mapper-locations:
+  - /mappers/*.xml

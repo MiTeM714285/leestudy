@@ -12,6 +12,7 @@
     padding: 30px 30px 20px 30px;
     display: flex;
     justify-content: center;
+    text-align: center;
     border: 1px solid lightgray;
     border-top: 2px solid grey;
 }
