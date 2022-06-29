@@ -249,7 +249,6 @@ async function getSelectStudentAddr1Value() { // 주소(시) 값 저장 함수 �
 		`
 	}
 	selectStudentAddr2.innerHTML = selectStudentAddr2add;
-	
 }
 
 function getSelectStudentAddr2Value() { // 주소(구) 값 저장 함수

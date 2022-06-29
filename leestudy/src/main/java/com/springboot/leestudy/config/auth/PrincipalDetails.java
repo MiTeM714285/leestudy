@@ -5,14 +5,13 @@ import java.util.Map;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import com.springboot.leestudy.domain.user.Entity.UserCommon;
 
 import lombok.Data;
 
 @Data
-public class PrincipalDetails implements UserDetails, OAuth2User{
+public class PrincipalDetails implements UserDetails{
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -72,18 +71,6 @@ public class PrincipalDetails implements UserDetails, OAuth2User{
 	public boolean isEnabled() { // 휴면계정 (false일시 로그인불가)
 		// TODO Auto-generated method stub
 		return true;
+	
 	}
-
-	@Override
-	public Map<String, Object> getAttributes() {
-		// TODO Auto-generated method stub
-		return attributes;
-	}
-
-	@Override
-	public String getName() {
-		// TODO Auto-generated method stub
-		return (String)attributes.get("name");
-	}
-
 }

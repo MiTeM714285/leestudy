@@ -20,12 +20,12 @@ public class PageController {
 	
 	private final ListsService listsService;
 	
-	@GetMapping("/auth/login") // 로그인 화면
+	@GetMapping("/login") // 로그인 화면
 	public String login() throws Exception {
-		return "auth/login";
+		return "login";
 	}
 	
-	@GetMapping("/auth/join-student") // 학생 가입화면
+	@GetMapping("/join-student") // 학생 가입화면
 	public String joinStudent(Model model) throws Exception {
 		
 		// 주소(시), 과목 카테고리, 과목 이름 리스트를 불러와서 Model에 속성 저장
@@ -43,10 +43,10 @@ public class PageController {
 		model.addAttribute("subjectNameList",subjectNameList);
 		model.addAttribute("addressPart1List",addressPart1List);
 		
-		return "auth/join-student";
+		return "join-student";
 	}
 	
-	@GetMapping("/auth/join-teacher") // 선생님 가입화면
+	@GetMapping("/join-teacher") // 선생님 가입화면
 	public String joinTeacher(Model model) throws Exception {
 		
 		// 성격, 주소(시), 과목 카테고리, 과목 이름, 대학명 리스트를 불러와서 Model에 속성 저장
@@ -67,28 +67,84 @@ public class PageController {
 		model.addAttribute("subjectNameList",subjectNameList);
 		model.addAttribute("universityList",universityList);
 		model.addAttribute("addressPart1List",addressPart1List);
-		return "auth/join-teacher";
+		return "join-teacher";
 	}
 	
-
-	
-	@GetMapping("/search")
-	public String search(@AuthenticationPrincipal PrincipalDetails principalDetails) { // 로그인 후 학생 및 선생 판별
+	@GetMapping("/auth/search")
+	public String search(@AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception { // 로그인 후 학생 및 선생 판별
 		System.out.println(principalDetails.getRole());
 		if (principalDetails.getRole().equals("USER_STUDENT")) { // 학생이면
-			return  "redirect:/search/teacher";
+			return  "redirect:/auth/search/teacher";
 		} else { // 선생이면
-			return "redirect:/search/student";
+			return "redirect:/auth/search/student";
 		}
 	}
 	
-	@GetMapping("/search/student")
-	public String searchStudent() {
-		return "search/search-student";
+	@GetMapping("/auth/search/student")
+	public String searchStudent(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) throws Exception {
+		model.addAttribute("role",principalDetails.getRole());
+		return "auth/search/search-student";
 	}
 	
-	@GetMapping("/search/teacher")
-	public String searchTeacher() {
-		return "search/search-teacher";
+	@GetMapping("/auth/search/teacher")
+	public String searchTeacher(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) throws Exception {
+		model.addAttribute("role",principalDetails.getRole());
+		return "auth/search/search-teacher";
+	}
+	
+	@GetMapping("/auth/modify")
+	public String modify(@AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception { // 로그인 후 학생 및 선생 판별
+		System.out.println(principalDetails.getRole());
+		if (principalDetails.getRole().equals("USER_STUDENT")) { // 학생이면
+			return  "redirect:/auth/modify/student";
+		} else { // 선생이면
+			return "redirect:/auth/modify/teacher";
+		}
+	}
+	
+	@GetMapping("/auth/modify/student")
+	public String modifyStudent(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) throws Exception {
+		
+		// 주소(시), 과목 카테고리, 과목 이름 리스트를 불러와서 Model에 속성 저장
+		
+		List<String> subjectCategoryList = listsService.getSubjectCategoryListAll();
+		List<List<String>> subjectNameList = new ArrayList<List<String>>();
+		List<String> addressPart1List = listsService.getAddressPart1ListAll();
+		
+		for(String category : subjectCategoryList) {
+			List<String> subjectNamesByCategory = listsService.getSubjectNameListBySubjectCategory(category);
+			subjectNameList.add(subjectNamesByCategory);
+		}
+		
+		model.addAttribute("role",principalDetails.getRole());
+		model.addAttribute("subjectCategoryList",subjectCategoryList);
+		model.addAttribute("subjectNameList",subjectNameList);
+		model.addAttribute("addressPart1List",addressPart1List);
+		
+		return "auth/modify/modify-student";
+	}
+	
+	@GetMapping("/auth/modify/teacher")
+	public String modifyTeacher(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) throws Exception {
+		// 성격, 주소(시), 과목 카테고리, 과목 이름, 대학명 리스트를 불러와서 Model에 속성 저장
+		
+		List<String> personalityNameList = listsService.getPersonalityNameListAll();
+		List<String> subjectCategoryList = listsService.getSubjectCategoryListAll();
+		List<List<String>> subjectNameList = new ArrayList<List<String>>();
+		List<ListUniversity> universityList = listsService.getUniversityListAll();
+		List<String> addressPart1List = listsService.getAddressPart1ListAll();
+		
+		for(String category : subjectCategoryList) {
+			List<String> subjectNamesByCategory = listsService.getSubjectNameListBySubjectCategory(category);
+			subjectNameList.add(subjectNamesByCategory);
+		}
+		
+		model.addAttribute("personalityNameList",personalityNameList);
+		model.addAttribute("subjectCategoryList",subjectCategoryList);
+		model.addAttribute("subjectNameList",subjectNameList);
+		model.addAttribute("universityList",universityList);
+		model.addAttribute("addressPart1List",addressPart1List);
+		model.addAttribute("role",principalDetails.getRole());
+		return "auth/modify/modify-teacher";
 	}
 }

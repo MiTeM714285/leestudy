@@ -19,57 +19,57 @@ public class SaveUserTeacherDto {
 	@NotBlank
 	private String username;
 	@NotBlank
-	private String teacherEmail;
+	private String teacher_email;
 	
-	private String teacherIntroduction;
+	private String teacher_introduction;
 	@NotNull // int형식은 @NotBlank 사용불가
-	private int teacherUniversity;
+	private int teacher_university;
 
-	private String teacherUniversityIsgraduate;
+	private String teacher_university_isgraduate;
 
-	private String teacherUniversityMajor;
+	private String teacher_university_major;
 
-	private String teacherUniversityStudentnum;
+	private String teacher_university_studentnum;
 	@NotBlank
-	private String teacherPhonenum;
+	private String teacher_phonenum;
 	@NotBlank
-	private String teacherPrice;
+	private String teacher_price;
 	@NotBlank
-	private String teacherDetailprice;
+	private String teacher_detailprice;
 	@NotBlank
-	private String teacherPersonality;
+	private String teacher_personality;
 	@NotNull // int형식은 @NotBlank 사용불가
-	private int teacherAvailableRemote;
+	private int teacher_available_remote;
 	@NotBlank
-	private String teacherSubject;
+	private String teacher_subject;
 	@NotBlank
-	private String teacherAvailableTime;
+	private String teacher_available_time;
 	@NotBlank
-	private String teacherTeachingDetail;
+	private String teacher_teaching_detail;
 	@NotBlank
-	private String teacherTeachingStyle;
+	private String teacher_teaching_style;
 	@NotBlank
-	private String teacherAvailableDemonstration;
+	private String teacher_available_demonstration;
 	
 	public UserTeacher toEntity() {
 		return UserTeacher.builder()
 			.username(username)
-			.teacherEmail(teacherEmail)
-			.teacherIntroduction(teacherIntroduction)
-			.teacherUniversity(teacherUniversity)
-			.teacherUniversityIsgraduate(teacherUniversityIsgraduate)
-			.teacherUniversityMajor(teacherUniversityMajor)
-			.teacherUniversityStudentnum(teacherUniversityStudentnum)
-			.teacherPhonenum(teacherPhonenum)
-			.teacherPrice(teacherPrice)
-			.teacherDetailprice(teacherDetailprice)
-			.teacherPersonality(teacherPersonality)
-			.teacherAvailableRemote(teacherAvailableRemote)
-			.teacherSubject(teacherSubject)
-			.teacherAvailableTime(teacherAvailableTime)
-			.teacherTeachingDetail(teacherTeachingDetail)
-			.teacherTeachingStyle(teacherTeachingStyle)
-			.teacherAvailableDemonstration(teacherAvailableDemonstration)
+			.teacher_email(teacher_email)
+			.teacher_introduction(teacher_introduction)
+			.teacher_university(teacher_university)
+			.teacher_university_isgraduate(teacher_university_isgraduate)
+			.teacher_university_major(teacher_university_major)
+			.teacher_university_studentnum(teacher_university_studentnum)
+			.teacher_phonenum(teacher_phonenum)
+			.teacher_price(teacher_price)
+			.teacher_detailprice(teacher_detailprice)
+			.teacher_personality(teacher_personality)
+			.teacher_available_remote(teacher_available_remote)
+			.teacher_subject(teacher_subject)
+			.teacher_available_time(teacher_available_time)
+			.teacher_teaching_detail(teacher_teaching_detail)
+			.teacher_teaching_style(teacher_teaching_style)
+			.teacher_available_demonstration(teacher_available_demonstration)
 			.build();
 	}
 }

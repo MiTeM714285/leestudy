@@ -11,22 +11,21 @@ import lombok.NoArgsConstructor;
 @Builder
 public class UserTeacher {
 	
-	private int teachercode;
 	private String username;
-	private String teacherEmail;
-	private String teacherIntroduction;
-	private int teacherUniversity;
-	private String teacherUniversityIsgraduate;
-	private String teacherUniversityMajor;
-	private String teacherUniversityStudentnum;
-	private String teacherPhonenum;
-	private String teacherPrice;
-	private String teacherDetailprice;
-	private String teacherPersonality;
-	private int teacherAvailableRemote;
-	private String teacherSubject;
-	private String teacherAvailableTime;
-	private String teacherTeachingDetail;
-	private String teacherTeachingStyle;
-	private String teacherAvailableDemonstration;
+	private String teacher_email;
+	private String teacher_phonenum;
+	private String teacher_introduction;
+	private int teacher_university;
+	private String teacher_university_isgraduate;
+	private String teacher_university_major;
+	private String teacher_university_studentnum;
+	private String teacher_price;
+	private String teacher_detailprice;
+	private String teacher_personality;
+	private int teacher_available_remote;
+	private String teacher_subject;
+	private String teacher_available_time;
+	private String teacher_teaching_detail;
+	private String teacher_teaching_style;
+	private String teacher_available_demonstration;
 }

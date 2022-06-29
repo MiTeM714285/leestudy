@@ -4,107 +4,111 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>선생님 회원가입 | 이과외</title>
-    <link rel="stylesheet" href="../../static/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../../static/css/style/join-teacher.css" />
+    <title>선생님 회원정보수정 | 이과외</title>
+    <link rel="stylesheet" href="../../../static/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../../static/css/style/modify-teacher.css" />
   </head>
   <body>
 
-    <nav th:replace="fragments/nav-notlogin :: nav"><!-- thymeleaf header will be inserted here. --></nav>
+    <nav th:replace="fragments/nav-login :: nav"><!-- thymeleaf header will be inserted here. --></nav>
 
     
     <div class="container">
 
 
       <!-- 이과외는 많은 분께 신뢰받고 있습니다 -->
-      <div class="form-signup-teacher">
-        <div class="form-signup-intro1">
+      <div class="form-modify-teacher">
+        <div class="form-modify-intro1">
           이과외는 많은 분께 신뢰받고 있습니다.
         </div>
-        <div class="form-signup-intro2">
+        <div class="form-modify-intro2">
           학생 이용 압도적 1위, 선생님 풀 압도적 1위 과외 플랫폼입니다.
         </div>
-        <div class="form-signup-intro3">
-          <div class="form-signup-intro3-teacher">
-            <img src="../../static/images/join/tutor.png" alt="tutor">
-            <div class="form-signup-intro3-population">
+        <div class="form-modify-intro3">
+          <div class="form-modify-intro3-teacher">
+            <img src="../../../static/images/join/tutor.png" alt="tutor">
+            <div class="form-modify-intro3-population">
               000,000명
             </div>
-            <div class="form-signup-intro3-description">
+            <div class="form-modify-intro3-description">
               선생님 회원
             </div>
           </div>
-          <div class="form-signup-intro3-teacher">
-            <img src="../../static/images/join/tutee.png" alt="tutee">
-            <div class="form-signup-intro3-population">
+          <div class="form-modify-intro3-teacher">
+            <img src="../../../static/images/join/tutee.png" alt="tutee">
+            <div class="form-modify-intro3-population">
               000,000명
             </div>
-            <div class="form-signup-intro3-description">
+            <div class="form-modify-intro3-description">
               학생 회원
             </div>
           </div>
-          <div class="form-signup-intro3-satisfaction">
-            <img src="../../static/images/join/satisfaction.png" alt="satisfaction">
-            <div class="form-signup-intro3-population">
+          <div class="form-modify-intro3-satisfaction">
+            <img src="../../../static/images/join/satisfaction.png" alt="satisfaction">
+            <div class="form-modify-intro3-population">
               99.9%
             </div>
-            <div class="form-signup-intro3-description">
+            <div class="form-modify-intro3-description">
               고객만족도
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 로그인에 사용될 이메일을 입력해주세요. -->
-      <div class="form-signup-teacher">
-        <div class="form-signup-teacher-question">
-          로그인에 사용될 아이디를 입력해주세요. 입력 이후 중복조회를 꼭 거쳐주세요.
-        </div>
-        <div class="form-signup-teacher-furtherexplanation" style="color: red;">
-          *6자~16자 내로 작성, 가입 이후 수정할 수 없습니다.
-        </div>
-        <div class="input-group">
-          <input type="text" maxlength='16' class="form-control inputUsername">
-          <button type="button" class="btn btn-outline-secondary btnCheckUsername">중복 조회하기</button>
-        </div>
+      <!-- 프로필 사진 바꾸기 -->
+      <div class="form-modify-teacher">
+        <form action="" enctype="multipart/form-data">
+          <div class="form-modify-teacher-picture">
+            <img src="" alt="teacher_picture">
+          </div>
+          <div class="form-modify-teacher-picturechange">
+            프로필 사진 바꾸기
+            <input type="file" class="file-input" name="file">
+          </div>
+        </form>
       </div>
 
       <!-- 비밀번호를 입력해주세요. -->
-      <div class="form-signup-teacher">
-        <div class="form-signup-teacher-question">
-          비밀번호를 입력해주세요. 
+      <div class="form-modify-teacher">
+        <div class="form-modify-teacher-question">
+          비밀번호
+            <div class="form-check">
+		      <input class="form-check-input" onclick='PasswordModifying(event)' type="checkbox">
+		      <label class="form-check-label" >수정하려면 체크하기</label>
+		    </div>
         </div>
-        <div class="form-signup-teacher-furtherexplanation">
-          *8~16자 내로 작성, 비밀번호는 양 입력란 모두 동일하게 입력 바랍니다.
+        <div class="form-modify-teacher-furtherexplanation">
+          *8~16자 내로 작성, 바꿀 새 비밀번호는 현재 비밀번호와 다르게 설정하여야 합니다.
         </div>
-        <div class="form-signup-teacher-password">
-          <input type="password" maxlength='16' class="form-control inputPassword" style="margin-right: 20px;" placeholder="비밀번호 입력">
-          <input type="password" maxlength='16' class="form-control inputPasswordAgain" placeholder="비밀번호 확인">
+        <div class="form-modify-teacher-password">
+          <input type="password" maxlength='16' class="form-control inputOldPassword" style="margin-right: 20px;" placeholder="현재 비밀번호" disabled="disabled">
+          <input type="password" maxlength='16' class="form-control inputNewPassword" style="margin-right: 20px;" placeholder="새 비밀번호" disabled="disabled">
+          <input type="password" maxlength='16' class="form-control inputNewPasswordAgain" placeholder="새 비밀번호 확인" disabled="disabled">
         </div>
       </div>
 
       <!-- 표시할 닉네임을 입력해주세요. -->
-      <div class="form-signup-teacher">
-        <div class="form-signup-teacher-question">
-          표시할 닉네임을 입력해주세요.
+      <div class="form-modify-teacher">
+        <div class="form-modify-teacher-question">
+          닉네임
         </div>
-        <div class="form-signup-teacher-furtherexplanation">
+        <div class="form-modify-teacher-furtherexplanation">
           *3~10자 내로 작성
         </div>
           <input type="text" maxlength='10' class="form-control inputNickname">
       </div>
       
       <!-- 이메일을 입력해주세요. -->
-      <div class="form-signup-teacher">
-        <div class="form-signup-teacher-question">
-          이메일을 입력해주세요.
+      <div class="form-modify-teacher">
+        <div class="form-modify-teacher-question">
+          이메일
         </div>
           <input type="email" class="form-control inputEmail" placeholder="qwer1234@email.com">
       </div>
 
       <!-- 화상과외(온라인과외) 가능여부 -->
-      <div class="form-signup-teacher">
-        <div class="form-signup-teacher-question">
+      <div class="form-modify-teacher">
+        <div class="form-modify-teacher-question">
           화상과외(온라인과외) 가능여부
         </div>
         <div class="form-check">
@@ -122,8 +126,8 @@
       </div>
       
       <!-- 시범과외 가능여부 -->
-      <div class="form-signup-teacher">
-        <div class="form-signup-teacher-question">
+      <div class="form-modify-teacher">
+        <div class="form-modify-teacher-question">
           시범과외 가능여부
         </div>
         <div class="form-check">
@@ -147,11 +151,11 @@
       </div>
       
        <!-- 과외를 진행할 주소를 알려주세요 -->
-      <div class="form-signup-teacher">
-        <div class="form-signup-teacher-question">
-          과외를 진행할 주소를 알려주세요
+      <div class="form-modify-teacher">
+        <div class="form-modify-teacher-question">
+          주소
         </div>
-        <div class="form-signup-teacher-address">
+        <div class="form-modify-teacher-address">
           <select class="form-select selectTeacherAddr1" onchange="getSelectTeacherAddr1Value()" aria-label="Default select example" style="margin-right: 20px;">
             <option value="" selected>시 선택</option>
             <option th:each="a1, a1stat : ${addressPart1List}" th:text="${a1}" th:value="${a1}"></option>
@@ -163,9 +167,9 @@
       </div>
 
       <!-- 선생님의 성별을 알려주세요 -->
-      <div class="form-signup-teacher">
-        <div class="form-signup-teacher-question">
-          선생님의 성별을 알려주세요
+      <div class="form-modify-teacher">
+        <div class="form-modify-teacher-question">
+          성별
         </div>
         <div class="form-check">
           <input class="form-check-input" type="radio" onclick="getRadioGenderValue(event)" name="radio-teacher-gender" value="남자" id="radio-teacher-male">
@@ -188,9 +192,9 @@
       </div>
 
       <!-- 선생님의 나이는 무엇인가요? -->
-      <div class="form-signup-teacher">
-        <div class="form-signup-teacher-question">
-          선생님의 나이는 어느 범위에 있나요?
+      <div class="form-modify-teacher">
+        <div class="form-modify-teacher-question">
+          나이 범위
         </div>
         <select class="form-select selectTeacherAge" onchange="getSelectTeacherAgeValue()" aria-label="Default select example">
           <option value="" selected>선택하세요</option>
@@ -210,11 +214,11 @@
 
 
       <!-- 선생님의 성격은 어떠한가요? -->
-      <div class="form-signup-teacher">
-        <div class="form-signup-teacher-question">
-          선생님의 성격은 어떠한가요?
+      <div class="form-modify-teacher">
+        <div class="form-modify-teacher-question">
+          성격
         </div>
-        <div class="form-signup-teacher-furtherexplanation">
+        <div class="form-modify-teacher-furtherexplanation">
           *2개까지 체크 가능
         </div>
         <div class="row row-cols-4">
@@ -229,9 +233,9 @@
       </div>
 
        <!-- 최소 페이를 알려주세요 -->
-      <div class="form-signup-teacher">
-        <div class="form-signup-teacher-question">
-          최소 페이를 알려주세요
+      <div class="form-modify-teacher">
+        <div class="form-modify-teacher-question">
+          최소 페이
         </div>
         <select class="form-select selectTeacherPrice" onchange="getSelectTeacherPriceValue()" aria-label="Default select example">
           <option selected>선택해주세요</option>
@@ -247,11 +251,11 @@
       </div>
 
       <!-- 자세한 수업료 기준은 어떻게 되나요? -->
-      <div class="form-signup-teacher">
-        <div class="form-signup-teacher-question">
-          자세한 수업료 기준은 어떻게 되나요?
+      <div class="form-modify-teacher">
+        <div class="form-modify-teacher-question">
+          자세한 수업료 기준
         </div>
-        <div class="form-signup-teacher-furtherexplanation">
+        <div class="form-modify-teacher-furtherexplanation">
           *30~300자 내로 작성
         </div>
         <div class="mb-3">
@@ -260,16 +264,16 @@
       </div>
       
        <!-- 어떤 과목을 과외받길 원하시나요? -->
-      <div class="form-signup-teacher">
-        <div class="form-signup-teacher-question">
-          어떤 과목이 과외가 가능하신가요?
+      <div class="form-modify-teacher">
+        <div class="form-modify-teacher-question">
+          담당 과목
         </div>
-        <div class="form-signup-teacher-furtherexplanation">
+        <div class="form-modify-teacher-furtherexplanation">
           *5개까지 체크 가능
         </div>
-        <div class="form-signup-teacher-checklist">
+        <div class="form-modify-teacher-checklist">
         <!-- getSubjectCategoryListAll 호출되어 반복문을 통해 출력 -->
-          <div th:each="s1,s1stat : ${subjectCategoryList}" class="form-signup-teacher-checklist-categorypart">
+          <div th:each="s1,s1stat : ${subjectCategoryList}" class="form-modify-teacher-checklist-categorypart">
             <p th:text="${s1}"></p>
             <div class="row row-cols-5">
             <!-- getSubjectNameListBySubjectCategory 호출되어 반복문을 통해 출력, 인덱스는 s1stat.index로 변수를 제공 -->
@@ -285,9 +289,9 @@
       </div>
 
       <!-- 선생님의 출신 대학교는 어디인가요? -->
-      <div class="form-signup-teacher">
-        <div class="form-signup-teacher-question">
-          선생님의 출신 대학교는 어디인가요?
+      <div class="form-modify-teacher">
+        <div class="form-modify-teacher-question">
+          출신 대학교
             <div class="form-check">
 	          <input class="form-check-input" onclick='NoUniversity(event)' type="checkbox" value="차분한">
 	          <label class="form-check-label" >출신대학교 없음</label>
@@ -303,20 +307,20 @@
       </div>
 
       <!-- 선생님의 전공 학과는 무엇인가요? -->
-      <div class="form-signup-teacher">
-        <div class="form-signup-teacher-question">
-          선생님의 전공 학과는 무엇인가요?
+      <div class="form-modify-teacher">
+        <div class="form-modify-teacher-question">
+          전공 학과
         </div>
-        <div class="form-signup-teacher-furtherexplanation">
+        <div class="form-modify-teacher-furtherexplanation">
           *4~20자 내로 작성
         </div>
           <input type="text" maxlength="20" class="form-control inputUniversityMajor" placeholder="예)수학교육과">
       </div>
 
       <!-- 선생님의 학번은 무엇인가요? -->
-      <div class="form-signup-teacher">
-        <div class="form-signup-teacher-question">
-          선생님의 학번은 무엇인가요?
+      <div class="form-modify-teacher">
+        <div class="form-modify-teacher-question">
+          학번
         </div>
         <select class="form-select selectUniversityStudentnum" onchange="getSelectUniversityStudentnumValue()" aria-label="Default select example">
           <option value="" selected>선택해주세요</option>
@@ -343,8 +347,8 @@
       </div>
       
       <!-- 대학 졸업여부 -->
-      <div class="form-signup-teacher">
-        <div class="form-signup-teacher-question">
+      <div class="form-modify-teacher">
+        <div class="form-modify-teacher-question">
           대학 졸업여부
         </div>
         <select class="form-select selectUniversityIsgraduate" onchange="getSelectUniversityIsgraduateValue()" aria-label="Default select example">
@@ -357,33 +361,33 @@
       </div>
 
       <!-- 한줄소개 -->
-      <div class="form-signup-teacher">
-        <div class="form-signup-teacher-question">
+      <div class="form-modify-teacher">
+        <div class="form-modify-teacher-question">
           한줄소개 (생략가능)
         </div>
-        <div class="form-signup-teacher-furtherexplanation">
+        <div class="form-modify-teacher-furtherexplanation">
           *50자 내로 작성
         </div>
           <input type="text" maxlength="50" class="form-control inputIntroduction" placeholder="예) 강한수학 고대여신 데굴데굴">
       </div>
 
       <!-- 과외 가능 요일/시간을 작성해주세요. -->
-      <div class="form-signup-teacher">
-        <div class="form-signup-teacher-question">
-          과외 가능 요일/시간을 작성해주세요.
+      <div class="form-modify-teacher">
+        <div class="form-modify-teacher-question">
+          과외 가능 요일/시간
         </div>
-        <div class="form-signup-teacher-furtherexplanation">
+        <div class="form-modify-teacher-furtherexplanation">
           *10~100자 내로 작성
         </div>
           <input type="text" maxlength='100' class="form-control inputAvailableTime" placeholder="예) 월수금 18~22시, 주말가능/협의가능">
       </div>
 
       <!-- 과목별 수업내용 -->
-      <div class="form-signup-teacher">
-        <div class="form-signup-teacher-question">
+      <div class="form-modify-teacher">
+        <div class="form-modify-teacher-question">
           과목별 수업내용
         </div>
-        <div class="form-signup-teacher-furtherexplanation">
+        <div class="form-modify-teacher-furtherexplanation">
           *100~300자 내로 작성
         </div>
         <div class="mb-3">
@@ -392,11 +396,11 @@
       </div>
 
       <!-- 과외 스타일 -->
-      <div class="form-signup-teacher">
-        <div class="form-signup-teacher-question">
+      <div class="form-modify-teacher">
+        <div class="form-modify-teacher-question">
           과외 스타일
         </div>
-        <div class="form-signup-teacher-furtherexplanation">
+        <div class="form-modify-teacher-furtherexplanation">
           *50~300자 내로 작성
         </div>
         <div class="mb-3">
@@ -405,28 +409,38 @@
       </div>
 
       <!-- 휴대폰 번호 인증을 해주세요 -->
-      <div class="form-signup-teacher">
-        <div class="form-signup-teacher-question">
-          휴대폰 번호 인증을 해주세요
+      <div class="form-modify-teacher">
+        <div class="form-modify-teacher-question">
+          휴대폰 번호
+            <div class="form-check">
+		      <input class="form-check-input" onclick='PhonenumModifying(event)' type="checkbox">
+		      <label class="form-check-label" >수정하려면 체크하기</label>
+		    </div>
         </div>
-        <div class="form-signup-teacher-furtherexplanation">
+        <div class="form-modify-teacher-furtherexplanation">
           *연락처는 학생분들에게 선공개되지 않습니다. 가입 및 인증 용도입니다.
         </div>
         <div class="input-group">
-          <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="form-control inputPhonenum1" aria-label="Text input with segmented dropdown button" placeholder="예)01012345678">
-          <button type="button" class="btn btn-outline-secondary btnPhoneNumCheck1">인증번호 요청</button>
+          <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="form-control inputPhonenum1" aria-label="Text input with segmented dropdown button" placeholder="예)01012345678" disabled="disabled">
+          <button type="button" class="btn btn-outline-secondary btnPhoneNumCheck1" disabled="disabled">인증번호 요청</button>
           <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="form-control inputPhonenum2" aria-label="Text input with segmented dropdown button" placeholder="인증번호 입력" disabled="disabled">
           <button type="button" class="btn btn-outline-secondary btnPhoneNumCheck2" disabled="disabled">인증완료</button>
         </div>
       </div>
 
-      <!-- 회원가입 버튼 -->
-      <button class="w-100 btn btn-lg btn-secondary btnTeacherJoinComplete" type="button" style="margin-top:30px;">가입완료하고 과외 학생분 찾기</button>
+            <!-- 정보수정 버튼 -->
+      <div class="okOrCancel">
+      	<button class="w-100 btn btn-lg btn-secondary btnTeacherModifyCancel" type="button" style="margin-top:30px; margin-right:30px;">취소</button>
+      	<button class="w-100 btn btn-lg btn-secondary btnTeacherModifyComplete" type="button" style="margin-top:30px; margin-right:30px;">회원정보 수정하기</button>
+      	<button class="w-100 btn btn-lg btn-danger btnStudentModifyComplete" type="button" style="margin-top:30px;">회원탈퇴</button>
+      </div>
+      
     </div>
 
     <footer th:replace="fragments/footer :: footer"><!-- thymeleaf header will be inserted here. --></footer>
 
-    <script src='../../static/js/bootstrap.min.js'></script>
-    <script src='../../static/js/auth/join-teacher.js'></script>
+    <script src='../../../static/js/bootstrap.min.js'></script>
+    <script src='../../../static/js/auth/principal.js'></script>
+    <script src='../../../static/js/auth/modify/modify-teacher.js'></script>
   </body>
 </html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>학생 회원정보수정 | 이과외</title>
+    <link rel="stylesheet" href="../../../static/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../../static/css/style/modify-student.css" />
+  </head>
+  <body>
+
+    <nav th:replace="fragments/nav-login :: nav"><!-- thymeleaf header will be inserted here. --></nav>
+
+    
+    <div class="container">
+
+      
+
+      <!-- 이과외는 많은 분께 신뢰받고 있습니다 -->
+      <div class="form-modify-student">
+        <div class="form-modify-intro1">
+          이과외는 많은 분께 신뢰받고 있습니다.
+        </div>
+        <div class="form-modify-intro2">
+          학생 이용 압도적 1위, 선생님 풀 압도적 1위 과외 플랫폼입니다.
+        </div>
+        <div class="form-modify-intro3">
+          <div class="form-modify-intro3-teacher">
+            <img src="../../../static/images/join/tutor.png" alt="tutor">
+            <div class="form-modify-intro3-population">
+              000,000명
+            </div>
+            <div class="form-modify-intro3-description">
+              선생님 회원
+            </div>
+          </div>
+          <div class="form-modify-intro3-student">
+            <img src="../../../static/images/join/tutee.png" alt="tutee">
+            <div class="form-modify-intro3-population">
+              000,000명
+            </div>
+            <div class="form-modify-intro3-description">
+              학생 회원
+            </div>
+          </div>
+          <div class="form-modify-intro3-satisfaction">
+            <img src="../../../static/images/join/satisfaction.png" alt="satisfaction">
+            <div class="form-modify-intro3-population">
+              99.9%
+            </div>
+            <div class="form-modify-intro3-description">
+              고객만족도
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 프로필 사진 바꾸기 -->
+      <div class="form-modify-student">
+        <form action="" enctype="multipart/form-data">
+          <div class="form-modify-student-picture">
+            <img src="" alt="student_picture">
+          </div>
+          <div class="form-modify-student-picturechange">
+            프로필 사진 바꾸기
+            <input type="file" class="file-input" name="file">
+          </div>
+        </form>
+      </div>
+	
+      <!-- 비밀번호를 입력해주세요. -->
+      <div class="form-modify-student">
+        <div class="form-modify-student-question">
+          비밀번호
+            <div class="form-check">
+		      <input class="form-check-input" onclick='PasswordModifying(event)' type="checkbox">
+		      <label class="form-check-label" >수정하려면 체크하기</label>
+		    </div>
+        </div>
+        <div class="form-modify-student-furtherexplanation">
+          *8~16자 내로 작성, 바꿀 새 비밀번호는 현재 비밀번호와 다르게 설정하여야 합니다.
+        </div>
+        <div class="form-modify-student-password">
+          <input type="password" maxlength='16' class="form-control inputOldPassword" style="margin-right: 20px;" placeholder="현재 비밀번호" disabled="disabled">
+          <input type="password" maxlength='16' class="form-control inputNewPassword" style="margin-right: 20px;" placeholder="새 비밀번호" disabled="disabled">
+          <input type="password" maxlength='16' class="form-control inputNewPasswordAgain" placeholder="새 비밀번호 확인" disabled="disabled">
+        </div>
+      </div>
+
+      <!-- 표시할 닉네임을 입력해주세요. -->
+      <div class="form-modify-student">
+        <div class="form-modify-student-question">
+          닉네임
+        </div>
+        <div class="form-modify-student-furtherexplanation">
+          *3~10자 내로 작성
+        </div>
+          <input type="text" maxlength='10' class="form-control inputNickname">
+      </div>
+      
+      <!-- 이메일을 입력해주세요. -->
+      <div class="form-modify-student">
+        <div class="form-modify-student-question">
+          이메일
+        </div>
+          <input type="email" class="form-control inputEmail" placeholder="qwer1234@email.com">
+      </div>
+
+      <!-- 지금 과외를 구하고 있나요? -->
+      <div class="form-modify-student">
+        <div class="form-modify-student-question">
+          지금 과외를 구하고 있나요?
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="radioIsurgent" value="1" onclick="getRadioIsurgentValue(event)" id="radio-student-urgent">
+          <label class="form-check-label" for="radio-student-urgent">
+            네. 과외가 급해요
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="radioIsurgent" value="2" onclick="getRadioIsurgentValue(event)" id="radio-student-noturgent">
+          <label class="form-check-label" for="radio-student-noturgent">
+            아직은 생각중이예요
+          </label>
+        </div>
+      </div>
+
+      <!-- 과외받을 학생의 연령/학년을 알려주세요 -->
+      <div class="form-modify-student">
+        <div class="form-modify-student-question">
+          학년
+        </div>
+        <select class="form-select selectStudentGrade" onchange="getSelectStudentGradeValue()" aria-label="Default select example">
+          <option value="" selected>선택해주세요</option>
+          <option value="사회인">사회인</option>
+          <option value="대학생">대학생</option>
+          <option value="n수생">n수생</option>
+          <option value="고등학교 3학년">고등학교 3학년</option>
+          <option value="고등학교 2학년">고등학교 2학년</option>
+          <option value="고등학교 1학년">고등학교 1학년</option>
+          <option value="중학교 3학년">중학교 3학년</option>
+          <option value="중학교 2학년">중학교 2학년</option>
+          <option value="중학교 1학년">중학교 1학년</option>
+          <option value="초등학교 6학년">초등학교 6학년</option>
+          <option value="초등학교 5학년">초등학교 5학년</option>
+          <option value="초등학교 4학년">초등학교 4학년</option>
+          <option value="초등학교 3학년">초등학교 3학년</option>
+          <option value="초등학교 2학년">초등학교 2학년</option>
+          <option value="초등학교 1학년">초등학교 1학년</option>
+        </select>
+      </div>
+
+      <!-- 과외를 구할 주소를 알려주세요 -->
+      <div class="form-modify-student">
+        <div class="form-modify-student-question">
+          주소
+        </div>
+        <div class="form-modify-student-address">
+          <select class="form-select selectStudentAddr1" onchange="getSelectStudentAddr1Value()" aria-label="Default select example" style="margin-right: 20px;">
+            <option value="" selected>시 선택</option>
+            <option th:each="a1, a1stat : ${addressPart1List}" th:text="${a1}" th:value="${a1}"></option>
+          </select>
+          <select class="form-select selectStudentAddr2" onchange="getSelectStudentAddr2Value()" aria-label="Default select example">
+			<option value="" selected>구 선택</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- 학생의 성별을 알려주세요 -->
+      <div class="form-modify-student">
+        <div class="form-modify-student-question">
+          성별
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" onclick="getRadioGenderValue(event)" name="radioGender" value="남자" id="radio-student-male">
+          <label class="form-check-label" for="radio-student-male">
+            남자
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" onclick="getRadioGenderValue(event)" name="radioGender" value="여자" id="radio-student-female">
+          <label class="form-check-label" for="radio-student-female">
+            여자
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" onclick="getRadioGenderValue(event)" name="radioGender" value="기타" id="radio-student-thirdgender">
+          <label class="form-check-label" for="radio-student-thirdgender">
+            기타(제 3의 성 등)
+          </label>
+        </div>
+      </div>
+
+      <!-- 학생분의 나이는 무엇인가요? -->
+      <div class="form-modify-student">
+        <div class="form-modify-student-question">
+          나이 범위
+        </div>
+        <select class="form-select selectStudentAge" onchange="getSelectStudentAgeValue()" aria-label="Default select example">
+          <option value="" selected>선택하세요</option>
+          <option value="10이하">10이하</option>
+          <option value="11~15">11~15</option>
+          <option value="16~20">16~20</option>
+          <option value="21~25">21~25</option>
+          <option value="26~30">26~30</option>
+          <option value="26~30">31~35</option>
+          <option value="36~40">36~40</option>
+          <option value="41~45">41~45</option>
+          <option value="46~50">46~50</option>
+          <option value="51이상">51이상</option>
+        </select>
+      </div>
+
+       <!-- 어떤 과목을 과외받길 원하시나요? -->
+      <div class="form-modify-student">
+        <div class="form-modify-student-question">
+          과외 과목
+        </div>
+        <div class="form-modify-student-furtherexplanation">
+          *5개까지 체크 가능
+        </div>
+        <div class="form-modify-student-checklist">
+        <!-- getSubjectCategoryListAll 호출되어 반복문을 통해 출력 -->
+          <div th:each="s1,s1stat : ${subjectCategoryList}" class="form-modify-student-checklist-categorypart">
+            <p th:text="${s1}"></p>
+            <div class="row row-cols-5">
+            <!-- getSubjectNameListBySubjectCategory 호출되어 반복문을 통해 출력, 인덱스는 s1stat.index로 변수를 제공 -->
+                <div th:each="s3 : ${subjectNameList[s1stat.index]}" class="col">
+              		<div class="form-check">
+	                  <input type="checkbox" name="checkboxSubject" class="form-check-input" th:value="${s3}" onclick='getSelectSubjectValue(event)'>
+	                  <label th:text="${s3}" class="form-check-label"></label>
+              	</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 최대 예산을 알려주세요 -->
+      <div class="form-modify-student">
+        <div class="form-modify-student-question">
+          최대 예산
+        </div>
+        <select class="form-select selectStudentPrice" onchange="getSelectStudentPriceValue()" aria-label="Default select example">
+          <option selected>선택해주세요</option>
+          <option value="100만원 이상">100만원 이상</option>
+          <option value="80만원">80만원</option>
+          <option value="70만원">70만원</option>
+          <option value="60만원">60만원</option>
+          <option value="50만원">50만원</option>
+          <option value="40만원">40만원</option>
+          <option value="30만원">30만원</option>
+          <option value="20만원 이하">20만원 이하</option>
+        </select>
+      </div>
+      
+      <!-- 과외 가능 요일/시간을 작성해주세요. -->
+      <div class="form-modify-student">
+        <div class="form-modify-student-question">
+          과외 가능 요일/시간
+        </div>
+        <div class="form-modify-student-furtherexplanation">
+          *10~100자 내로 작성
+        </div>
+          <input type="text" maxlength='100' class="form-control inputAvailableTime" placeholder="예) 월수금 18~22시, 주말가능/협의가능">
+      </div>
+      
+       <!-- 원격 수업이 반드시 필요한가요? -->
+      <div class="form-modify-student">
+        <div class="form-modify-student-question">
+          원격 수업 필요 여부
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="radioAvailableRemote" value="1" onclick="getRadioAvailableRemoteValue(event)" id="radio-student-remote">
+          <label class="form-check-label" for="radio-student-remote">
+            네.
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="radioAvailableRemote" value="2" onclick="getRadioAvailableRemoteValue(event)" id="radio-student-notremote">
+          <label class="form-check-label" for="radio-student-notremote">
+            상관 없어요.
+          </label>
+        </div>
+      </div>
+
+      <!-- 학생의 상황, 과외선생님께 바라는 것을 작성해 주세요 -->
+      <div class="form-modify-student">
+        <div class="form-modify-student-question">
+          학생분의 상황, 과외선생님께 바라는 것 (생략가능)
+        </div>
+        <div class="mb-3">
+          <textarea class="form-control inputRequest" maxlength='300' placeholder="부족한 부분과 필요한 수업 내용, 선생님께 바라는 것 등을 자세히 적어 주세요. (300자 내)" rows="5"></textarea>
+        </div>
+      </div>
+
+      <!-- 휴대폰 번호 인증을 해주세요 -->
+      <div class="form-modify-student">
+        <div class="form-modify-student-question">
+          휴대폰 번호
+            <div class="form-check">
+		      <input class="form-check-input" onclick='PhonenumModifying(event)' type="checkbox">
+		      <label class="form-check-label" >수정하려면 체크하기</label>
+		    </div>
+        </div>
+        <div class="form-modify-student-furtherexplanation">
+          *연락처는 선생님들에게 선공개되지 않습니다. 가입 및 인증 용도입니다.
+        </div>
+        <div class="input-group">
+          <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="form-control inputPhonenum1" aria-label="Text input with segmented dropdown button" placeholder="예)01012345678" disabled="disabled">
+          <button type="button" class="btn btn-outline-secondary btnPhoneNumCheck1" disabled="disabled">인증번호 요청</button>
+          <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="form-control inputPhonenum2" aria-label="Text input with segmented dropdown button" placeholder="인증번호 입력" disabled="disabled">
+          <button type="button" class="btn btn-outline-secondary btnPhoneNumCheck2" disabled="disabled">인증완료</button>
+        </div>
+      </div>
+
+      <!-- 정보수정 버튼 -->
+      <div class="okOrCancel">
+      	<button class="w-100 btn btn-lg btn-secondary btnStudentModifyCancel" type="button" style="margin-top:30px; margin-right:30px;">취소</button>
+      	<button class="w-100 btn btn-lg btn-secondary btnStudentModifyComplete" type="button" style="margin-top:30px; margin-right:30px;">회원정보 수정하기</button>
+      	<button class="w-100 btn btn-lg btn-danger btnStudentDelete" type="button" style="margin-top:30px;">회원탈퇴</button>
+      </div>
+      
+    </div>
+
+    <footer th:replace="fragments/footer :: footer"><!-- thymeleaf header will be inserted here. --></footer>
+
+    <script src='../../../static/js/bootstrap.min.js'></script>
+    <script src='../../../static/js/auth/principal.js'></script>
+    <script src='../../../static/js/auth/modify/modify-student.js'></script>
+  </body>
+</html>

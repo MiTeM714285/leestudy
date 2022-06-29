@@ -67,4 +67,136 @@
   		from user_common
   		where username = #{username}
   	</select>
+  	
+  	<select id="findUserStudentByUsername" parameterType="String" resultType="com.springboot.leestudy.domain.user.Entity.UserStudent">
+  		select 
+	  		username, 
+	  		student_email, 
+	  		student_phonenum, 
+	  		student_isurgent, 
+	  		student_student_grade, 
+	  		student_subject, 
+	  		student_price, 
+	  		student_available_time, 
+	  		student_available_remote, 
+	  		student_request
+  		from user_student
+  		where username = #{username}
+  	</select>
+  	
+  	<select id="findUserTeacherByUsername" parameterType="String" resultType="com.springboot.leestudy.domain.user.Entity.UserTeacher">
+  		select 
+	  		username, 
+	  		teacher_email, 
+	  		teacher_phonenum, 
+	  		teacher_introduction, 
+	  		teacher_university, 
+	  		teacher_university_isgraduate, 
+	  		teacher_university_major, 
+	  		teacher_university_studentnum, 
+	  		teacher_price, 
+	  		teacher_detailprice,
+	  		teacher_personality,
+	  		teacher_available_remote,
+	  		teacher_subject,
+	  		teacher_available_time,
+	  		teacher_teaching_detail,
+	  		teacher_teaching_style,
+	  		teacher_available_demonstration
+  		from user_teacher
+  		where username = #{username}
+  	</select>
+  	
+ 	<select id="findPasswordByUsername" parameterType="String" resultType="String">
+		select password from user_common where username = #{username}
+	</select>
+	
+	<update id="updateUserCommonByUsername" parameterType="com.springboot.leestudy.domain.user.Entity.UserCommon">
+		update user_common set 
+			password=#{password}, 
+			nickname=#{nickname}, 
+			gender=#{gender}, 
+			age=#{age}, 
+			address_part1=#{address_part1}, 
+			address_part2=#{address_part2}, 
+			updatedate=now()
+		where username = #{username}
+	</update>
+	<update id="updateUserCommonByUsernameWithoutPassword" parameterType="com.springboot.leestudy.domain.user.Entity.UserCommon">
+		update user_common set 
+			nickname=#{nickname}, 
+			gender=#{gender}, 
+			age=#{age}, 
+			address_part1=#{address_part1}, 
+			address_part2=#{address_part2}, 
+			updatedate=now()
+		where username = #{username}
+	</update>
+	<update id="updateUserStudentByUsername" parameterType="com.springboot.leestudy.domain.user.Entity.UserStudent">
+		update user_student set 
+			student_email=#{student_email}, 
+			student_phonenum=#{student_phonenum}, 
+			student_isurgent=#{student_isurgent}, 
+			student_student_grade=#{student_student_grade}, 
+			student_subject=#{student_subject}, 
+			student_price=#{student_price}, 
+			student_available_time=#{student_available_time}, 
+			student_available_remote=#{student_available_remote}, 
+			student_request=#{student_request}
+		where username = #{username}
+	</update>
+	<update id="updateUserStudentByUsernameWithoutPhonenum" parameterType="com.springboot.leestudy.domain.user.Entity.UserStudent">
+		update user_student set 
+			student_email=#{student_email}, 
+			student_isurgent=#{student_isurgent}, 
+			student_student_grade=#{student_student_grade}, 
+			student_subject=#{student_subject}, 
+			student_price=#{student_price}, 
+			student_available_time=#{student_available_time}, 
+			student_available_remote=#{student_available_remote}, 
+			student_request=#{student_request}
+		where username = #{username}
+	</update>
+	<update id="updateUserTeacherByUsername" parameterType="com.springboot.leestudy.domain.user.Entity.UserTeacher">
+		update user_student set 
+			teacher_email=#{teacher_email}, 
+			teacher_phonenum=#{teacher_phonenum}, 
+			teacher_introduction=#{teacher_introduction}, 
+			teacher_university=#{teacher_university}, 
+			teacher_university_isgraduate=#{teacher_university_isgraduate}, 
+			teacher_university_major=#{teacher_university_major}, 
+			teacher_university_studentnum=#{teacher_university_studentnum}, 
+			teacher_price=#{teacher_price}, 
+			teacher_personality=#{teacher_personality},
+			teacher_available_remote=#{teacher_available_remote},
+			teacher_subject=#{teacher_subject},
+			teacher_available_time=#{teacher_available_time},
+			teacher_teaching_detail=#{teacher_teaching_detail},
+			teacher_teaching_style=#{teacher_teaching_style},
+			teacher_available_demonstration=#{teacher_available_demonstration}
+		where username = #{username}
+	</update>
+	<update id="updateUserTeacherByUsernameWithoutPhonenum" parameterType="com.springboot.leestudy.domain.user.Entity.UserTeacher">
+		update user_student set 
+			teacher_email=#{teacher_email}, 
+			teacher_introduction=#{teacher_introduction}, 
+			teacher_university=#{teacher_university}, 
+			teacher_university_isgraduate=#{teacher_university_isgraduate}, 
+			teacher_university_major=#{teacher_university_major}, 
+			teacher_university_studentnum=#{teacher_university_studentnum}, 
+			teacher_price=#{teacher_price}, 
+			teacher_personality=#{teacher_personality},
+			teacher_available_remote=#{teacher_available_remote},
+			teacher_subject=#{teacher_subject},
+			teacher_available_time=#{teacher_available_time},
+			teacher_teaching_detail=#{teacher_teaching_detail},
+			teacher_teaching_style=#{teacher_teaching_style},
+			teacher_available_demonstration=#{teacher_available_demonstration}
+		where username = #{username}
+	</update>
+	
+	<delete id="deleteUserCommonByUsername" parameterType="String">
+		delete from user_common where username = #{username}
+	</delete>
+	
 </mapper>

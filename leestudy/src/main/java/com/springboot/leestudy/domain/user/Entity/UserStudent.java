@@ -11,15 +11,14 @@ import lombok.NoArgsConstructor;
 @Builder
 public class UserStudent {
 	
-	private int studentcode;
 	private String username;
-	private String studentEmail;
-	private String studentPhonenum;
-	private int studentIsurgent;
-	private String studentGrade;
-	private String studentSubject;
-	private String studentPrice;
-	private String studentAvailableTime;
-	private int studentAvailableRemote;
-	private String studentRequest;
+	private String student_email;
+	private String student_phonenum;
+	private int student_isurgent;
+	private String student_student_grade;
+	private String student_subject;
+	private String student_price;
+	private String student_available_time;
+	private int student_available_remote;
+	private String student_request;
 }

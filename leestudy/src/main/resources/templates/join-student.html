@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>학생 회원가입 | 이과외</title>
-    <link rel="stylesheet" href="../../static/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../../static/css/style/join-student.css" />
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../static/css/style/join-student.css" />
   </head>
   <body>
 
@@ -169,19 +169,19 @@
           학생분의 성별을 알려주세요
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="radio" onclick="getRadioGenderValue(event)" name="radio-student-gender" value="남자" id="radio-student-male">
+          <input class="form-check-input" type="radio" onclick="getRadioGenderValue(event)" name="radioGender" value="남자" id="radio-student-male">
           <label class="form-check-label" for="radio-student-male">
             남자
           </label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="radio" onclick="getRadioGenderValue(event)" name="radio-student-gender" value="여자" id="radio-student-female">
+          <input class="form-check-input" type="radio" onclick="getRadioGenderValue(event)" name="radioGender" value="여자" id="radio-student-female">
           <label class="form-check-label" for="radio-student-female">
             여자
           </label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="radio" onclick="getRadioGenderValue(event)" name="radio-student-gender" value="기타" id="radio-student-thirdgender">
+          <input class="form-check-input" type="radio" onclick="getRadioGenderValue(event)" name="radioGender" value="기타" id="radio-student-thirdgender">
           <label class="form-check-label" for="radio-student-thirdgender">
             기타(제 3의 성 등)
           </label>
@@ -313,7 +313,7 @@
 
     <footer th:replace="fragments/footer :: footer"><!-- thymeleaf header will be inserted here. --></footer>
 
-    <script src='../../static/js/bootstrap.min.js'></script>
-    <script src='../../static/js/auth/join-student.js'></script>
+    <script src='../static/js/bootstrap.min.js'></script>
+    <script src='../static/js/join-student.js'></script>
   </body>
 </html>

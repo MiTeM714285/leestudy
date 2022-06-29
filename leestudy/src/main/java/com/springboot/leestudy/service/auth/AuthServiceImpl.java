@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 
 import com.springboot.leestudy.domain.user.UserRepository;
 import com.springboot.leestudy.domain.user.Entity.UserCommon;
+import com.springboot.leestudy.domain.user.Entity.UserStudent;
+import com.springboot.leestudy.domain.user.Entity.UserTeacher;
 import com.springboot.leestudy.web.dto.auth.SaveUserCommonDto;
 import com.springboot.leestudy.web.dto.auth.SaveUserStudentDto;
 import com.springboot.leestudy.web.dto.auth.SaveUserTeacherDto;
@@ -45,4 +47,15 @@ public class AuthServiceImpl implements AuthService {
 		return userRepository.findUserCommonByUsername(username);
 	}
 
+	@Override
+	public UserStudent findUserStudentByUsername(String username) throws Exception {
+		// TODO Auto-generated method stub
+		return userRepository.findUserStudentByUsername(username);
+	}
+
+	@Override
+	public UserTeacher findUserTeacherByUsername(String username) throws Exception {
+		// TODO Auto-generated method stub
+		return userRepository.findUserTeacherByUsername(username);
+	}
 }
