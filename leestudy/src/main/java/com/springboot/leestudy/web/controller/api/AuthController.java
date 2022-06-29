@@ -31,7 +31,7 @@ public class AuthController {
 	private final CoolSMSService coolSMSService;
 	
 	@GetMapping("/join-common/sendSMS")
-	public String sendSMS(String phoneNumber) {
+	public String sendSMS(String phoneNumber) throws Exception {
 		String authenticationCode = null;
 		authenticationCode = coolSMSService.sendAuthenticationCode(phoneNumber);
 		return authenticationCode;
@@ -79,5 +79,13 @@ public class AuthController {
 		} else {
 			return new ResponseEntity<>(new CustomResponseDto<Boolean>(-1, "회원가입(선생) 실패", result), HttpStatus.BAD_REQUEST);
 		}
+	}
+	
+	@GetMapping("/loginfail") // 로그인 실패시 이쪽으로
+	public String loginFail() throws Exception {
+		return "<script>"
+		         + "alert(\"로그인에 실패하였습니다.\");"
+		         + "location.href=\"/auth/login\";"
+		         + "</script>";
 	}
 }

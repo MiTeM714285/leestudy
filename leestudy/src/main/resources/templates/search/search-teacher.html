@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>선생님 찾기 | 이과외</title>
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../static/css/style/search-teacher.css" />
+  </head>
+  <body>
+
+    <nav th:replace="fragments/nav-login :: nav"><!-- thymeleaf header will be inserted here. --></nav>
+
+    
+    <div class="container">
+      <div class="teacher-searchcondition">
+        <div class="teacher-totalcount">총 365,176명의 과외 선생님이 있습니다.</div>
+        <div class="mb-3">
+          <label for="formGroupExampleInput" class="form-label">주소 선택</label>
+          <div class="form-search-teacher-address">
+            <select class="form-select" aria-label="Default select example" style="margin-right: 20px;">
+              <option value="전체" selected>시 전체</option>
+              <option value="서울">서울</option>
+            </select>
+            <select class="form-select" aria-label="Default select example">
+              <option value="전체" selected>구 전체</option>
+              <option value="강남구">강남구</option>
+            </select>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="formGroupExampleInput2" class="form-label">과목 선택</label>
+          <div class="form-search-teacher-subject">
+            <select class="form-select" aria-label="Default select example" style="margin-right: 20px;">
+              <option value="전체" selected>카테고리 전체</option>
+              <option value="서울">초등</option>
+            </select>
+            <select class="form-select" aria-label="Default select example">
+              <option value="전체" selected>과목명 전체</option>
+              <option value="강남구">초등국어</option>
+            </select>
+          </div>
+        </div>
+        <div class="mb-3">
+          <div class="form-search-teacher-university">
+            <label for="formGroupExampleInput" class="form-label">출신대학교 선택</label>
+            <select class="form-select" size="3" aria-label="size 3 select example">
+              <option value="전체" selected>전체</option>
+              <option value="고려대학교">고려대학교</option>
+              <option value="연세대학교">연세대학교</option>
+              <option value="서강대학교">서강대학교</option>
+              <option value="숭실대학교">숭실대학교</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-search-teacher-others">
+          <div class="form-search-teacher-remoteavailable">
+            <label for="formGroupExampleInput" class="form-label">원격수업 여부</label>
+            <select class="form-select" aria-label="Default select example" style="margin-right: 20px;">
+              <option value="가능" selected>가능</option>
+              <option value="불가능">불가능</option>
+            </select>
+          </div>
+          <div class="form-search-teacher-gender">
+            <label for="formGroupExampleInput" class="form-label">성별 선택</label>
+            <select class="form-select" aria-label="Default select example" style="margin-right: 20px;">
+              <option value="전체" selected>전체</option>
+              <option value="남자">남자</option>
+              <option value="여자">여자</option>
+              <option value="기타">기타(제 3의성 등)</option>
+            </select>
+          </div>
+          <div class="form-search-teacher-price">
+            <label for="formGroupExampleInput" class="form-label">월 수업료 선택</label>
+            <select class="form-select" aria-label="Default select example">
+              <option value="전체" selected>전체</option>
+              <option value="100만원 이상">100만원 이상</option>
+              <option value="80만원">80만원</option>
+              <option value="70만원">70만원</option>
+              <option value="60만원">60만원</option>
+              <option value="50만원">50만원</option>
+              <option value="40만원">40만원</option>
+              <option value="30만원">30만원</option>
+              <option value="20만원 이하">20만원 이하</option>
+            </select>
+          </div>
+          <div class="form-search-teacher-age">
+            <label for="formGroupExampleInput" class="form-label">나이 선택</label>
+            <select class="form-select" aria-label="Default select example">
+              <option value="전체" selected>전체</option>
+              <option value="0">20이하</option>
+              <option value="21">21~25</option>
+              <option value="26">26~30</option>
+              <option value="31">31~35</option>
+              <option value="36">36~40</option>
+              <option value="41">41~45</option>
+              <option value="46">46~50</option>
+              <option value="51">51이상</option>
+            </select>
+          </div>
+        </div>
+          
+      </div>
+      
+      <div class="teacher-cardlist">
+        <div class="row row-cols-4">
+          <div class="teacher-card" style="padding: 0;">
+            <img src="" class="teacher-picture" alt="teacher_picture">
+            <div class="teacher-card-existreview">
+              <p>후기있음</p>
+            </div>
+            <div class="teacher-card-info">
+              <p>일어김준</p>
+              <div class="teacher-card-university">
+                <img src="../../static/images/ic_sm_study.png" alt="">
+                <div class="university-text">TSM Shibuya College</div>
+              </div>
+              <div class="teacher-card-subject">
+                <img src="../../static/images/ic_sm_class.png" alt="">
+                <div class="subject-text">자격증, 일본어</div>
+              </div>
+              <div class="teacher-card-location">
+                <img src="../../static/images/ic_sm_location.png" alt="">
+                <div class="location-text">서울, 경기</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer th:replace="fragments/footer :: footer"><!-- thymeleaf header will be inserted here. --></footer>
+
+    <script src='../../static/js/bootstrap.min.js'></script>
+  </body>
+</html>
