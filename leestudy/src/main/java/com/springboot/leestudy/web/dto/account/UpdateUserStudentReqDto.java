@@ -2,10 +2,6 @@ package com.springboot.leestudy.web.dto.account;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import com.springboot.leestudy.domain.user.Entity.UserCommon;
 import com.springboot.leestudy.domain.user.Entity.UserStudent;
 
 import lombok.Data;

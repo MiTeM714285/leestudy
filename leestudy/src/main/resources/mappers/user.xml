@@ -4,6 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.springboot.leestudy.domain.user.UserRepository">
+	<!-- 유저-공통사항 insert -->
 	<insert id="saveUserCommon" parameterType="com.springboot.leestudy.domain.user.Entity.UserCommon" useGeneratedKeys="true" keyProperty="usercode">
   		insert into user_common 
   		values(
@@ -23,51 +24,55 @@
   			)																																																																																																																										
   	</insert>
   	
+  	<!-- 유저-학생사항 insert -->
   	<insert id="saveUserStudent" parameterType="com.springboot.leestudy.domain.user.Entity.UserStudent">
   		insert into user_student 
   		values(
   			#{username}, 
-  			#{studentEmail}, 
-  			#{studentPhonenum}, 
-  			#{studentIsurgent}, 
-  			#{studentGrade}, 
-  			#{studentSubject}, 
-  			#{studentPrice}, 
-  			#{studentAvailableTime}, 
-  			#{studentAvailableRemote}, 
-  			#{studentRequest}
+  			#{student_email}, 
+  			#{student_phonenum}, 
+  			#{student_isurgent}, 
+  			#{student_student_grade}, 
+  			#{student_subject}, 
+  			#{student_price}, 
+  			#{student_available_time}, 
+  			#{student_available_remote}, 
+  			#{student_request}
   			)																																																																																																																										
   	</insert>
   	
+  	<!-- 유저-선생사항 insert -->
   	<insert id="saveUserTeacher" parameterType="com.springboot.leestudy.domain.user.Entity.UserTeacher">
   		insert into user_teacher 
   		values(
 			#{username},
-			#{teacherEmail}, 
-			#{teacherPhonenum},
-			#{teacherIntroduction},
-			#{teacherUniversity}, 
-			#{teacherUniversityIsgraduate}, 
-			#{teacherUniversityMajor}, 
-			#{teacherUniversityStudentnum}, 
-			#{teacherPrice}, 
-			#{teacherDetailprice}, 
-			#{teacherPersonality}, 
-			#{teacherAvailableRemote}, 
-			#{teacherSubject}, 
-			#{teacherAvailableTime}, 
-			#{teacherTeachingDetail}, 
-			#{teacherTeachingStyle}, 
-			#{teacherAvailableDemonstration}
+			#{teacher_email}, 
+			#{teacher_phonenum},
+			#{teacher_introduction},
+			#{teacher_university}, 
+			#{teacher_university_isgraduate}, 
+			#{teacher_university_major}, 
+			#{teacher_university_studentnum}, 
+			#{teacher_price}, 
+			#{teacher_detailprice}, 
+			#{teacher_personality}, 
+			#{teacher_available_remote}, 
+			#{teacher_subject}, 
+			#{teacher_available_time}, 
+			#{teacher_teaching_detail}, 
+			#{teacher_teaching_style}, 
+			#{teacher_available_demonstration}
   			)																																																																																																																										
   	</insert>
 
+	<!-- username 으로 UserCommon 조회 -->
   	<select id="findUserCommonByUsername" parameterType="String" resultType="com.springboot.leestudy.domain.user.Entity.UserCommon">
   		select usercode, username, password, nickname, picture, gender, age, address_part1, address_part2, isactive, role, createdate, updatedate
   		from user_common
   		where username = #{username}
   	</select>
   	
+  	<!-- username 으로 UserStudent 조회 -->
   	<select id="findUserStudentByUsername" parameterType="String" resultType="com.springboot.leestudy.domain.user.Entity.UserStudent">
   		select 
 	  		username, 
@@ -84,6 +89,7 @@
   		where username = #{username}
   	</select>
   	
+  	<!-- username 으로 UserTeacher 조회 -->
   	<select id="findUserTeacherByUsername" parameterType="String" resultType="com.springboot.leestudy.domain.user.Entity.UserTeacher">
   		select 
 	  		username, 
@@ -107,10 +113,12 @@
   		where username = #{username}
   	</select>
   	
+  	<!-- checkPassword용 -->
  	<select id="findPasswordByUsername" parameterType="String" resultType="String">
 		select password from user_common where username = #{username}
 	</select>
 	
+	<!-- 특정 username을 가진 UserCommon 업데이트 -->
 	<update id="updateUserCommonByUsername" parameterType="com.springboot.leestudy.domain.user.Entity.UserCommon">
 		update user_common set 
 			password=#{password}, 
@@ -122,6 +130,7 @@
 			updatedate=now()
 		where username = #{username}
 	</update>
+	<!-- 특정 username을 가진 UserCommon 업데이트(비밀번호 미변경) -->
 	<update id="updateUserCommonByUsernameWithoutPassword" parameterType="com.springboot.leestudy.domain.user.Entity.UserCommon">
 		update user_common set 
 			nickname=#{nickname}, 
@@ -132,6 +141,7 @@
 			updatedate=now()
 		where username = #{username}
 	</update>
+	<!-- 특정 username을 가진 UserStudent 업데이트(미변경) -->
 	<update id="updateUserStudentByUsername" parameterType="com.springboot.leestudy.domain.user.Entity.UserStudent">
 		update user_student set 
 			student_email=#{student_email}, 
@@ -145,6 +155,7 @@
 			student_request=#{student_request}
 		where username = #{username}
 	</update>
+	<!-- 특정 username을 가진 UserStudent 업데이트(전화번호 미변경) -->
 	<update id="updateUserStudentByUsernameWithoutPhonenum" parameterType="com.springboot.leestudy.domain.user.Entity.UserStudent">
 		update user_student set 
 			student_email=#{student_email}, 
@@ -157,8 +168,9 @@
 			student_request=#{student_request}
 		where username = #{username}
 	</update>
+	<!-- 특정 username을 가진 UserStudent 업데이트-->
 	<update id="updateUserTeacherByUsername" parameterType="com.springboot.leestudy.domain.user.Entity.UserTeacher">
-		update user_student set 
+		update user_teacher set 
 			teacher_email=#{teacher_email}, 
 			teacher_phonenum=#{teacher_phonenum}, 
 			teacher_introduction=#{teacher_introduction}, 
@@ -167,6 +179,7 @@
 			teacher_university_major=#{teacher_university_major}, 
 			teacher_university_studentnum=#{teacher_university_studentnum}, 
 			teacher_price=#{teacher_price}, 
+			teacher_detailprice=#{teacher_detailprice}, 
 			teacher_personality=#{teacher_personality},
 			teacher_available_remote=#{teacher_available_remote},
 			teacher_subject=#{teacher_subject},
@@ -176,8 +189,9 @@
 			teacher_available_demonstration=#{teacher_available_demonstration}
 		where username = #{username}
 	</update>
+	<!-- 특정 username을 가진 UserTeacher 업데이트(전화번호 미변경) -->
 	<update id="updateUserTeacherByUsernameWithoutPhonenum" parameterType="com.springboot.leestudy.domain.user.Entity.UserTeacher">
-		update user_student set 
+		update user_teacher set 
 			teacher_email=#{teacher_email}, 
 			teacher_introduction=#{teacher_introduction}, 
 			teacher_university=#{teacher_university}, 
@@ -185,6 +199,7 @@
 			teacher_university_major=#{teacher_university_major}, 
 			teacher_university_studentnum=#{teacher_university_studentnum}, 
 			teacher_price=#{teacher_price}, 
+			teacher_detailprice=#{teacher_detailprice}, 
 			teacher_personality=#{teacher_personality},
 			teacher_available_remote=#{teacher_available_remote},
 			teacher_subject=#{teacher_subject},
@@ -194,9 +209,39 @@
 			teacher_available_demonstration=#{teacher_available_demonstration}
 		where username = #{username}
 	</update>
-	
+	<!-- 회원탈퇴 (UserCommon만 삭제되어도 해당 UserStudent 또는 UserTeacher는 자동 삭제됨 -->
 	<delete id="deleteUserCommonByUsername" parameterType="String">
 		delete from user_common where username = #{username}
 	</delete>
+	
+	<!-- 회원 수 조회 (파라미터 : role) -->
+	<select id="countUserCommonByRole" parameterType="String" resultType="Integer">
+		SELECT count(username) FROM user_common where role=#{role}
+	</select>
+	
+	<select id="findTeacherInfoBySearch" parameterType="com.springboot.leestudy.domain.user.Entity.UserTeacherAll" resultType="com.springboot.leestudy.domain.user.Entity.UserTeacherAll">
+		SELECT 
+			user_common.username,
+			nickname, 
+			picture,
+            ifnull(listReview.cnt,0) as review_count,
+			address_part1,
+			address_part2,
+			gender,
+			teacher_subject,
+			university_name
+		FROM user_common 
+        join user_teacher on (user_common.username = user_teacher.username) 
+        left outer join list_university on (user_teacher.teacher_university = list_university.university_code)
+        left outer join (select review_username_teacher, count(*) as cnt from list_review group by review_username_teacher) as listReview on (user_common.username = listReview.review_username_teacher)
+		WHERE 
+			address_part1 LIKE '%${address_part1}%' 
+			AND address_part2 LIKE '%${address_part2}%' 
+			AND teacher_subject LIKE '%${teacher_subject}%' 
+			AND teacher_available_remote = #{teacher_available_remote}
+			AND gender LIKE '%${gender}%' 
+			AND teacher_price LIKE '%${teacher_price}%' 
+			AND age LIKE '%${age}%' 
+	</select>
 	
 </mapper>

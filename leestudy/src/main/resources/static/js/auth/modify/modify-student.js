@@ -5,6 +5,7 @@ let sendSMSNum; // 인증번호 저장변수
 let infoUserCommon; // 세션값 유저-공통값
 let infoUserStudent; // 세션값 유저-학생값
 
+// 회원가입과는 다르게 라디오버튼, 체크박스, 콤보박스에 대한 객체 저장 변수 필요, 입력란은 value 변수 필요없음 
 let username // 1. 아이디 값
 const inputOldPassword = document.querySelector('.inputOldPassword') // 2-1. 현재 비밀번호 입력란
 const inputNewPassword = document.querySelector('.inputNewPassword') // 2-2. 새 비밀번호 입력란
@@ -32,13 +33,10 @@ const inputAvailableTime = document.querySelector('.inputAvailableTime') // 12-1
 let inputAvailableTimeValue = ""; // 12-2. 과외가능 요일/시간 값
 const radioAvailableRemote = document.getElementsByName('radioAvailableRemote'); // 13-1. 과외원격여부 라디오버튼
 let radioAvailableRemoteValue = 0 // 13-2. 과외원격여부 라디오버튼 값
-const inputRequest = document.querySelector('.inputRequest') // 14-1. 요청사항 입력란
-let inputRequestValue = ""; // 14-2. 요청사항 값
-const inputPhonenum1 = document.querySelector('.inputPhonenum1') // 15-1. 전화번호 입력란
-let inputPhonenum1Value = ""; // 15-2. 전화번호 값
+const inputRequest = document.querySelector('.inputRequest') // 14. 요청사항 입력란
+const inputPhonenum1 = document.querySelector('.inputPhonenum1') // 15. 전화번호 입력란
 const inputPhonenum2 = document.querySelector('.inputPhonenum2') // 인증번호 입력란
 
-const btnCheckUsername = document.querySelector('.btnCheckUsername') // 중복 조회하기 버튼
 const btnPhoneNumCheck1 = document.querySelector('.btnPhoneNumCheck1') // 인증번호 요청 버튼
 const btnPhoneNumCheck2 = document.querySelector('.btnPhoneNumCheck2') // 인증완료 버튼
 const btnStudentModifyCancel = document.querySelector('.btnStudentModifyCancel') // 수정취소 버튼
@@ -93,7 +91,6 @@ async function loadUserStudent() { // 세션으로부터 회원정보를 가져�
 			infoUserStudent = result.data;
 
             inputEmail.value = infoUserStudent.student_email
-            inputPhonenum1Value = infoUserStudent.student_phonenum
             radioIsurgentValue = infoUserStudent.student_isurgent
             selectStudentGradeValue = infoUserStudent.student_student_grade
             selectStudentSubjectValue = infoUserStudent.student_subject
@@ -184,7 +181,7 @@ btnStudentModifyComplete.onclick = async () => { // 수정완료 버튼 클릭�
 	if (allIsOK == false) { // 빨간 테두리가 하나라도 있다면
 		alert("입력사항이 모두 완료되지 않았습니다.\n입력사항중 테두리가 빨간색인것을 찾아 완료하세요.")
 	} else {
-		if(confirm("입력사항 대로 가입을 진행하시겠습니까?")) {
+		if(confirm("입력사항 대로 수정을 진행하시겠습니까?")) {
 			selectStudentSubjectValue = arrayToString(selectStudentSubject);
 			await modifyUserCommon();
 		}
@@ -292,7 +289,6 @@ async function modifyUserCommon() { // 회원정보 수정하기 - 공통사항 
 }
 
 async function modifyUserStudent() { // 회원정보 수정하기 - 학생전용사항 DB업데이트 함수
-    alert(username + inputEmail.value + inputPhonenum1.value + radioIsurgentValue + selectStudentGradeValue + selectStudentSubjectValue +selectStudentPriceValue + inputAvailableTime.value + radioAvailableRemoteValue + inputRequest.value)
     let url = `/api/v1/account/modify-student`;
 	let option = {
 		method: "PUT",
@@ -362,13 +358,11 @@ function getRadioAvailableRemoteValue(event) { // 과외원격여부 라디오�
 }
 
 function getSelectStudentGradeValue() { // 학년 값 지정시 저장 함수
-	const selectStudentGrade = document.querySelector('.selectStudentGrade');
 	let index = selectStudentGrade.options.selectedIndex;
 	selectStudentGradeValue = selectStudentGrade.options[index].value;
 }
 
 async function getSelectStudentAddr1Value() { // 주소(시) 값 저장 함수 및 주소(구) 조회 함수
-	const selectStudentAddr1 = document.querySelector('.selectStudentAddr1');
 	let index = selectStudentAddr1.options.selectedIndex;
 	selectStudentAddr1Value = selectStudentAddr1.options[index].value; // 주소(시) 지정한 값 저장
 	
@@ -381,19 +375,18 @@ async function getSelectStudentAddr1Value() { // 주소(시) 값 저장 함수 �
 	.catch(error => {
 		console.log(error)
 	});
-	
-	const selectStudentAddr2 = document.querySelector('.selectStudentAddr2');
-	let selectStudentAddr2add = `<option value="" selected>구 선택</option>`;
-	for (let i of addr2List) {
-		selectStudentAddr2add += `
-		<option value="${i}">${i}</option>
-		`
+	if (addr2List != false) { // '시 선택' 를 선택한 것이 아니라면
+		let selectStudentAddr2add = `<option value="" selected>구 선택</option>`;
+		for (let i of addr2List) {
+			selectStudentAddr2add += `
+			<option value="${i}">${i}</option>
+			`
+		}
+		selectStudentAddr2.innerHTML = selectStudentAddr2add;
 	}
-	selectStudentAddr2.innerHTML = selectStudentAddr2add;
 }
 
 function getSelectStudentAddr2Value() { // 주소(구) 값 저장 함수
-	const selectStudentAddr2 = document.querySelector('.selectStudentAddr2');
 	let index = selectStudentAddr2.options.selectedIndex;
 	selectStudentAddr2Value = selectStudentAddr2.options[index].value; // 주소(구) 지정한 값 저장	
 }
@@ -407,7 +400,6 @@ async function getAddressPart2ListByAddressPart1(address_part1) { // 주소(시)
 		responseData = result.data; // result.data -> 주소(구)
 	})
 	.catch(error => { // '시 선택'을 다시 선택했을시
-		const selectStudentAddr2 = document.querySelector('.selectStudentAddr2');
 		let selectStudentAddr2add = `<option value="" selected>구 선택</option>`;
 		selectStudentAddr2.innerHTML = selectStudentAddr2add;
 		selectStudentAddr1Value = ""
@@ -421,13 +413,11 @@ function getRadioGenderValue(event) { // 과외급구여부 라디오버튼 값 
 }
 
 function getSelectStudentAgeValue() { // 나이 값 지정시 저장 함수
-	const selectStudentAge = document.querySelector('.selectStudentAge');
 	let index = selectStudentAge.options.selectedIndex;
 	selectStudentAgeValue = selectStudentAge.options[index].value;
 }
 
 function getSelectStudentPriceValue() { // 최대 예산 값 지정시 저장 함수
-	const selectStudentPrice = document.querySelector('.selectStudentPrice');
 	let index = selectStudentPrice.options.selectedIndex;
 	selectStudentPriceValue = selectStudentPrice.options[index].value;
 }
@@ -448,15 +438,7 @@ function getSelectSubjectValue(event) { // 과목명 체크시 배열에 저장 
 	}
 }
 
-function arrayToString(array) { // 배열을 쉼표가 있는 문자열로 변환하는 함수
-	let string = ""
-	for(let i of array) {
-		string += i;
-		string += ","
-	}
-	string = string.slice(0, -1);
-	return string;
-}
+
 
 function PasswordModifying(event) { // 비밀번호 변경하고자 할때의 체크박스
 	if(event.target.checked) { // 체크를 했다면
@@ -493,18 +475,5 @@ function PhonenumModifying(event) { // 전화번호 변경하고자 할때의 �
         inputPhonenum2.disabled = true;
         inputPhonenum2.value=""
         btnPhoneNumCheck2.disabled = true;
-	}
-}
-
-async function request(url, options) {
-	const response = await fetch(url, options);
-	if(response.ok) { // 200번 return된 경우
-		return response.json()
-	} else if(response.json().then(result => {
-		return result.code;
-	}) == -1 ){ // CustomValidationApiException.java 에서의 -1이 포함되어 return된 경우
-		return response.json()
-	} else {
-		throw new Error("response Error : " + response);
 	}
 }

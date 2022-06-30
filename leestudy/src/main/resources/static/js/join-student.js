@@ -184,15 +184,15 @@ async function saveUserStudent() { // UserStudent DB저장 함수
 		},
 		body: JSON.stringify({
 			username: inputUsername.value,
-			studentEmail: inputEmail.value,
-			studentPhonenum: inputPhonenum1.value,
-			studentIsurgent: radioIsurgentValue,
-			studentGrade: selectStudentGradeValue,
-			studentSubject: selectStudentSubjectValue,
-			studentPrice: selectStudentPriceValue,
-			studentAvailableTime: inputAvailableTime.value,
-			studentAvailableRemote: radioAvailableRemoteValue,
-			studentRequest: inputRequest.value
+			student_email: inputEmail.value,
+			student_phonenum: inputPhonenum1.value,
+			student_isurgent: radioIsurgentValue,
+			student_student_grade: selectStudentGradeValue,
+			student_subject: selectStudentSubjectValue,
+			student_price: selectStudentPriceValue,
+			student_available_time: inputAvailableTime.value,
+			student_available_remote: radioAvailableRemoteValue,
+			student_request: inputRequest.value
 			
 		})
 	};
@@ -240,15 +240,16 @@ async function getSelectStudentAddr1Value() { // 주소(시) 값 저장 함수 �
 	.catch(error => {
 		console.log(error)
 	});
-	
-	const selectStudentAddr2 = document.querySelector('.selectStudentAddr2');
-	let selectStudentAddr2add = `<option value="" selected>구 선택</option>`;
-	for (let i of addr2List) {
-		selectStudentAddr2add += `
-		<option value="${i}">${i}</option>
-		`
+	if (addr2List != false) { // '시 선택' 를 선택한 것이 아니라면
+		const selectStudentAddr2 = document.querySelector('.selectStudentAddr2');
+		let selectStudentAddr2add = `<option value="" selected>구 선택</option>`;
+		for (let i of addr2List) {
+			selectStudentAddr2add += `
+			<option value="${i}">${i}</option>
+			`
+		}
+		selectStudentAddr2.innerHTML = selectStudentAddr2add;
 	}
-	selectStudentAddr2.innerHTML = selectStudentAddr2add;
 }
 
 function getSelectStudentAddr2Value() { // 주소(구) 값 저장 함수
@@ -306,27 +307,3 @@ function getSelectSubjectValue(event) { // 과목명 체크시 배열에 저장 
 		} // 배열에서 특정 항목 삭제 알고리즘
 	}
 }
-
-function arrayToString(array) { // 배열을 쉼표가 있는 문자열로 변환하는 함수
-	let string = ""
-	for(let i of array) {
-		string += i;
-		string += ","
-	}
-	string = string.slice(0, -1);
-	return string;
-}
-
-async function request(url, options) {
-	const response = await fetch(url, options);
-	if(response.ok) { // 200번 return된 경우
-		return response.json()
-	} else if(response.json().then(result => {
-		return result.code;
-	}) == -1 ){ // CustomValidationApiException.java 에서의 -1이 포함되어 return된 경우
-		return response.json()
-	} else {
-		throw new Error("response Error : " + response);
-	}
-}
-

@@ -29,7 +29,7 @@
           <div class="form-signup-intro3-teacher">
             <img src="../../static/images/join/tutor.png" alt="tutor">
             <div class="form-signup-intro3-population">
-              000,000명
+              <th:block th:text="${count_teacher}"></th:block>명 <!-- countUserCommonByRole 를 통한 조회 -->
             </div>
             <div class="form-signup-intro3-description">
               선생님 회원
@@ -38,7 +38,7 @@
           <div class="form-signup-intro3-student">
             <img src="../../static/images/join/tutee.png" alt="tutee">
             <div class="form-signup-intro3-population">
-              000,000명
+              <th:block th:text="${count_student}"></th:block>명 <!-- countUserCommonByRole 를 통한 조회 -->
             </div>
             <div class="form-signup-intro3-description">
               학생 회원
@@ -236,18 +236,18 @@
       <!-- 최대 예산을 알려주세요 -->
       <div class="form-signup-student">
         <div class="form-signup-student-question">
-          최대 예산을 알려주세요
+          생각중이신 수업료를 알려주세요
         </div>
         <select class="form-select selectStudentPrice" onchange="getSelectStudentPriceValue()" aria-label="Default select example">
           <option selected>선택해주세요</option>
-          <option value="100만원 이상">100만원 이상</option>
-          <option value="80만원">80만원</option>
-          <option value="70만원">70만원</option>
-          <option value="60만원">60만원</option>
-          <option value="50만원">50만원</option>
-          <option value="40만원">40만원</option>
-          <option value="30만원">30만원</option>
-          <option value="20만원 이하">20만원 이하</option>
+          <option value="70만원이상">70만원이상</option>
+          <option value="60만원~69만원">60만원~69만원</option>
+          <option value="50만원~59만원">50만원~59만원</option>
+          <option value="40만원~49만원">40만원~49만원</option>
+          <option value="30만원~39만원">30만원~39만원</option>
+          <option value="20만원~29만원">20만원~29만원</option>
+          <option value="10만원~19만원">10만원~19만원</option>
+          <option value="10만원미만">10만원 미만</option>
         </select>
       </div>
       
@@ -314,6 +314,8 @@
     <footer th:replace="fragments/footer :: footer"><!-- thymeleaf header will be inserted here. --></footer>
 
     <script src='../static/js/bootstrap.min.js'></script>
+    <script src='../../../static/js/auth/promiseRequest.js'></script>
+    <script src='../../../static/js/auth/arrayToString.js'></script>
     <script src='../static/js/join-student.js'></script>
   </body>
 </html>

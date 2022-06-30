@@ -35,6 +35,12 @@ public class ListsController {
 		return new ResponseEntity<>(new CustomResponseDto<List<String>>(1, "과목 카테고리 로드" , subjectCategoryList), HttpStatus.OK);
 	}
 	
+	@GetMapping("/subjectname/{subject_category}") // 과목명 리스트 전체 들고오기
+	public ResponseEntity<?> getSubjectNameListBySubjectCategory(@PathVariable String subject_category) throws Exception {
+		List<String> subjectNameList = listsService.getSubjectNameListBySubjectCategory(subject_category);
+		return new ResponseEntity<>(new CustomResponseDto<List<String>>(1, "과목명 로드" , subjectNameList), HttpStatus.OK);
+	}
+	
 	@GetMapping("/addresspart1") // 주소(시) 리스트 전체 들고오기
 	public ResponseEntity<?> getAddressPart1ListAll() throws Exception {
 		List<String> addressPart1List = listsService.getAddressPart1ListAll();

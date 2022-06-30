@@ -26,8 +26,8 @@ public class ListsServiceImpl implements ListsService {
 	}
 
 	@Override
-	public List<String> getSubjectNameListBySubjectCategory(String subjectCategory) throws Exception{
-		return listsRepository.getSubjectNameListBySubjectCategory(subjectCategory);
+	public List<String> getSubjectNameListBySubjectCategory(String subject_category) throws Exception{
+		return listsRepository.getSubjectNameListBySubjectCategory(subject_category);
 	}
 
 	@Override

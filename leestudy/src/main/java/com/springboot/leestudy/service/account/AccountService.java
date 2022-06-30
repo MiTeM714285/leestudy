@@ -11,4 +11,5 @@ public interface AccountService {
 	public boolean updateUserStudentByUsername(UpdateUserStudentReqDto updateUserStudentReqDto) throws Exception;
 	public boolean updateUserTeacherByUsername(UpdateUserTeacherReqDto updateUserTeacherReqDto) throws Exception;
 	public boolean deleteUserCommonByUsername(String username) throws Exception;
+	public int countUserCommonByRole(String role) throws Exception;
 }

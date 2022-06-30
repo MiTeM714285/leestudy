@@ -57,4 +57,9 @@ public class AccountServiceImpl implements AccountService {
 	public boolean deleteUserCommonByUsername(String username) throws Exception {
 		return userRepository.deleteUserCommonByUsername(username) > 0;
 	}
+
+	@Override
+	public int countUserCommonByRole(String role) throws Exception {
+		return userRepository.countUserCommonByRole(role);
+	}
 }

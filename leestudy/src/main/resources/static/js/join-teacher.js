@@ -201,22 +201,22 @@ async function saveUserTeacher() { // UserTeacher DB저장 함수
 		},
 		body: JSON.stringify({
 			username: inputUsername.value,
-            teacherEmail: inputEmail.value,
-            teacherIntroduction: inputIntroduction.value,
-            teacherUniversity: selectUniversityValue,
-            teacherUniversityIsgraduate: selectUniversityIsgraduateValue,
-            teacherUniversityMajor: inputUniversityMajor.value,
-            teacherUniversityStudentnum: selectUniversityStudentnumValue,
-            teacherPhonenum: inputPhonenum1.value,
-            teacherPrice: selectTeacherPriceValue,
-            teacherDetailprice: inputDetailPrice.value,
-            teacherPersonality: selectTeacherPersonalityValue,
-            teacherAvailableRemote: radioAvailableRemoteValue,
-            teacherSubject: selectTeacherSubjectValue,
-            teacherAvailableTime: inputAvailableTime.value,
-            teacherTeachingDetail: inputTeachingDetail.value,
-            teacherTeachingStyle: inputTeachingStyle.value,
-            teacherAvailableDemonstration: radioAvailableDemonstrationValue,
+            teacher_email: inputEmail.value,
+            teacher_introduction: inputIntroduction.value,
+            teacher_university: selectUniversityValue,
+            teacher_university_isgraduate: selectUniversityIsgraduateValue,
+            teacher_university_major: inputUniversityMajor.value,
+            teacher_university_studentnum: selectUniversityStudentnumValue,
+            teacher_phonenum: inputPhonenum1.value,
+            teacher_price: selectTeacherPriceValue,
+            teacher_detailprice: inputDetailPrice.value,
+            teacher_personality: selectTeacherPersonalityValue,
+            teacher_available_remote: radioAvailableRemoteValue,
+            teacher_subject: selectTeacherSubjectValue,
+            teacher_available_time: inputAvailableTime.value,
+            teacher_teaching_detail: inputTeachingDetail.value,
+            teacher_teaching_style: inputTeachingStyle.value,
+            teacher_available_demonstration: radioAvailableDemonstrationValue,
 		})
 	};
 	fetch(url, option)
@@ -258,14 +258,16 @@ async function getSelectTeacherAddr1Value() { // 주소(시) 값 저장 함수 �
 		console.log(error)
 	});
 	
-	const selectTeacherAddr2 = document.querySelector('.selectTeacherAddr2');
-	let selectTeacherAddr2add = `<option value="" selected>구 선택</option>`;
-	for (let i of addr2List) {
-		selectTeacherAddr2add += `
-		<option value="${i}">${i}</option>
-		`
+	if (addr2List != false) { // '시 선택' 를 선택한 것이 아니라면
+		const selectTeacherAddr2 = document.querySelector('.selectTeacherAddr2');
+		let selectTeacherAddr2add = `<option value="" selected>구 선택</option>`;
+		for (let i of addr2List) {
+			selectTeacherAddr2add += `
+			<option value="${i}">${i}</option>
+			`
+		}
+		selectTeacherAddr2.innerHTML = selectTeacherAddr2add;
 	}
-	selectTeacherAddr2.innerHTML = selectTeacherAddr2add;
 	
 }
 
@@ -384,28 +386,4 @@ function getSelectUniversityIsgraduateValue() { // 대학 졸업여부 값 get �
 	const selectUniversityIsgraduate = document.querySelector('.selectUniversityIsgraduate');
 	let index = selectUniversityIsgraduate.options.selectedIndex;
 	selectUniversityIsgraduateValue = selectUniversityIsgraduate.options[index].value;
-}
-
-
-function arrayToString(array) { // 배열을 쉼표가 있는 문자열로 변환하는 함수
-	let string = ""
-	for(let i of array) {
-		string += i;
-		string += ","
-	}
-	string = string.slice(0, -1);
-	return string;
-}
-
-async function request(url, options) {
-	const response = await fetch(url, options);
-	if(response.ok) { // 200번 return된 경우
-		return response.json()
-	} else if(response.json().then(result => {
-		return result.code;
-	}) == -1 ){ // CustomValidationApiException.java 에서의 -1이 포함되어 return된 경우
-		return response.json()
-	} else {
-		throw new Error("response Error : " + response);
-	}
 }

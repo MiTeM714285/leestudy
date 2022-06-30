@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.springboot.leestudy.config.auth.PrincipalDetails;
 import com.springboot.leestudy.domain.lists.Entity.ListUniversity;
+import com.springboot.leestudy.service.account.AccountService;
 import com.springboot.leestudy.service.lists.ListsService;
 
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 public class PageController {
 	
 	private final ListsService listsService;
+	private final AccountService accountService;
 	
 	@GetMapping("/login") // 로그인 화면
 	public String login() throws Exception {
@@ -33,6 +35,8 @@ public class PageController {
 		List<String> subjectCategoryList = listsService.getSubjectCategoryListAll();
 		List<List<String>> subjectNameList = new ArrayList<List<String>>();
 		List<String> addressPart1List = listsService.getAddressPart1ListAll();
+		int count_student = accountService.countUserCommonByRole("USER_STUDENT");
+		int count_teacher = accountService.countUserCommonByRole("USER_TEACHER");
 		
 		for(String category : subjectCategoryList) {
 			List<String> subjectNamesByCategory = listsService.getSubjectNameListBySubjectCategory(category);
@@ -42,6 +46,8 @@ public class PageController {
 		model.addAttribute("subjectCategoryList",subjectCategoryList);
 		model.addAttribute("subjectNameList",subjectNameList);
 		model.addAttribute("addressPart1List",addressPart1List);
+		model.addAttribute("count_student",count_student);
+		model.addAttribute("count_teacher",count_teacher);
 		
 		return "join-student";
 	}
@@ -56,6 +62,8 @@ public class PageController {
 		List<List<String>> subjectNameList = new ArrayList<List<String>>();
 		List<ListUniversity> universityList = listsService.getUniversityListAll();
 		List<String> addressPart1List = listsService.getAddressPart1ListAll();
+		int count_student = accountService.countUserCommonByRole("USER_STUDENT");
+		int count_teacher = accountService.countUserCommonByRole("USER_TEACHER");
 		
 		for(String category : subjectCategoryList) {
 			List<String> subjectNamesByCategory = listsService.getSubjectNameListBySubjectCategory(category);
@@ -67,6 +75,8 @@ public class PageController {
 		model.addAttribute("subjectNameList",subjectNameList);
 		model.addAttribute("universityList",universityList);
 		model.addAttribute("addressPart1List",addressPart1List);
+		model.addAttribute("count_student",count_student);
+		model.addAttribute("count_teacher",count_teacher);
 		return "join-teacher";
 	}
 	
@@ -82,19 +92,36 @@ public class PageController {
 	
 	@GetMapping("/auth/search/student")
 	public String searchStudent(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) throws Exception {
+		int count_student = accountService.countUserCommonByRole("USER_STUDENT");
+		int count_teacher = accountService.countUserCommonByRole("USER_TEACHER");
+		List<String> subjectCategoryList = listsService.getSubjectCategoryListAll();
+		List<String> addressPart1List = listsService.getAddressPart1ListAll();
+		
 		model.addAttribute("role",principalDetails.getRole());
+		model.addAttribute("count_student",count_student);
+		model.addAttribute("count_teacher",count_teacher);
+		model.addAttribute("subjectCategoryList",subjectCategoryList);
+		model.addAttribute("addressPart1List",addressPart1List);
 		return "auth/search/search-student";
 	}
 	
 	@GetMapping("/auth/search/teacher")
 	public String searchTeacher(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) throws Exception {
+		int count_student = accountService.countUserCommonByRole("USER_STUDENT");
+		int count_teacher = accountService.countUserCommonByRole("USER_TEACHER");
+		List<String> subjectCategoryList = listsService.getSubjectCategoryListAll();
+		List<String> addressPart1List = listsService.getAddressPart1ListAll();
+		
 		model.addAttribute("role",principalDetails.getRole());
+		model.addAttribute("count_student",count_student);
+		model.addAttribute("count_teacher",count_teacher);
+		model.addAttribute("subjectCategoryList",subjectCategoryList);
+		model.addAttribute("addressPart1List",addressPart1List);
 		return "auth/search/search-teacher";
 	}
 	
 	@GetMapping("/auth/modify")
 	public String modify(@AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception { // 로그인 후 학생 및 선생 판별
-		System.out.println(principalDetails.getRole());
 		if (principalDetails.getRole().equals("USER_STUDENT")) { // 학생이면
 			return  "redirect:/auth/modify/student";
 		} else { // 선생이면
@@ -110,6 +137,8 @@ public class PageController {
 		List<String> subjectCategoryList = listsService.getSubjectCategoryListAll();
 		List<List<String>> subjectNameList = new ArrayList<List<String>>();
 		List<String> addressPart1List = listsService.getAddressPart1ListAll();
+		int count_student = accountService.countUserCommonByRole("USER_STUDENT");
+		int count_teacher = accountService.countUserCommonByRole("USER_TEACHER");
 		
 		for(String category : subjectCategoryList) {
 			List<String> subjectNamesByCategory = listsService.getSubjectNameListBySubjectCategory(category);
@@ -120,7 +149,8 @@ public class PageController {
 		model.addAttribute("subjectCategoryList",subjectCategoryList);
 		model.addAttribute("subjectNameList",subjectNameList);
 		model.addAttribute("addressPart1List",addressPart1List);
-		
+		model.addAttribute("count_student",count_student);
+		model.addAttribute("count_teacher",count_teacher);
 		return "auth/modify/modify-student";
 	}
 	
@@ -133,6 +163,8 @@ public class PageController {
 		List<List<String>> subjectNameList = new ArrayList<List<String>>();
 		List<ListUniversity> universityList = listsService.getUniversityListAll();
 		List<String> addressPart1List = listsService.getAddressPart1ListAll();
+		int count_student = accountService.countUserCommonByRole("USER_STUDENT");
+		int count_teacher = accountService.countUserCommonByRole("USER_TEACHER");
 		
 		for(String category : subjectCategoryList) {
 			List<String> subjectNamesByCategory = listsService.getSubjectNameListBySubjectCategory(category);
@@ -144,6 +176,8 @@ public class PageController {
 		model.addAttribute("subjectNameList",subjectNameList);
 		model.addAttribute("universityList",universityList);
 		model.addAttribute("addressPart1List",addressPart1List);
+		model.addAttribute("count_student",count_student);
+		model.addAttribute("count_teacher",count_teacher);
 		model.addAttribute("role",principalDetails.getRole());
 		return "auth/modify/modify-teacher";
 	}

@@ -3,7 +3,6 @@ package com.springboot.leestudy.web.dto.account;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import com.springboot.leestudy.domain.user.Entity.UserStudent;
 import com.springboot.leestudy.domain.user.Entity.UserTeacher;
 
 import lombok.Data;

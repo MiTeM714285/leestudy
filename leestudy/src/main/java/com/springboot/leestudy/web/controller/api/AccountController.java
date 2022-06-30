@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,6 +28,12 @@ import lombok.RequiredArgsConstructor;
 public class AccountController {
 	
 	private final AccountService accountService;
+	
+	@GetMapping("/count")
+	public ResponseEntity<?> countUserCommonByRole(String role) throws Exception {
+		int count = accountService.countUserCommonByRole(role);
+		return new ResponseEntity<>(new CustomResponseDto<Integer>(1, "회원 수 조회완료", count), HttpStatus.BAD_REQUEST);
+	}
 	
 	@PostMapping("/checkpassword")
 	public ResponseEntity<?> checkPassword(@Valid @RequestBody PasswordCheckReqDto passwordCheckReqDto, BindingResult bindingResult) throws Exception {
