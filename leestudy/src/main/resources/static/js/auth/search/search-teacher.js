@@ -7,13 +7,15 @@ const selectSubjectName = document.querySelector('.selectSubjectName'); // 과�
 let selectSubjectCategoryValue = "" // 과목카테고리 값
 let selectSubjectNameValue = "" // 과목명 값
 const selectIsRemote = document.querySelector('.selectIsRemote'); // 원격여부 콤보박스
-let selectIsRemoteValue = 1 // 원격여부 값
+let selectIsRemoteValue = "" // 원격여부 값
 const selectGender = document.querySelector('.selectGender'); // 성별 콤보박스
 let selectGenderValue = "" // 성별 값
 const selectPrice = document.querySelector('.selectPrice'); // 월수업료 콤보박스
 let selectPriceValue = "" // 월수업료 값
 const selectAge = document.querySelector('.selectAge'); // 나이 콤보박스
 let selectAgeValue = "" // 나이 값
+
+findTeacherInfoBySearch()
 
 async function getSelectTeacherAddr1Value() { // 주소(시) 값 저장 함수 및 주소(구) 조회 함수
 	let index = selectTeacherAddr1.options.selectedIndex;
@@ -59,6 +61,7 @@ async function getAddressPart2ListByAddressPart1(address_part1) { // 주소(시)
 		selectTeacherAddr2.innerHTML = selectTeacherAddr2add;
 		selectTeacherAddr1Value = ""
 		selectTeacherAddr2Value = ""
+		findTeacherInfoBySearch()
 	})
 	return responseData;
 }
@@ -110,6 +113,7 @@ async function getSubjectNameListBySubjectCategory(subject_category) { // 과목
 		selectSubjectName.innerHTML = selectSubjectNameadd;
 		selectSubjectCategoryValue = ""
 		selectSubjectNameValue = ""
+		findTeacherInfoBySearch()
 	})
 	return responseData;
 }
@@ -177,7 +181,7 @@ function load(data) {
 	
 	for (let i = 0; i < data.length; i++) { // 실질적 글리스트 출력
 		teacherCard += `
-			<div class="teacher-card" style="padding: 0;">
+			<div class="teacher-card" style="padding: 0;" onclick="goToTeacherDetailPage('${data[i].username}')" >
 	            <img src="" class="teacher-picture" alt="teacher_picture">
 	            <div class="teacher-card-existreview">
 	   `
@@ -207,4 +211,8 @@ function load(data) {
 		`
 	}
 	teacherCardlistInner.innerHTML = teacherCard;
+}
+
+function goToTeacherDetailPage(username) {
+	location.href = `/auth/detail/teacher?username=${username}`
 }

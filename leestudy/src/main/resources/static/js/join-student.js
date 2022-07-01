@@ -17,7 +17,7 @@ let selectStudentSubject = []; // 선택한 과목 배열
 let selectStudentSubjectValue = "" // 10. 과목 값
 let selectStudentPriceValue = ""; // 11. 최대 예산 값
 const inputAvailableTime = document.querySelector('.inputAvailableTime') // 12. 과외가능 요일/시간 입력란
-let radioAvailableRemoteValue = 0 // 13. 과외원격여부 라디오버튼 값
+let radioAvailableRemoteValue = "" // 13. 과외원격여부 라디오버튼 값
 const inputRequest = document.querySelector('.inputRequest') // 14. 요청사항 입력란
 const inputPhonenum1 = document.querySelector('.inputPhonenum1') // 15. 전화번호 입력란
 const inputPhonenum2 = document.querySelector('.inputPhonenum2') // 인증번호 입력란
@@ -41,7 +41,7 @@ btnStudentJoinComplete.onclick = async () => { // 가입완료 버튼 클릭시
 	if (selectStudentSubject.length != 0) { checker[10] = 1 } else { checker[10] = 0 } // 10. 과목 값
 	if (selectStudentPriceValue != "") { checker[11] = 1 } else { checker[11] = 0 } // 11. 최대 예산 값
 	if (inputAvailableTime.value.length > 9 && inputAvailableTime.value.length < 101)  { checker[12] = 1 } else { checker[12] = 0 } // 12. 과외가능 요일/시간 입력란
-	if (radioAvailableRemoteValue != 0) { checker[13] = 1 } else { checker[13] = 0 } // 5. 과외원격여부 라디오버튼 값
+	if (radioAvailableRemoteValue != "") { checker[13] = 1 } else { checker[13] = 0 } // 5. 과외원격여부 라디오버튼 값
 	if (inputRequest.value.length < 301)  { checker[14] = 1 } else { checker[14] = 0 } // 14. 요청사항 입력란
 	if (phoneNumCheckFlag == true) { checker[15] = 1 } else { checker[15] = 0 } // 15. 전화번호 입력란
 	

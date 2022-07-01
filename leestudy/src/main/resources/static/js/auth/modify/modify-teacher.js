@@ -14,7 +14,7 @@ const inputNewPasswordAgain = document.querySelector('.inputNewPasswordAgain') /
 const inputNickname = document.querySelector('.inputNickname') // 3. 닉네임 입력란
 const inputEmail = document.querySelector('.inputEmail') // 4. 이메일 입력란
 const radioAvailableRemote = document.getElementsByName('radioAvailableRemote'); // 5-1. 과외원격여부 라디오버튼
-let radioAvailableRemoteValue = 0 // 5-2. 과외원격여부 라디오버튼 값
+let radioAvailableRemoteValue = "" // 5-2. 과외원격여부 라디오버튼 값
 const radioAvailableDemonstration = document.getElementsByName('radioAvailableDemonstration'); //  6-2. 시범과외 가능여부 라디오버튼
 let radioAvailableDemonstrationValue = "" // 6-2. 시범과외 가능여부 라디오버튼 값
 const selectTeacherAddr1 = document.querySelector('.selectTeacherAddr1'); // 7-1. 주소(시) 콤보박스
@@ -209,7 +209,7 @@ btnTeacherModifyComplete.onclick = async () => { // 수정완료 버튼 클릭�
 	if ((checkPasswordResult == true && inputOldPassword.value != inputNewPassword.value && inputNewPassword.value.length > 7 && inputNewPassword.value == inputNewPasswordAgain.value ) || passwordModifyingFlag == false) { checker[2] = 1 } else { checker[2] = 0 } // 2. 비밀번호 입력란
 	if (inputNickname.value.length > 2 && inputNickname.value.length < 11)  { checker[3] = 1 } else { checker[3] = 0 } // 3. 닉네임 입력란
 	if (inputEmail.value.includes('@') && inputEmail.value.length < 46) { checker[4] = 1 } else { checker[4] = 0 } // 4. 이메일 입력란
-	if (radioAvailableRemoteValue != 0) { checker[5] = 1 } else { checker[5] = 0 } // 5. 과외원격여부 라디오버튼 값
+	if (radioAvailableRemoteValue != "") { checker[5] = 1 } else { checker[5] = 0 } // 5. 과외원격여부 라디오버튼 값
     if (radioAvailableDemonstrationValue != "") { checker[6] = 1 } else { checker[6] = 0 } // 6. 시범과외 여부 라디오버튼 값
     if (selectTeacherAddr1Value != "" && selectTeacherAddr2Value != "") { checker[7] = 1 } else { checker[7] = 0 } // 7. 주소 값
     if (radioGenderValue != 0) { checker[8] = 1 } else { checker[8] = 0 } // 8. 성별 값

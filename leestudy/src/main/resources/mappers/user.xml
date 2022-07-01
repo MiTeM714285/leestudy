@@ -219,6 +219,11 @@
 		SELECT count(username) FROM user_common where role=#{role}
 	</select>
 	
+		<!-- 과외를 구하고 있는 학생 수 조회-->
+	<select id="countUserStudentIsUrgent" resultType="Integer">
+		SELECT count(username) FROM user_student where student_isurgent = 1
+	</select>
+	
 	<select id="findTeacherInfoBySearch" parameterType="com.springboot.leestudy.domain.user.Entity.UserTeacherAll" resultType="com.springboot.leestudy.domain.user.Entity.UserTeacherAll">
 		SELECT 
 			user_common.username,
@@ -238,10 +243,85 @@
 			address_part1 LIKE '%${address_part1}%' 
 			AND address_part2 LIKE '%${address_part2}%' 
 			AND teacher_subject LIKE '%${teacher_subject}%' 
-			AND teacher_available_remote = #{teacher_available_remote}
+			AND teacher_available_remote LIKE '%${teacher_available_remote}%' 
 			AND gender LIKE '%${gender}%' 
 			AND teacher_price LIKE '%${teacher_price}%' 
 			AND age LIKE '%${age}%' 
+	</select>
+	
+	<select id="findStudentInfoBySearch" parameterType="com.springboot.leestudy.domain.user.Entity.UserStudentAll" resultType="com.springboot.leestudy.domain.user.Entity.UserStudentAll">
+		SELECT 
+			user_common.username,
+			nickname, 
+			picture,
+			address_part1,
+			address_part2,
+			gender,
+			student_subject,
+			student_student_grade
+		FROM user_common 
+        join user_student on (user_common.username = user_student.username) 
+		WHERE 
+			address_part1 LIKE '%${address_part1}%' 
+			AND address_part2 LIKE '%${address_part2}%' 
+			AND student_subject LIKE '%${student_subject}%' 
+			AND student_available_remote LIKE '%${student_available_remote}%' 
+			AND gender LIKE '%${gender}%' 
+			AND student_price LIKE '%${student_price}%' 
+			AND age LIKE '%${age}%'
+			AND student_isurgent = 1
+	</select>
+	
+	<select id="findTeacherInfoByDetail" parameterType="String" resultType="com.springboot.leestudy.domain.user.Entity.UserTeacherAll">
+		SELECT 
+			user_common.username,
+            picture,
+			nickname,
+            university_name,
+            teacher_university_isgraduate,
+            teacher_university_major,
+            teacher_university_studentnum,
+            gender,
+            teacher_subject,
+            teacher_available_remote,
+            teacher_price,
+			address_part1,
+			address_part2,
+			teacher_phonenum,
+            teacher_introduction,
+            teacher_personality,
+            teacher_available_time,
+            age,
+			teacher_detailprice,
+			teacher_teaching_detail,
+            teacher_teaching_style,
+            createdate
+		FROM user_common 
+        join user_teacher on (user_common.username = user_teacher.username) 
+        left outer join list_university on (user_teacher.teacher_university = list_university.university_code)
+        where user_common.username = #{username}
+	</select>
+	
+	<select id="findStudentInfoByDetail" parameterType="String" resultType="com.springboot.leestudy.domain.user.Entity.UserStudentAll">
+		SELECT 
+			user_common.username,
+            picture,
+			nickname,
+            student_student_grade,
+			student_subject,
+			student_available_remote,
+			student_price,
+			address_part1,
+			address_part2,
+			student_phonenum,
+			student_available_time,
+			gender,
+			age,
+			student_request,
+            createdate
+		FROM user_common 
+        join user_student on (user_common.username = user_student.username) 
+        where user_common.username = #{username}
 	</select>
 	
 </mapper>

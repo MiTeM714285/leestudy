@@ -62,4 +62,10 @@ public class AccountServiceImpl implements AccountService {
 	public int countUserCommonByRole(String role) throws Exception {
 		return userRepository.countUserCommonByRole(role);
 	}
+
+	@Override
+	public int countUserStudentIsUrgent() throws Exception {
+		// TODO Auto-generated method stub
+		return userRepository.countUserStudentIsUrgent();
+	}
 }

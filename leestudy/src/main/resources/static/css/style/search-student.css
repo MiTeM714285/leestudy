@@ -38,6 +38,10 @@
     background-color: white;
 }
 
+.student-card:hover {
+	cursor:pointer
+}
+
 .student-card .student-picture {
     width: 100%;
     height: 120px;

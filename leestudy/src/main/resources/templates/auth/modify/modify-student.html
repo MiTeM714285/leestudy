@@ -112,6 +112,9 @@
         <div class="form-modify-student-question">
           지금 과외를 구하고 있나요?
         </div>
+        <div class="form-modify-student-furtherexplanation">
+          *'아직은 생각중이예요'로 선택하면, 선생님이 당신을 조회하여 문의할 수 없습니다.
+        </div>
         <div class="form-check">
           <input class="form-check-input" type="radio" name="radioIsurgent" value="1" onclick="getRadioIsurgentValue(event)" id="radio-student-urgent">
           <label class="form-check-label" for="radio-student-urgent">
@@ -204,7 +207,7 @@
           <option value="16~20">16~20</option>
           <option value="21~25">21~25</option>
           <option value="26~30">26~30</option>
-          <option value="26~30">31~35</option>
+          <option value="31~35">31~35</option>
           <option value="36~40">36~40</option>
           <option value="41~45">41~45</option>
           <option value="46~50">46~50</option>
@@ -272,13 +275,13 @@
           원격 수업 필요 여부
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="radioAvailableRemote" value="1" onclick="getRadioAvailableRemoteValue(event)" id="radio-student-remote">
+          <input class="form-check-input" type="radio" name="radioAvailableRemote" value="필요" onclick="getRadioAvailableRemoteValue(event)" id="radio-student-remote">
           <label class="form-check-label" for="radio-student-remote">
             네.
           </label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="radioAvailableRemote" value="2" onclick="getRadioAvailableRemoteValue(event)" id="radio-student-notremote">
+          <input class="form-check-input" type="radio" name="radioAvailableRemote" value="무관" onclick="getRadioAvailableRemoteValue(event)" id="radio-student-notremote">
           <label class="form-check-label" for="radio-student-notremote">
             상관 없어요.
           </label>

@@ -6,7 +6,10 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.springboot.leestudy.domain.user.UserRepository;
+import com.springboot.leestudy.domain.user.Entity.UserStudentAll;
 import com.springboot.leestudy.domain.user.Entity.UserTeacherAll;
+import com.springboot.leestudy.web.dto.search.FindStudentInfoBySearchReqDto;
+import com.springboot.leestudy.web.dto.search.FindStudentInfoBySearchRespDto;
 import com.springboot.leestudy.web.dto.search.FindTeacherInfoBySearchReqDto;
 import com.springboot.leestudy.web.dto.search.FindTeacherInfoBySearchRespDto;
 
@@ -20,14 +23,24 @@ public class SearchServiceImpl implements SearchService {
 
 	@Override
 	public List<FindTeacherInfoBySearchRespDto> findTeacherInfoBySearch(FindTeacherInfoBySearchReqDto findTeacherInfoBySearchReqDto) throws Exception {
-		System.out.println(findTeacherInfoBySearchReqDto.toString());
 		UserTeacherAll userTeacherAll = findTeacherInfoBySearchReqDto.toEntity();
 		List<FindTeacherInfoBySearchRespDto> FindTeacherInfoBySearchRespDtos = new ArrayList<FindTeacherInfoBySearchRespDto>();
 		List<UserTeacherAll> userTeacherAlls = userRepository.findTeacherInfoBySearch(userTeacherAll);
 		for (UserTeacherAll element : userTeacherAlls) {
-			FindTeacherInfoBySearchRespDtos.add(element.toRespDto());
+			FindTeacherInfoBySearchRespDtos.add(element.toSearchRespDto());
 		}
 		return FindTeacherInfoBySearchRespDtos;
+	}
+
+	@Override
+	public List<FindStudentInfoBySearchRespDto> findStudentInfoBySearch(FindStudentInfoBySearchReqDto findStudentInfoBySearchReqDto) throws Exception {
+		UserStudentAll userStudentAll = findStudentInfoBySearchReqDto.toEntity();
+		List<FindStudentInfoBySearchRespDto> FindStudentInfoBySearchRespDtos = new ArrayList<FindStudentInfoBySearchRespDto>();
+		List<UserStudentAll> userStudentAlls = userRepository.findStudentInfoBySearch(userStudentAll);
+		for (UserStudentAll element : userStudentAlls) {
+			FindStudentInfoBySearchRespDtos.add(element.toSearchRespDto());
+		}
+		return FindStudentInfoBySearchRespDtos;
 	}
 
 }

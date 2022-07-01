@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title th:text="${teacherinfo.nickname} + ' | 이과외'"></title>
+    <link rel="stylesheet" href="../../../static/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../../static/css/style/detail-teacher.css" />
+  </head>
+  <body>
+
+    <nav th:replace="fragments/nav-login :: nav"><!-- thymeleaf header will be inserted here. --></nav>
+
+    
+    <div class="container">
+      <div class="teacher-profile">
+        <img src="" alt="teacher_picture">
+        <div class="teacher-profile-right">
+          <div class="teacher-profile-nickname" th:text="${teacherinfo.nickname}"></div>
+          <div class="teacher-profile-info">
+            <div class="teacher-profile-university">
+              <img src="../../../static/images/ic_sm_study.png" alt="">
+              <div class="university-text1" >출신대학 :</div>
+              <!-- not #strings. isEmpty(parameter) : 빈 문자열(null 또는 '' 동시에 검사) -->
+              <div class="university-text2" th:if="${not #strings. isEmpty(teacherinfo.university_name)}" th:text="${teacherinfo.university_name + ' ' + teacherinfo.teacher_university_major + ', ' + teacherinfo.teacher_university_isgraduate}"></div>
+              <div class="university-text2" th:if="${#strings. isEmpty(teacherinfo.university_name)}" th:text="${'출신대학교 없음'}"></div>
+            </div>
+            <div class="teacher-profile-gender">
+              <img src="../../../static/images/ic_sm_study.png" alt="">
+              <div class="university-text1">학번, 성별 :</div>
+              <div class="university-text2" th:if="${not #strings. isEmpty(teacherinfo.teacher_university_studentnum)}" th:text="${teacherinfo.teacher_university_studentnum + ', ' + teacherinfo.gender}"></div>
+              <div class="university-text2" th:if="${#strings. isEmpty(teacherinfo.teacher_university_studentnum)}" th:text="${'없음' + ', ' + teacherinfo.gender}"></div>
+            </div>
+            <div class="teacher-profile-subject">
+              <img src="../../../static/images/ic_sm_class.png" alt="">
+              <div class="subject-text1">담당 과목 : </div>
+              <div class="subject-text2" th:text="${teacherinfo.teacher_subject}"></div>
+            </div>
+            <div class="teacher-profile-availableremote">
+              <img src="../../../static/images/ic_sm_class.png" alt="">
+              <div class="availableremote-text1">원격수업 가능여부 : </div>
+              <div class="availableremote-text2" th:text="${teacherinfo.teacher_available_remote}"></div>
+            </div>
+            <div class="teacher-profile-price">
+              <img src="../../../static/images/ic_sm_class.png" alt="">
+              <div class="price-text1">월 수업료 : </div>
+              <div class="price-text2" th:text="${teacherinfo.teacher_price}"></div>
+            </div>
+            <div class="teacher-profile-location">
+              <img src="../../../static/images/ic_sm_location.png" alt="">
+              <div class="location-text1">과외가능 지역 : </div>
+              <div class="location-text2" th:text="${teacherinfo.address_part1 + ', ' + teacherinfo.address_part2}">서울, 경기</div>
+            </div>
+            <div class="teacher-btns">
+              <button class="w-40 btn btn-sm btn-secondary" type="button">카카오톡 문의하기</button>
+              <button class="w-40 btn btn-sm btn-secondary" type="button">성사리스트 등록</button>
+              <button class="w-40 btn btn-sm btn-secondary" type="button">리뷰 살펴보기</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="teacher-detail">
+        <div class="teacher-detail-element">
+          <div class="teacher-detail-title">한줄소개</div>
+          <p th:text="${teacherinfo.teacher_introduction}"></p>
+          <hr/>
+        </div>
+        <div class="teacher-detail-element">
+          <div class="teacher-detail-title">성격</div>
+          <p th:text="${'저는 ' + teacherinfo.teacher_personality} + ' 성격입니다.'"></p>
+          <hr/>
+        </div>
+        <div class="teacher-detail-element">
+          <div class="teacher-detail-title">과외가능 요일/시간</div>
+          <p th:text="${teacherinfo.teacher_available_time}"></p>
+          <hr/>
+        </div>
+        <div class="teacher-detail-element">
+          <div class="teacher-detail-title">나이</div>
+          <p th:text="${teacherinfo.age}"></p>
+          <hr/>
+        </div>
+        <div class="teacher-detail-element">
+          <div class="teacher-detail-title">자세한 수업료 기준</div>
+          <textarea th:text="${teacherinfo.teacher_detailprice}" class="form-control" rows="5" style="background-color: transparent; font-size: 13px; height: 250px;" readonly>수업료 구체적 내용</textarea>
+          <hr/>
+        </div>
+        <div class="teacher-detail-element">
+          <div class="teacher-detail-title">과목별 수업내용</div>
+          <textarea th:text="${teacherinfo.teacher_teaching_detail}" class="form-control" rows="5" style="background-color: transparent; font-size: 13px; height: 300px;" readonly>과목별 수업내용</textarea>
+          <hr/>
+        </div>
+        <div class="teacher-detail-element">
+          <div class="teacher-detail-title">수업방식</div>
+          <textarea th:text="${teacherinfo.teacher_teaching_style}" class="form-control" rows="5" style="background-color: transparent; font-size: 13px; height: 400px;" readonly>수업방식</textarea>
+          <hr/>
+        </div>
+        <div class="teacher-detail-element">
+          <div class="teacher-detail-title">가입일</div>
+            <p th:text="${teacherinfo.createdate}"></p>
+            <hr/>
+            <button class="w-100 btn btn-lg btn-secondary" type="button">돌아가기</button>
+        </div>
+      </div>
+    </div>
+
+    <footer th:replace="fragments/footer :: footer"><!-- thymeleaf header will be inserted here. --></footer>
+
+    <script src='../../../static/js/bootstrap.min.js'></script>
+    <script src='../../../static/js/auth/detail/detail-teacher.js'></script>
+  </body>
+</html>

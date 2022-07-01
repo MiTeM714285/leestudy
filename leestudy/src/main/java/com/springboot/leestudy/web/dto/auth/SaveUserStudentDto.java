@@ -26,8 +26,8 @@ public class SaveUserStudentDto {
 	private String student_price;
 	@NotBlank
 	private String student_available_time;
-	@NotNull // int형식은 @NotBlank 사용불가
-	private int student_available_remote;
+	
+	private String student_available_remote;
 	
 	private String student_request;
 	

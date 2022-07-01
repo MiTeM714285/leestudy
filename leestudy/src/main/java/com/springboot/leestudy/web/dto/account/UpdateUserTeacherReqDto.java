@@ -31,8 +31,8 @@ public class UpdateUserTeacherReqDto {
 	private String teacher_detailprice;
 	@NotBlank
 	private String teacher_personality;
-	@NotNull // int형식은 @NotBlank 사용불가
-	private int teacher_available_remote;
+
+	private String teacher_available_remote;
 	@NotBlank
 	private String teacher_subject;
 	@NotBlank

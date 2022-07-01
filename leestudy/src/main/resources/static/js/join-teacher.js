@@ -8,7 +8,7 @@ const inputPassword = document.querySelector('.inputPassword') // 2-1. 비밀번
 const inputPasswordAgain = document.querySelector('.inputPasswordAgain') // 2-2. 비밀번호 재입력란
 const inputNickname = document.querySelector('.inputNickname') // 3. 닉네임 입력란
 const inputEmail = document.querySelector('.inputEmail') // 4. 이메일 입력란
-let radioAvailableRemoteValue = 0 // 5. 과외원격여부 라디오버튼 값
+let radioAvailableRemoteValue = "" // 5. 과외원격여부 라디오버튼 값
 let radioAvailableDemonstrationValue = "" // 6. 시범과외 가능여부 라디오버튼 값
 let selectTeacherAddr1Value = "" // 7-1. 주소(시) 값
 let selectTeacherAddr2Value = "" // 7-2. 주소(구) 값
@@ -42,7 +42,7 @@ btnTeacherJoinComplete.onclick = async () => { // 가입완료 버튼 클릭시
 	if (inputPassword.value.length > 7 && inputPassword.value == inputPasswordAgain.value) { checker[2] = 1 } else { checker[2] = 0 } // 2. 비밀번호 입력란
 	if (inputNickname.value.length > 2 && inputNickname.value.length < 11)  { checker[3] = 1 } else { checker[3] = 0 } // 3. 닉네임 입력란
 	if (inputEmail.value.includes('@') && inputEmail.value.length < 46) { checker[4] = 1 } else { checker[4] = 0 } // 4. 이메일 입력란
-	if (radioAvailableRemoteValue != 0) { checker[5] = 1 } else { checker[5] = 0 } // 5. 과외원격여부 라디오버튼 값
+	if (radioAvailableRemoteValue != "") { checker[5] = 1 } else { checker[5] = 0 } // 5. 과외원격여부 라디오버튼 값
     if (radioAvailableDemonstrationValue != "") { checker[6] = 1 } else { checker[6] = 0 } // 6. 시범과외 여부 라디오버튼 값
     if (selectTeacherAddr1Value != "" && selectTeacherAddr2Value != "") { checker[7] = 1 } else { checker[7] = 0 } // 7. 주소 값
     if (radioGenderValue != 0) { checker[8] = 1 } else { checker[8] = 0 } // 8. 성별 값

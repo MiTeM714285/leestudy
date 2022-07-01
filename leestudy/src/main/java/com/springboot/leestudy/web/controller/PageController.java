@@ -3,6 +3,8 @@ package com.springboot.leestudy.web.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +13,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.springboot.leestudy.config.auth.PrincipalDetails;
 import com.springboot.leestudy.domain.lists.Entity.ListUniversity;
 import com.springboot.leestudy.service.account.AccountService;
+import com.springboot.leestudy.service.detail.DetailService;
 import com.springboot.leestudy.service.lists.ListsService;
+import com.springboot.leestudy.web.dto.detail.FindStudentInfoByDetailRespDto;
+import com.springboot.leestudy.web.dto.detail.FindTeacherInfoByDetailRespDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,6 +26,7 @@ public class PageController {
 	
 	private final ListsService listsService;
 	private final AccountService accountService;
+	private final DetailService detailService;
 	
 	@GetMapping("/login") // 로그인 화면
 	public String login() throws Exception {
@@ -62,7 +68,7 @@ public class PageController {
 		List<List<String>> subjectNameList = new ArrayList<List<String>>();
 		List<ListUniversity> universityList = listsService.getUniversityListAll();
 		List<String> addressPart1List = listsService.getAddressPart1ListAll();
-		int count_student = accountService.countUserCommonByRole("USER_STUDENT");
+		int count_student = accountService.countUserStudentIsUrgent();
 		int count_teacher = accountService.countUserCommonByRole("USER_TEACHER");
 		
 		for(String category : subjectCategoryList) {
@@ -92,14 +98,12 @@ public class PageController {
 	
 	@GetMapping("/auth/search/student")
 	public String searchStudent(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) throws Exception {
-		int count_student = accountService.countUserCommonByRole("USER_STUDENT");
-		int count_teacher = accountService.countUserCommonByRole("USER_TEACHER");
+		int count_student = accountService.countUserStudentIsUrgent();
 		List<String> subjectCategoryList = listsService.getSubjectCategoryListAll();
 		List<String> addressPart1List = listsService.getAddressPart1ListAll();
 		
 		model.addAttribute("role",principalDetails.getRole());
 		model.addAttribute("count_student",count_student);
-		model.addAttribute("count_teacher",count_teacher);
 		model.addAttribute("subjectCategoryList",subjectCategoryList);
 		model.addAttribute("addressPart1List",addressPart1List);
 		return "auth/search/search-student";
@@ -107,17 +111,33 @@ public class PageController {
 	
 	@GetMapping("/auth/search/teacher")
 	public String searchTeacher(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) throws Exception {
-		int count_student = accountService.countUserCommonByRole("USER_STUDENT");
 		int count_teacher = accountService.countUserCommonByRole("USER_TEACHER");
 		List<String> subjectCategoryList = listsService.getSubjectCategoryListAll();
 		List<String> addressPart1List = listsService.getAddressPart1ListAll();
 		
 		model.addAttribute("role",principalDetails.getRole());
-		model.addAttribute("count_student",count_student);
 		model.addAttribute("count_teacher",count_teacher);
 		model.addAttribute("subjectCategoryList",subjectCategoryList);
 		model.addAttribute("addressPart1List",addressPart1List);
 		return "auth/search/search-teacher";
+	}
+	
+	@GetMapping("/auth/detail/student")
+	public String detailStudent(@Valid String username, @AuthenticationPrincipal PrincipalDetails principalDetails, Model model) throws Exception {
+		FindStudentInfoByDetailRespDto findStudentInfoByDetailRespDto = detailService.findStudentInfoByDetail(username);
+		model.addAttribute("role",principalDetails.getRole());
+		model.addAttribute("studentinfo",findStudentInfoByDetailRespDto);
+		
+		return "auth/detail/detail-student";
+	}
+	
+	@GetMapping("/auth/detail/teacher")
+	public String detailTeacher(@Valid String username, @AuthenticationPrincipal PrincipalDetails principalDetails, Model model) throws Exception {
+		FindTeacherInfoByDetailRespDto findTeacherInfoByDetailRespDto = detailService.findTeacherInfoByDetail(username);
+		model.addAttribute("role",principalDetails.getRole());
+		model.addAttribute("teacherinfo",findTeacherInfoByDetailRespDto);
+		
+		return "auth/detail/detail-teacher";
 	}
 	
 	@GetMapping("/auth/modify")

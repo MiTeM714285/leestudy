@@ -38,6 +38,10 @@
     background-color: white;
 }
 
+.teacher-card:hover {
+	cursor:pointer
+}
+
 .teacher-card .teacher-picture {
     width: 100%;
     height: 120px;

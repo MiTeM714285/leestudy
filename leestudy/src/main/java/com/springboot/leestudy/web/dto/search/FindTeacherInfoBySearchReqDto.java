@@ -9,7 +9,7 @@ public class FindTeacherInfoBySearchReqDto {
 	private String address_part1;
 	private String address_part2;
 	private String teacher_subject;
-	private int teacher_available_remote;
+	private String teacher_available_remote;
 	private String gender;
 	private String teacher_price;
 	private String age;

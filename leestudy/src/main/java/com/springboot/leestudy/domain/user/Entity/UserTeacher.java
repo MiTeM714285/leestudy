@@ -22,7 +22,7 @@ public class UserTeacher {
 	private String teacher_price;
 	private String teacher_detailprice;
 	private String teacher_personality;
-	private int teacher_available_remote;
+	private String teacher_available_remote;
 	private String teacher_subject;
 	private String teacher_available_time;
 	private String teacher_teaching_detail;

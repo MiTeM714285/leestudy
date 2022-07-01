@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.springboot.leestudy.domain.user.Entity.UserCommon;
 import com.springboot.leestudy.domain.user.Entity.UserStudent;
+import com.springboot.leestudy.domain.user.Entity.UserStudentAll;
 import com.springboot.leestudy.domain.user.Entity.UserTeacher;
 import com.springboot.leestudy.domain.user.Entity.UserTeacherAll;
 
@@ -27,5 +28,9 @@ public interface UserRepository {
 	public int updateUserTeacherByUsernameWithoutPhonenum(UserTeacher userTeacher) throws Exception;
 	public int deleteUserCommonByUsername(String username) throws Exception;
 	public int countUserCommonByRole(String role) throws Exception;
+	public int countUserStudentIsUrgent() throws Exception;
 	public List<UserTeacherAll> findTeacherInfoBySearch(UserTeacherAll userTeacherAll) throws Exception;
+	public List<UserStudentAll> findStudentInfoBySearch(UserStudentAll userStudentAll) throws Exception;
+	public UserTeacherAll findTeacherInfoByDetail(String username) throws Exception;
+	public UserStudentAll findStudentInfoByDetail(String username) throws Exception;
 }

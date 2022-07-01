@@ -19,6 +19,6 @@ public class UserStudent {
 	private String student_subject;
 	private String student_price;
 	private String student_available_time;
-	private int student_available_remote;
+	private String student_available_remote;
 	private String student_request;
 }

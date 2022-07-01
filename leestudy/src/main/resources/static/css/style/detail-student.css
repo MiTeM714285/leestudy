@@ -1,5 +1,5 @@
 .container {
-    width: 600px;
+    width: 800px;
 }
 
 .student-profile {
@@ -58,7 +58,7 @@ textarea {
 
 
 .studentgrade-text2, .subject-text2, .location-text2,.availableremote-text2,.price-text2 {
-    width: 200px;
+    width: 400px;
     font-size: 14px;
     margin-left: 4px;
     white-space: nowrap;
