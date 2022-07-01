@@ -68,7 +68,7 @@ public class PageController {
 		List<List<String>> subjectNameList = new ArrayList<List<String>>();
 		List<ListUniversity> universityList = listsService.getUniversityListAll();
 		List<String> addressPart1List = listsService.getAddressPart1ListAll();
-		int count_student = accountService.countUserStudentIsUrgent();
+		int count_student = accountService.countUserCommonByRole("USER_STUDENT");
 		int count_teacher = accountService.countUserCommonByRole("USER_TEACHER");
 		
 		for(String category : subjectCategoryList) {
