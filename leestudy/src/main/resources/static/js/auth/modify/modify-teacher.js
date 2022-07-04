@@ -54,6 +54,8 @@ const btnTeacherModifyCancel = document.querySelector('.btnTeacherModifyCancel')
 const btnTeacherModifyComplete = document.querySelector('.btnTeacherModifyComplete') // 수정완료 버튼
 const btnTeacherDelete = document.querySelector('.btnTeacherDelete') // 회원탈퇴 버튼
 const checkboxNoUniversity = document.querySelector('.checkboxNoUniversity') // 출신대학교 없음 체크박스
+const fileInput = document.querySelector(".file-input"); // 이미지 파일인풋
+const profileImgUrl = document.querySelector(".profile-img-url") // 이미지 변경기
 
 loadUserCommon();
 loadUserTeacher();
@@ -69,6 +71,13 @@ async function loadUserCommon() { // 세션으로부터 회원정보를 가져�
             selectTeacherAgeValue = infoUserCommon.age // 해당 사항에 대한 for문 필요
             selectTeacherAddr1Value = infoUserCommon.address_part1 // 해당 사항에 대한 for문 필요
             selectTeacherAddr2Value = infoUserCommon.address_part2 // 해당 사항에 대한 for문 필요
+            pictureValue = infoUserCommon.picture
+            
+            if(pictureValue != null && pictureValue != "") { // 이미지 등록을 했다면
+				profileImgUrl.src = "/picture/custom/" + infoUserCommon.picture; // 프로필이미지 파일. /picture/custom/ 는 WebMvcConfig.java에서 설정
+			} else { // 이미지 등록을 안했다면
+				profileImgUrl.src = "/picture/profile.png"; // 기본이미지로
+			}
 		})
 		.catch(error => {
 			console.log(error)
@@ -596,4 +605,34 @@ function PhonenumModifying(event) { // 전화번호 변경하고자 할때의 �
         inputPhonenum2.value=""
         btnPhoneNumCheck2.disabled = true;
 	}
+}
+
+async function imgSubmit() { // 이미지 제출 함수
+	let formData = new FormData(document.querySelector("form")); // 함수가 호출되면 해당 form을 저장
+	
+	const url = `/api/v1/account/modify-common/picture`;
+	const option = {
+		method : "PUT",
+		headers : {},
+		body:formData
+	};
+	const response = await fetch(url, option);
+	if(response.ok) {
+		alert("프로필 이미지 변경이 되었습니다.")
+		return response.json();
+	} else {
+		throw new Error("Failed to upload img");
+	}
+}
+
+fileInput.onchange = () => { // 이미지 파일을 새로 등록할시
+	let reader = new FileReader();
+	reader.onload = (e) => {
+		profileImgUrl.src = e.target.result // 새 이미지파일을 profileImgUrl의 src로 지정
+		if (confirm("이미지를 변경하시겠습니까?")) {
+			const result = imgSubmit();
+			console.log(JSON.stringify(result));
+		}
+	}
+	reader.readAsDataURL(fileInput.files[0]); // 업로드 중 맨 처음의 파일로 url을 지정
 }

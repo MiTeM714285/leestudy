@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import com.springboot.leestudy.domain.user.UserRepository;
 import com.springboot.leestudy.web.dto.detail.FindStudentInfoByDetailRespDto;
 import com.springboot.leestudy.web.dto.detail.FindTeacherInfoByDetailRespDto;
-import com.springboot.leestudy.web.dto.detail.FindUserInfoByDetailReqDto;
 
 import lombok.RequiredArgsConstructor;
 

@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>학생 회원정보수정 | 이과외</title>
-    <link rel="stylesheet" href="../../../static/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../../../static/css/style/modify-student.css" />
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/static/css/style/modify-student.css" />
   </head>
   <body>
 
@@ -60,7 +60,7 @@
       <div class="form-modify-student">
         <form action="" enctype="multipart/form-data">
           <div class="form-modify-student-picture">
-            <img src="" alt="student_picture">
+            <img class="profile-img-url" alt="student_picture">
           </div>
           <div class="form-modify-student-picturechange">
             프로필 사진 바꾸기
@@ -329,10 +329,10 @@
 
     <footer th:replace="fragments/footer :: footer"><!-- thymeleaf header will be inserted here. --></footer>
 
-    <script src='../../../static/js/bootstrap.min.js'></script>
-    <script src='../../../static/js/auth/principal.js'></script>
-    <script src='../../../static/js/auth/promiseRequest.js'></script>
-    <script src='../../../static/js/auth/arrayToString.js'></script>
-    <script src='../../../static/js/auth/modify/modify-student.js'></script>
+    <script src='/static/js/bootstrap.min.js'></script>
+    <script src='/static/js/auth/principal.js'></script>
+    <script src='/static/js/auth/promiseRequest.js'></script>
+    <script src='/static/js/auth/arrayToString.js'></script>
+    <script src='/static/js/auth/modify/modify-student.js'></script>
   </body>
 </html>

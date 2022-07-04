@@ -17,7 +17,8 @@
         </li>
         <div class="dropdown text-end">
           <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+            <img th:if="${not #strings. isEmpty(picture)}" th:src="${'/picture/custom/' + picture}" alt="picture" width="32" height="32" class="rounded-circle">
+            <img th:if="${#strings. isEmpty(picture)}" th:src="${'/picture/' + 'profile.png'}" alt="picture" width="32" height="32" class="rounded-circle">
           </a>
           <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
             <li><a class="dropdown-item" href="#">성사리스트</a></li>

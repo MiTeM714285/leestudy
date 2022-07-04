@@ -182,9 +182,13 @@ function load(data) {
 	for (let i = 0; i < data.length; i++) { // 실질적 글리스트 출력
 		teacherCard += `
 			<div class="teacher-card" style="padding: 0;" onclick="goToTeacherDetailPage('${data[i].username}')" >
-	            <img src="" class="teacher-picture" alt="teacher_picture">
-	            <div class="teacher-card-existreview">
-	   `
+			`
+			if (data[i].picture != null && data[i].picture != "") { // 사진 표현의 유무
+				teacherCard += `<img src="/picture/custom/${data[i].picture}" class="teacher-picture" alt="teacher_picture">`
+			} else{
+				teacherCard += `<img src="/picture/profile.png" class="teacher-picture" alt="teacher_picture">`
+			}
+			teacherCard += `<div class="teacher-card-existreview">`
 		if (data[i].review_count != 0) { // 해당 선생의 후기 존재할시 '후기있음' 표기
 			teacherCard += `<p>후기있음</p>`
 		} else {

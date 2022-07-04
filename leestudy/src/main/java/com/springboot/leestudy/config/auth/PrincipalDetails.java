@@ -48,6 +48,10 @@ public class PrincipalDetails implements UserDetails{
 	public String getRole() { // 학생과 선생님을 판단하여 각각 다른 페이지로 이동하고자 하는 메소드
 		return userCommon.getRole();
 	}
+	
+	public String getPicture() { // 자신의 프로필사진
+		return userCommon.getPicture();
+	}
 
 	@Override
 	public boolean isAccountNonExpired() { // 계정이 만료되었는지 확인 (false일시 로그인불가)

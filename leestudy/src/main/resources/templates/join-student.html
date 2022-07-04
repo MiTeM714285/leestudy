@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>학생 회원가입 | 이과외</title>
-    <link rel="stylesheet" href="../static/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../static/css/style/join-student.css" />
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/static/css/style/join-student.css" />
   </head>
   <body>
 
@@ -299,9 +299,6 @@
         <div class="form-signup-student-question">
           휴대폰 번호 인증을 해주세요
         </div>
-        <div class="form-signup-student-furtherexplanation">
-          *연락처는 선생님들에게 선공개되지 않습니다. 가입 및 인증 용도입니다.
-        </div>
         <div class="input-group">
           <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="form-control inputPhonenum1" aria-label="Text input with segmented dropdown button" placeholder="예)01012345678">
           <button type="button" class="btn btn-outline-secondary btnPhoneNumCheck1">인증번호 요청</button>
@@ -316,9 +313,9 @@
 
     <footer th:replace="fragments/footer :: footer"><!-- thymeleaf header will be inserted here. --></footer>
 
-    <script src='../static/js/bootstrap.min.js'></script>
-    <script src='../../../static/js/auth/promiseRequest.js'></script>
-    <script src='../../../static/js/auth/arrayToString.js'></script>
-    <script src='../static/js/join-student.js'></script>
+    <script src='/static/js/bootstrap.min.js'></script>
+    <script src='/static/js/auth/promiseRequest.js'></script>
+    <script src='/static/js/auth/arrayToString.js'></script>
+    <script src='/static/js/join-student.js'></script>
   </body>
 </html>

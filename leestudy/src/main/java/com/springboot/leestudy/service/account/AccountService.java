@@ -1,4 +1,7 @@
 package com.springboot.leestudy.service.account;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.springboot.leestudy.config.auth.PrincipalDetails;
 import com.springboot.leestudy.web.dto.account.PasswordCheckReqDto;
 import com.springboot.leestudy.web.dto.account.UpdateUserCommonReqDto;
 import com.springboot.leestudy.web.dto.account.UpdateUserStudentReqDto;
@@ -13,4 +16,5 @@ public interface AccountService {
 	public boolean deleteUserCommonByUsername(String username) throws Exception;
 	public int countUserCommonByRole(String role) throws Exception;
 	public int countUserStudentIsUrgent() throws Exception;
+	public boolean updateProfileImg(MultipartFile file, PrincipalDetails principalDetails) throws Exception;
 }

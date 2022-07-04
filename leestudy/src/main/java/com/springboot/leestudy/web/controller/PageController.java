@@ -103,6 +103,7 @@ public class PageController {
 		List<String> addressPart1List = listsService.getAddressPart1ListAll();
 		
 		model.addAttribute("role",principalDetails.getRole());
+		model.addAttribute("picture",principalDetails.getPicture());
 		model.addAttribute("count_student",count_student);
 		model.addAttribute("subjectCategoryList",subjectCategoryList);
 		model.addAttribute("addressPart1List",addressPart1List);
@@ -116,6 +117,7 @@ public class PageController {
 		List<String> addressPart1List = listsService.getAddressPart1ListAll();
 		
 		model.addAttribute("role",principalDetails.getRole());
+		model.addAttribute("picture",principalDetails.getPicture());
 		model.addAttribute("count_teacher",count_teacher);
 		model.addAttribute("subjectCategoryList",subjectCategoryList);
 		model.addAttribute("addressPart1List",addressPart1List);
@@ -126,6 +128,7 @@ public class PageController {
 	public String detailStudent(@Valid String username, @AuthenticationPrincipal PrincipalDetails principalDetails, Model model) throws Exception {
 		FindStudentInfoByDetailRespDto findStudentInfoByDetailRespDto = detailService.findStudentInfoByDetail(username);
 		model.addAttribute("role",principalDetails.getRole());
+		model.addAttribute("picture",principalDetails.getPicture());
 		model.addAttribute("studentinfo",findStudentInfoByDetailRespDto);
 		
 		return "auth/detail/detail-student";
@@ -135,6 +138,7 @@ public class PageController {
 	public String detailTeacher(@Valid String username, @AuthenticationPrincipal PrincipalDetails principalDetails, Model model) throws Exception {
 		FindTeacherInfoByDetailRespDto findTeacherInfoByDetailRespDto = detailService.findTeacherInfoByDetail(username);
 		model.addAttribute("role",principalDetails.getRole());
+		model.addAttribute("picture",principalDetails.getPicture());
 		model.addAttribute("teacherinfo",findTeacherInfoByDetailRespDto);
 		
 		return "auth/detail/detail-teacher";
@@ -166,6 +170,7 @@ public class PageController {
 		}
 		
 		model.addAttribute("role",principalDetails.getRole());
+		model.addAttribute("picture",principalDetails.getPicture());
 		model.addAttribute("subjectCategoryList",subjectCategoryList);
 		model.addAttribute("subjectNameList",subjectNameList);
 		model.addAttribute("addressPart1List",addressPart1List);
@@ -191,6 +196,8 @@ public class PageController {
 			subjectNameList.add(subjectNamesByCategory);
 		}
 		
+		model.addAttribute("role",principalDetails.getRole());
+		model.addAttribute("picture",principalDetails.getPicture());
 		model.addAttribute("personalityNameList",personalityNameList);
 		model.addAttribute("subjectCategoryList",subjectCategoryList);
 		model.addAttribute("subjectNameList",subjectNameList);
@@ -198,7 +205,6 @@ public class PageController {
 		model.addAttribute("addressPart1List",addressPart1List);
 		model.addAttribute("count_student",count_student);
 		model.addAttribute("count_teacher",count_teacher);
-		model.addAttribute("role",principalDetails.getRole());
 		return "auth/modify/modify-teacher";
 	}
 }

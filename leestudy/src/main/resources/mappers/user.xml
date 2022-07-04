@@ -324,4 +324,9 @@
         where user_common.username = #{username}
 	</select>
 	
+	<!-- 프로필 이미지변경 -->
+	<update id="updateProfileImg" parameterType="com.springboot.leestudy.domain.user.Entity.UserCommon">
+  		update user_common set picture = #{picture} where username = #{username}
+  	</update>
+	
 </mapper>

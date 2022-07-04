@@ -33,4 +33,5 @@ public interface UserRepository {
 	public List<UserStudentAll> findStudentInfoBySearch(UserStudentAll userStudentAll) throws Exception;
 	public UserTeacherAll findTeacherInfoByDetail(String username) throws Exception;
 	public UserStudentAll findStudentInfoByDetail(String username) throws Exception;
+	public int updateProfileImg(UserCommon userCommon);
 }

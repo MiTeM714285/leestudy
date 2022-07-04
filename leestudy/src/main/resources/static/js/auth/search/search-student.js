@@ -182,7 +182,15 @@ function load(data) {
 	for (let i = 0; i < data.length; i++) { // 실질적 글리스트 출력
 		studentCard += `
 			<div class="student-card" style="padding: 0;" onclick="goToStudentDetailPage('${data[i].username}')" >
-            <img src="" class="student-picture" alt="student_picture">
+			`
+		if (data[i].picture != null && data[i].picture != "") { // 사진 표현의 유무
+			studentCard += `<img src="/picture/custom/${data[i].picture}" class="student-picture" alt="student_picture">`
+		} else{
+			studentCard += `<img src="/picture/profile.png" class="student-picture" alt="student_picture">`
+		}
+		
+		studentCard += 
+			`
             <div class="student-card-info">
               <p>${data[i].nickname}</p>
               <div class="student-card-studentgrade">

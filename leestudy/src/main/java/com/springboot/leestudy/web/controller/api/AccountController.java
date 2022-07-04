@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.springboot.leestudy.config.auth.PrincipalDetails;
 import com.springboot.leestudy.service.account.AccountService;
 import com.springboot.leestudy.web.dto.CustomResponseDto;
 import com.springboot.leestudy.web.dto.account.AccountDeleteReqDto;
@@ -83,6 +88,16 @@ public class AccountController {
 			return new ResponseEntity<>(new CustomResponseDto<Boolean>(1, "회원탈퇴 완료", result), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(new CustomResponseDto<Boolean>(-1, "회원탈퇴 실패", result), HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@PutMapping("/modify-common/picture")
+	public ResponseEntity<?> updateProfileImg(@RequestPart MultipartFile file, @AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception {
+		boolean result = accountService.updateProfileImg(file, principalDetails);
+		if (result) {
+			return new ResponseEntity<>(HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	}
 

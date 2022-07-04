@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title th:text="${studentinfo.nickname} + ' | 이과외'"></title>
-    <link rel="stylesheet" href="../../../static/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../../../static/css/style/detail-student.css" />
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/static/css/style/detail-student.css" />
   </head>
   <body>
 
@@ -20,27 +20,27 @@
           <div class="student-profile-nickname" th:text="${studentinfo.nickname}"></div>
           <div class="student-profile-info">
             <div class="student-profile-studentgrade">
-              <img src="../../../static/images/ic_sm_study.png" alt="">
+              <img src="/static/images/ic_sm_study.png" alt="">
               <div class="studentgrade-text1">학년 : </div>
               <div class="studentgrade-text2" th:text="${studentinfo.student_student_grade}"></div>
             </div>
             <div class="student-profile-subject">
-              <img src="../../../static/images/ic_sm_class.png" alt="">
+              <img src="/static/images/ic_sm_class.png" alt="">
               <div class="subject-text1">희망 과목 : </div>
               <div class="subject-text2" th:text="${studentinfo.student_subject}"></div>
             </div>
             <div class="student-profile-availableremote">
-              <img src="../../../static/images/ic_sm_class.png" alt="">
+              <img src="/static/images/ic_sm_class.png" alt="">
               <div class="availableremote-text1">원격수업 희망여부 : </div>
               <div class="availableremote-text2" th:text="${studentinfo.student_available_remote}"></div>
             </div>
             <div class="student-profile-price">
-              <img src="../../../static/images/ic_sm_class.png" alt="">
+              <img src="/static/images/ic_sm_class.png" alt="">
               <div class="price-text1">희망 월 수업료 : </div>
               <div class="price-text2" th:text="${studentinfo.student_price}"></div>
             </div>
             <div class="student-profile-location">
-              <img src="../../../static/images/ic_sm_location.png" alt="">
+              <img src="/static/images/ic_sm_location.png" alt="">
               <div class="location-text1">과외가능 지역 : </div>
               <div class="location-text2" th:text="${studentinfo.address_part1 + ', ' + studentinfo.address_part2}"></div>
             </div>
@@ -76,14 +76,14 @@
           <div class="student-detail-title">가입일</div>
             <p th:text="${studentinfo.createdate}"></p>
             <hr/>
-            <button class="w-100 btn btn-lg btn-secondary" type="button">돌아가기</button>
+            <button class="w-100 btn btn-lg btn-secondary btnGoBack" type="button">돌아가기</button>
         </div>
       </div>
     </div>
 
     <footer th:replace="fragments/footer :: footer"><!-- thymeleaf header will be inserted here. --></footer>
 
-    <script src='../../../static/js/bootstrap.min.js'></script>
-    <script src='../../../static/js/auth/detail/detail-student.js'></script>
+    <script src='/static/js/bootstrap.min.js'></script>
+    <script src='/static/js/auth/detail/detail-student.js'></script>
   </body>
 </html>
