@@ -3,6 +3,7 @@ package com.springboot.leestudy.domain.user.Entity;
 import java.time.LocalDateTime;
 
 import com.springboot.leestudy.web.dto.detail.FindTeacherInfoByDetailRespDto;
+import com.springboot.leestudy.web.dto.review.FindTeacherInfoByWriteReviewRespDto;
 import com.springboot.leestudy.web.dto.search.FindTeacherInfoBySearchRespDto;
 
 import lombok.AllArgsConstructor;
@@ -15,6 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class UserTeacherAll {
+	private int usercode;
 	private String username;
 	private String nickname; 
 	private String picture; 
@@ -65,6 +67,7 @@ public class UserTeacherAll {
 	
 	public FindTeacherInfoByDetailRespDto toDetailRespDto() {
 		return FindTeacherInfoByDetailRespDto.builder()
+			.usercode(usercode)
 			.username(username)
 			.picture(picture)
 			.nickname(nickname)
@@ -87,6 +90,20 @@ public class UserTeacherAll {
 			.teacher_teaching_style(teacher_teaching_style)
 			.teacher_teaching_detail(teacher_teaching_detail)
 			.createdate(createdate)
+			.build();
+	}
+	
+	public FindTeacherInfoByWriteReviewRespDto toWriteReviewRespDto() {
+		return FindTeacherInfoByWriteReviewRespDto.builder()
+			.teacher_nickname(nickname)
+			.teacher_picture(picture)
+			.teacher_university(teacher_university)
+			.university_name(university_name)
+			.teacher_university_isgraduate(teacher_university_isgraduate)
+			.teacher_university_major(teacher_university_major)
+			.teacher_university_studentnum(teacher_university_studentnum)
+			.teacher_price(teacher_price)
+			.teacher_gender(gender)
 			.build();
 	}
 }

@@ -11,11 +11,11 @@
   <body>
 
     <nav th:replace="fragments/nav-login :: nav"><!-- thymeleaf header will be inserted here. --></nav>
-
     
     <div class="container">
       <div class="teacher-profile">
-        <img src="" alt="teacher_picture">
+        <img th:if="${not #strings. isEmpty(teacherinfo.picture)}" th:src="${'/picture/custom/' + teacherinfo.picture}" alt="picture" width="32" height="32">
+        <img th:if="${#strings. isEmpty(teacherinfo.picture)}" th:src="${'/picture/' + 'profile.png'}" alt="picture" width="32" height="32">
         <div class="teacher-profile-right">
           <div class="teacher-profile-nickname" th:text="${teacherinfo.nickname}"></div>
           <div class="teacher-profile-info">
@@ -54,8 +54,8 @@
             </div>
             <div class="teacher-btns">
               <button class="w-40 btn btn-sm btn-secondary" type="button">카카오톡 문의하기</button>
-              <button class="w-40 btn btn-sm btn-secondary" type="button">성사리스트 등록</button>
-              <button class="w-40 btn btn-sm btn-secondary" type="button">리뷰 살펴보기</button>
+              <button class="w-40 btn btn-sm btn-secondary addMatchingList" type="button">성사리스트 등록</button>
+              <button class="w-40 btn btn-sm btn-secondary findReview" type="button">리뷰 살펴보기</button>
             </div>
           </div>
         </div>
@@ -98,7 +98,7 @@
         </div>
         <div class="teacher-detail-element">
           <div class="teacher-detail-title">가입일</div>
-            <p th:text="${teacherinfo.createdate}"></p>
+            <p th:text="${#temporals.format(teacherinfo.createdate, 'yyyy-MM-dd') }"></p>
             <hr/>
             <button class="w-100 btn btn-lg btn-secondary btnGoBack" type="button">돌아가기</button>
         </div>
@@ -108,6 +108,12 @@
     <footer th:replace="fragments/footer :: footer"><!-- thymeleaf header will be inserted here. --></footer>
 
     <script src='/static/js/bootstrap.min.js'></script>
+    <script th:inline="javascript">
+	    /*<![CDATA[*/
+	    let studentName = /*[[ ${studentName} ]]*/ '0';
+	    let teacherName = /*[[ ${teacherinfo.username} ]]*/ '0';
+	    /*]]*/
+	</script>
     <script src='/static/js/auth/detail/detail-teacher.js'></script>
   </body>
 </html>

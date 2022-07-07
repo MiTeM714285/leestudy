@@ -97,6 +97,7 @@
 .form-review-part2-stars img {
     width: 28px;
     height: 28px;
+    cursor:pointer;
 }
 
 /* part3 : 내용 */

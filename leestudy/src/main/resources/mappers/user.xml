@@ -72,6 +72,13 @@
   		where username = #{username}
   	</select>
   	
+  	<!-- usercode 으로 UserCommon 조회 -->
+  	<select id="findUserCommonByUsercode" parameterType="String" resultType="com.springboot.leestudy.domain.user.Entity.UserCommon">
+  		select usercode, username, password, nickname, picture, gender, age, address_part1, address_part2, isactive, role, createdate, updatedate
+  		from user_common
+  		where usercode = #{usercode}
+  	</select>
+  	
   	<!-- username 으로 UserStudent 조회 -->
   	<select id="findUserStudentByUsername" parameterType="String" resultType="com.springboot.leestudy.domain.user.Entity.UserStudent">
   		select 
@@ -122,7 +129,7 @@
 	<update id="updateUserCommonByUsername" parameterType="com.springboot.leestudy.domain.user.Entity.UserCommon">
 		update user_common set 
 			password=#{password}, 
-			nickname=#{nickname}, 
+			nickname=#{nickname},
 			gender=#{gender}, 
 			age=#{age}, 
 			address_part1=#{address_part1}, 
@@ -219,13 +226,19 @@
 		SELECT count(username) FROM user_common where role=#{role}
 	</select>
 	
-		<!-- 과외를 구하고 있는 학생 수 조회-->
+	<!-- 과외를 구하고 있는 학생 수 조회-->
 	<select id="countUserStudentIsUrgent" resultType="Integer">
 		SELECT count(username) FROM user_student where student_isurgent = 1
 	</select>
 	
+	<!-- 리뷰게시판에서, 선생의 탈퇴유무를 알기위한것 -->
+	<select id="countUserCommonByUsername" parameterType="String" resultType="Integer">
+		SELECT count(username) FROM user_common where username=#{username}
+	</select>
+	
 	<select id="findTeacherInfoBySearch" parameterType="com.springboot.leestudy.domain.user.Entity.UserTeacherAll" resultType="com.springboot.leestudy.domain.user.Entity.UserTeacherAll">
 		SELECT 
+			usercode,
 			user_common.username,
 			nickname, 
 			picture,
@@ -238,7 +251,7 @@
 		FROM user_common 
         join user_teacher on (user_common.username = user_teacher.username) 
         left outer join list_university on (user_teacher.teacher_university = list_university.university_code)
-        left outer join (select review_username_teacher, count(*) as cnt from list_review group by review_username_teacher) as listReview on (user_common.username = listReview.review_username_teacher)
+        left outer join (select teacher_name, count(*) as cnt from list_review group by teacher_name) as listReview on (user_common.username = listReview.teacher_name)
 		WHERE 
 			address_part1 LIKE '%${address_part1}%' 
 			AND address_part2 LIKE '%${address_part2}%' 
@@ -251,6 +264,7 @@
 	
 	<select id="findStudentInfoBySearch" parameterType="com.springboot.leestudy.domain.user.Entity.UserStudentAll" resultType="com.springboot.leestudy.domain.user.Entity.UserStudentAll">
 		SELECT 
+			usercode,
 			user_common.username,
 			nickname, 
 			picture,
@@ -274,6 +288,7 @@
 	
 	<select id="findTeacherInfoByDetail" parameterType="String" resultType="com.springboot.leestudy.domain.user.Entity.UserTeacherAll">
 		SELECT 
+			usercode,
 			user_common.username,
             picture,
 			nickname,
@@ -304,6 +319,7 @@
 	
 	<select id="findStudentInfoByDetail" parameterType="String" resultType="com.springboot.leestudy.domain.user.Entity.UserStudentAll">
 		SELECT 
+			usercode,
 			user_common.username,
             picture,
 			nickname,
@@ -319,6 +335,35 @@
 			age,
 			student_request,
             createdate
+		FROM user_common 
+        join user_student on (user_common.username = user_student.username) 
+        where user_common.username = #{username}
+	</select>
+	
+	<select id="findTeacherInfoWriteReview" parameterType="String" resultType="com.springboot.leestudy.domain.user.Entity.UserTeacherAll">
+		SELECT 
+            picture,
+			nickname,
+			teacher_university,
+            university_name,
+            teacher_university_isgraduate,
+            teacher_university_major,
+            teacher_university_studentnum,
+            gender,
+            teacher_price
+		FROM user_common 
+        join user_teacher on (user_common.username = user_teacher.username) 
+        left outer join list_university on (user_teacher.teacher_university = list_university.university_code)
+        where user_common.username = #{username}
+	</select>
+	
+	<select id="findStudentInfoWriteReview" parameterType="String" resultType="com.springboot.leestudy.domain.user.Entity.UserStudentAll">
+		SELECT 
+			picture,
+            address_part1,
+            address_part2,
+			nickname,
+            student_student_grade
 		FROM user_common 
         join user_student on (user_common.username = user_student.username) 
         where user_common.username = #{username}

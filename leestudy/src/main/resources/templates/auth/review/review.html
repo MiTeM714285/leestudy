@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>후기게시판 | 이과외</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/static/css/style/review.css" />
+  </head>
+  <body>
+
+	<nav th:replace="fragments/nav-login :: nav"><!-- thymeleaf header will be inserted here. --></nav>
+
+    <div class="container">
+
+      <div class="form-addressandbtns">
+        <div class="form-address">
+            <select class="form-select selectAddr1" onchange="getSelectAddr1Value()" aria-label="Default select example" style="margin-right: 20px;">
+              <option value="" selected>시 전체</option>
+              <option th:each="a1, a1stat : ${addressPart1List}" th:text="${a1}" th:value="${a1}"></option>
+            </select>
+            <div style="font-size:20px; margin-top:24px; margin-right:20px;">→</div>
+            <select class="form-select selectAddr2" onchange="getSelectAddr2Value()" aria-label="Default select example">
+              <option value="" selected>구 전체</option>
+            </select>
+        </div>
+        <div class="form-btns">
+          <button th:if="${role=='USER_STUDENT'}" class="w-100 btn btn-lg btn-secondary btnReviewListByStudentName" type="button">내가 쓴 리뷰 보기</button>
+          <button th:if="${role=='USER_TEACHER'}" class="w-100 btn btn-lg btn-secondary btnReviewListByTeacherName" type="button">나에게 쓰여진 리뷰 보기</button>
+          <button class="w-100 btn btn-lg btn-secondary btnReviewListAll" style="margin-left:20px;" type="button">전체 리뷰 보기</button>
+        </div>
+      </div>
+      
+
+
+      <div class="form-review">
+  
+	  </div>
+    </div>
+
+	<footer th:replace="fragments/footer :: footer"><!-- thymeleaf header will be inserted here. --></footer>
+
+    <script src='/static/js/bootstrap.min.js'></script>
+    <script th:inline="javascript">
+	    /*<![CDATA[*/
+	    let role = /*[[ ${role} ]]*/ '';
+	    let username = /*[[ ${username} ]]*/ '';
+	    /*]]*/
+	</script>
+    <script src='/static/js/auth/promiseRequest.js'></script>
+    <script src='/static/js/auth/review/review.js'></script>
+  </body>
+</html>

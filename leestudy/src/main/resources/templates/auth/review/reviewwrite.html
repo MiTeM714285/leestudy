@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>후기게시판 | 이과외</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/static/css/style/reviewwrite.css" />
+  </head>
+  <body>
+
+    <nav th:replace="fragments/nav-login :: nav"><!-- thymeleaf header will be inserted here. --></nav>
+
+    <div class="container">
+      
+      <div class="form-review">
+        <div class="form-review-part1">
+          <img th:if="${not #strings. isEmpty(teacherinfo.teacher_picture)}" th:src="${'/picture/custom/' + teacherinfo.teacher_picture}" alt="picture">
+          <img th:if="${#strings. isEmpty(teacherinfo.teacher_picture)}" th:src="${'/picture/' + 'profile.png'}" alt="picture">
+          <div class="form-review-part1-info">
+            <div class="form-review-part1-name">
+              <div th:text="${teacherinfo.teacher_nickname}"></div>
+            </div>
+            <div class="form-review-part1-teacherproperties">
+              <div class="form-review-part1-teacherproperties-element">
+                <img src="../../static/images/ic_sm_study.png" alt="ic_sm_study">
+                <p th:if="${#strings. isEmpty(teacherinfo.university_name)}" th:text="${'출신대학교 없음'}"></p>
+                <p th:if="${not #strings. isEmpty(teacherinfo.university_name)}" th:text="${teacherinfo.university_name + ' ' + teacherinfo.teacher_university_major}"></p>
+              </div>
+              <div class="form-review-part1-teacherproperties-element">
+                <img src="../../static/images/ic_sm_class_detail.png" alt="ic_sm_class_detail">
+                <p th:if="${#strings. isEmpty(teacherinfo.university_name)}" th:text="${''}"></p>
+                <p th:if="${not #strings. isEmpty(teacherinfo.university_name)}" th:text="${teacherinfo.teacher_university_studentnum}"></p>
+              </div>
+              <div class="form-review-part1-teacherproperties-element">
+                <img src="../../static/images/ic_sm_class.png" alt="ic_sm_class">
+                <p th:text="${teacherinfo.teacher_gender + ' 선생님'}"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-review-part2-title">
+          평점 매기기 (별을 클릭하세요)
+        </div>
+        <div class="form-review-part2">
+            <div class="form-review-part2-half">
+              <div class="form-review-part2-element">
+                <p>전문성</p>
+                <div class="form-review-part2-rate">
+                  <div class="form-review-part2-stars">
+                    <img src="/static/images/review/ic_star_empty.png" class="star-professionality" alt="star_f">
+                    <img src="/static/images/review/ic_star_empty.png" class="star-professionality" alt="star_f">
+                    <img src="/static/images/review/ic_star_empty.png" class="star-professionality" alt="star_f">
+                    <img src="/static/images/review/ic_star_empty.png" class="star-professionality" alt="star_f">
+                    <img src="/static/images/review/ic_star_empty.png" class="star-professionality" alt="star_f">
+                  </div>
+                </div>
+              </div>
+              <div class="form-review-part2-element">
+                <p>강의력</p>
+                <div class="form-review-part2-rate">
+                  <div class="form-review-part2-stars">
+                    <img src="/static/images/review/ic_star_empty.png" class="star-teaching" alt="star_f">
+                    <img src="/static/images/review/ic_star_empty.png" class="star-teaching" alt="star_f">
+                    <img src="/static/images/review/ic_star_empty.png" class="star-teaching" alt="star_f">
+                    <img src="/static/images/review/ic_star_empty.png" class="star-teaching" alt="star_f">
+                    <img src="/static/images/review/ic_star_empty.png" class="star-teaching" alt="star_f">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-review-part2-half">
+              <div class="form-review-part2-element">
+                <p>준비도</p>
+                <div class="form-review-part2-rate">
+                  <div class="form-review-part2-stars">
+                    <img src="/static/images/review/ic_star_empty.png" class="star-readyness" alt="star_f">
+                    <img src="/static/images/review/ic_star_empty.png" class="star-readyness" alt="star_f">
+                    <img src="/static/images/review/ic_star_empty.png" class="star-readyness" alt="star_f">
+                    <img src="/static/images/review/ic_star_empty.png" class="star-readyness" alt="star_f">
+                    <img src="/static/images/review/ic_star_empty.png" class="star-readyness" alt="star_f">
+                  </div>
+                </div>
+              </div>
+              <div class="form-review-part2-element">
+                <p>시간준수</p>
+                <div class="form-review-part2-rate">
+                  <div class="form-review-part2-stars">
+                    <img src="/static/images/review/ic_star_empty.png" class="star-ontime" alt="star_f">
+                    <img src="/static/images/review/ic_star_empty.png" class="star-ontime" alt="star_f">
+                    <img src="/static/images/review/ic_star_empty.png" class="star-ontime" alt="star_f">
+                    <img src="/static/images/review/ic_star_empty.png" class="star-ontime" alt="star_f">
+                    <img src="/static/images/review/ic_star_empty.png" class="star-ontime" alt="star_f">
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="form-review-part3-title">
+          리뷰 글쓰기
+        </div>
+        <div class="form-review-part3">
+          <textarea class="form-control inputReviewContent" maxlength="500" rows="10" style="background-color: transparent;" placeholder="작성 완료 후에는 수정이 불가능합니다. 신중히 작성해주세요. (50~500자 내 작성)"></textarea>
+        </div>
+        <div class="form-review-part4">
+          <button class="w-100 btn btn-lg btn-secondary btnReviewWriteSubmit" type="button">리뷰 작성하기</button>
+          <button class="w-100 btn btn-lg btn-secondary btnReviewWriteCancel" type="button" style="margin-left: 20px;">취소</button>
+        </div>
+      </div>
+    </div>
+	
+    <footer th:replace="fragments/footer :: footer"><!-- thymeleaf header will be inserted here. --></footer>
+    <script src='/static/js/bootstrap.min.js'></script>
+    <script th:inline="javascript">
+	    /*<![CDATA[*/
+	    let matchinginfo = /*[[ ${matchinginfo} ]]*/ '';
+	    let studentinfo = /*[[ ${studentinfo} ]]*/ '';
+	    let teacherinfo = /*[[ ${teacherinfo} ]]*/ '';
+	    /*]]*/
+	</script>
+    <script src='/static/js/auth/review/reviewwrite.js'></script>
+  </body>
+</html>

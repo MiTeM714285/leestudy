@@ -3,6 +3,7 @@ package com.springboot.leestudy.domain.user.Entity;
 import java.time.LocalDateTime;
 
 import com.springboot.leestudy.web.dto.detail.FindStudentInfoByDetailRespDto;
+import com.springboot.leestudy.web.dto.review.FindStudentInfoByWriteReviewRespDto;
 import com.springboot.leestudy.web.dto.search.FindStudentInfoBySearchRespDto;
 
 import lombok.AllArgsConstructor;
@@ -15,6 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class UserStudentAll {
+	private int usercode;
 	private String username;
 	private String nickname; 
 	private String picture; 
@@ -50,6 +52,7 @@ public class UserStudentAll {
 	
 	public FindStudentInfoByDetailRespDto toDetailRespDto() {
 		return FindStudentInfoByDetailRespDto.builder()
+			.usercode(usercode)
 			.username(username)
 			.picture(picture)
 			.nickname(nickname)
@@ -65,6 +68,16 @@ public class UserStudentAll {
 			.age(age)
 			.student_request(student_request)
 			.createdate(createdate)
+			.build();
+	}
+	
+	public FindStudentInfoByWriteReviewRespDto toWriteReviewRespDto() {
+		return FindStudentInfoByWriteReviewRespDto.builder()
+			.student_nickname(nickname)
+			.student_picture(picture)
+			.student_address_part1(address_part1)
+			.student_address_part2(address_part2)
+			.student_student_grade(student_student_grade)
 			.build();
 	}
 }

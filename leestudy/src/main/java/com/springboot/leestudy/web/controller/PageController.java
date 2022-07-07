@@ -12,11 +12,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.springboot.leestudy.config.auth.PrincipalDetails;
 import com.springboot.leestudy.domain.lists.Entity.ListUniversity;
+import com.springboot.leestudy.domain.matching.Entity.Matching;
+import com.springboot.leestudy.domain.review.Entity.Review;
 import com.springboot.leestudy.service.account.AccountService;
 import com.springboot.leestudy.service.detail.DetailService;
 import com.springboot.leestudy.service.lists.ListsService;
+import com.springboot.leestudy.service.matching.MatchingService;
+import com.springboot.leestudy.service.review.ReviewService;
 import com.springboot.leestudy.web.dto.detail.FindStudentInfoByDetailRespDto;
 import com.springboot.leestudy.web.dto.detail.FindTeacherInfoByDetailRespDto;
+import com.springboot.leestudy.web.dto.review.FindStudentInfoByWriteReviewRespDto;
+import com.springboot.leestudy.web.dto.review.FindTeacherInfoByWriteReviewRespDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -27,6 +33,8 @@ public class PageController {
 	private final ListsService listsService;
 	private final AccountService accountService;
 	private final DetailService detailService;
+	private final MatchingService matchingService;
+	private final ReviewService reviewService;
 	
 	@GetMapping("/login") // 로그인 화면
 	public String login() throws Exception {
@@ -128,6 +136,7 @@ public class PageController {
 	public String detailStudent(@Valid String username, @AuthenticationPrincipal PrincipalDetails principalDetails, Model model) throws Exception {
 		FindStudentInfoByDetailRespDto findStudentInfoByDetailRespDto = detailService.findStudentInfoByDetail(username);
 		model.addAttribute("role",principalDetails.getRole());
+		model.addAttribute("teacherName",principalDetails.getUsername());
 		model.addAttribute("picture",principalDetails.getPicture());
 		model.addAttribute("studentinfo",findStudentInfoByDetailRespDto);
 		
@@ -138,6 +147,7 @@ public class PageController {
 	public String detailTeacher(@Valid String username, @AuthenticationPrincipal PrincipalDetails principalDetails, Model model) throws Exception {
 		FindTeacherInfoByDetailRespDto findTeacherInfoByDetailRespDto = detailService.findTeacherInfoByDetail(username);
 		model.addAttribute("role",principalDetails.getRole());
+		model.addAttribute("studentName",principalDetails.getUsername());
 		model.addAttribute("picture",principalDetails.getPicture());
 		model.addAttribute("teacherinfo",findTeacherInfoByDetailRespDto);
 		
@@ -206,5 +216,65 @@ public class PageController {
 		model.addAttribute("count_student",count_student);
 		model.addAttribute("count_teacher",count_teacher);
 		return "auth/modify/modify-teacher";
+	}
+	
+	@GetMapping("/auth/matching")
+	public String matching(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) throws Exception {
+		
+		model.addAttribute("role",principalDetails.getRole());
+		model.addAttribute("picture",principalDetails.getPicture());
+		List<Matching> matchingList = new ArrayList<Matching>();
+		
+		String role = principalDetails.getRole();
+		if (role.equals("USER_STUDENT")) {
+			matchingList = matchingService.findMatchingByStudentName(principalDetails.getUsername());
+		} else {
+			matchingList = matchingService.findMatchingByTeacherName(principalDetails.getUsername());
+		}
+		
+		for (Matching element : matchingList) { 
+			// Matching객체 안의 matching_code를 통해 review_code를 알아내어, Matching객체 안에 review_code 주입.
+			boolean review_exist = reviewService.findReviewIsExistByMatchingCode(element.getMatching_code());
+			element.setReview_exist(review_exist);
+		}
+		
+		model.addAttribute("matchinglist",matchingList);
+		
+		return "auth/matching/matching";
+	}
+	
+	@GetMapping("/auth/review/write")
+	public String reviewWrite(@Valid int matching_code, @AuthenticationPrincipal PrincipalDetails principalDetails,  Model model) throws Exception {
+		model.addAttribute("role",principalDetails.getRole());
+		model.addAttribute("picture",principalDetails.getPicture());
+		
+		Matching matching = matchingService.findMatchingByMatchingCode(matching_code);
+		String student_name = matching.getStudent_name();
+		String teacher_name = matching.getTeacher_name();
+		FindStudentInfoByWriteReviewRespDto findStudentInfoByWriteReviewRespDto = reviewService.findStudentInfoByWriteReview(student_name);
+		FindTeacherInfoByWriteReviewRespDto findTeacherInfoByWriteReviewRespDto = reviewService.findTeacherInfoByWriteReview(teacher_name);
+		model.addAttribute("matchinginfo",matching);
+		model.addAttribute("studentinfo",findStudentInfoByWriteReviewRespDto);
+		model.addAttribute("teacherinfo",findTeacherInfoByWriteReviewRespDto);
+
+		return "auth/review/reviewwrite";
+	}
+	
+	@GetMapping("/auth/review")
+	public String reviewList(@AuthenticationPrincipal PrincipalDetails principalDetails,  Model model) throws Exception {
+		model.addAttribute("role",principalDetails.getRole());
+		model.addAttribute("username",principalDetails.getUsername());
+		model.addAttribute("picture",principalDetails.getPicture());
+		
+		List<String> addressPart1List = listsService.getAddressPart1ListAll();
+		model.addAttribute("addressPart1List",addressPart1List);
+		return "auth/review/review";
+	}
+	
+	@GetMapping("/auth/reviewone")
+	public String reviewOne(@Valid int matching_code, Model model) throws Exception {
+		Review review = reviewService.findReviewByMatchingCode(matching_code);
+		model.addAttribute("review",review);
+		return "auth/review/reviewone";
 	}
 }

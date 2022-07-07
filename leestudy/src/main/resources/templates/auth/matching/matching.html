@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>성사리스트 | 이과외</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/static/css/style/common.css" />
+    <link rel="stylesheet" href="/static/css/style/matching.css" />
+    <script src="https://kit.fontawesome.com/0b12288ea4.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+
+    <nav th:replace="fragments/nav-login :: nav"><!-- thymeleaf header will be inserted here. --></nav>
+
+    <div class="container">
+      <div class="form-info">
+        <div class="form-info-header">설명</div>
+        <p>
+          과외를 받을 준비가 되었다면, 학생분이시라면 '학생분 준비' 쪽의 체크 버튼을,<br>
+          선생님이시라면 '선생님 준비' 쪽의 체크 버튼을 눌러주세요.<br>
+          체크를 한 후에 체크 해제를 할 수는 없습니다.<br>
+          양 측이 체크가 되었다면, 과외는 성사되었으며, 본격적으로 과외수업을 진행하게 됩니다.<br> 
+          이때 '상태' 에서, 누구라도 '성사종료' 버튼을 누르면, 과외 성사는 양 측으로부터 종료됩니다.<br> 
+          과외 성사 종료 이후, 학생분은 리뷰를 작성하실 수 있으며, 선생님은 학생분의 리뷰가 작성이 완료되면,<br> 
+          작성된 리뷰를 확인하실 수 있습니다.
+        </p>
+      </div>
+      <div class="form-matching">
+        <div class="form-matching-header">
+          <div class="form-matching-header-picture">사진</div>
+          <div class="form-matching-header-nickname">닉네임</div>
+          <div class="form-matching-header-studentready">학생분 준비</div>
+          <div class="form-matching-header-teacherready">선생님 준비</div>
+          <div class="form-matching-header-status">상태</div>
+          <div class="form-matching-header-startdate">과외 시작일</div>
+          <div class="form-matching-header-enddate">과외 종료일</div>
+          <div class="form-matching-header-review">리뷰</div>
+          <div class="form-matching-header-delete"></div>
+        </div>
+        <hr/>
+        <div th:each="element : ${matchinglist}" class="form-matching-content">
+          <div class="form-matching-content-picture">
+            <img th:if="${not #strings. isEmpty(element.picture)}" th:src="${'/picture/custom/' + element.picture}" alt="picture" width="32" height="32" class="rounded-circle">
+            <img th:if="${#strings. isEmpty(element.picture)}" th:src="${'/picture/' + 'profile.png'}" alt="picture" width="32" height="32" class="rounded-circle">
+          </div>
+          <div class="form-matching-content-nickname">
+	          <a th:if="${role =='USER_STUDENT'}" class="textNickname" th:text=${element.nickname} th:href="@{/auth/detail/student(username =${element.student_name})}"></a>
+			  <a th:if="${role =='USER_TEACHER'}" class="textNickname" th:text=${element.nickname} th:href="@{/auth/detail/student(username =${element.student_name})}"></a>
+          </div>
+          <div class="form-matching-content-studentready">
+            <div class="checkCircleStudent"><i class="fa-solid fa-check"></i></div>
+          </div>
+          <div class="form-matching-content-teacherready">
+            <div class="checkCircleTeacher"><i class="fa-solid fa-check"></i></div>
+          </div>
+          <div class="form-matching-content-status">
+          	<div th:if="${#strings. isEmpty(element.matching_startdate)}" >대기 중</div>
+          	<div th:if="${not #strings. isEmpty(element.matching_startdate) && #strings. isEmpty(element.matching_enddate)}" >
+          		진행 중
+          		<button class="w-80 btn btn-sm btn-secondary" th:onclick="updateEndDate([[${element.student_name}]],[[${element.teacher_name}]])" style="margin-left: 4px;" type="button">성사종료</button>
+          	</div>
+          	<div th:if="${not #strings. isEmpty(element.matching_enddate)}" >성사 종료됨</div>
+          </div>
+          <div class="form-matching-content-startdate">
+			 <div th:if="${not #strings. isEmpty(element.matching_startdate)}" th:text="${#temporals.format(element.matching_startdate, 'yyyy-MM-dd') }" ></div>
+          </div>
+          <div class="form-matching-content-enddate">
+ 			<div th:if="${not #strings. isEmpty(element.matching_enddate)}" th:text="${#temporals.format(element.matching_enddate, 'yyyy-MM-dd') }" ></div>
+          </div>
+          <div class="form-matching-content-review">
+            <button th:if="${not #strings. isEmpty(element.matching_enddate) && role=='USER_STUDENT' && element.review_exist == false}" class="w-80 btn btn-sm btn-secondary btnWriteReview" th:onclick="reviewWrite([[${element.matching_code}]])" type="button">리뷰작성</button>
+            <div th:if="${not #strings. isEmpty(element.matching_enddate) && role=='USER_STUDENT' && element.review_exist == true}" style="font-size:14px">리뷰작성완료</div>
+            <button th:if="${not #strings. isEmpty(element.matching_enddate) && role=='USER_TEACHER' && element.review_exist == true}" class="w-80 btn btn-sm btn-secondary btnSeeReview" th:onclick="reviewSee([[${element.matching_code}]])" type="button">리뷰확인</button>
+          </div>
+          <div class="form-matching-content-delete">
+            <button th:if="${#strings. isEmpty(element.matching_startdate)}" class="w-80 btn btn-sm btn-danger" type="button" th:text="삭제하기" th:onclick="deleteMatchingByStudentTeacherName([[${element.student_name}]],[[${element.teacher_name}]])"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer th:replace="fragments/footer :: footer"><!-- thymeleaf header will be inserted here. --></footer>
+
+    <script src='/static/js/bootstrap.min.js'></script>
+    <script th:inline="javascript">
+	    /*<![CDATA[*/
+	    let role = /*[[ ${role} ]]*/ '';
+	    let matchinglist = /*[[ ${matchinglist} ]]*/ '';
+	    /*]]*/
+	</script>
+    <script src='/static/js/auth/matching/matching.js'></script>
+  </body>
+</html>

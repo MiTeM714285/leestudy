@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springboot.leestudy.domain.matching.MatchingRepository">
+	<!-- 매칭 insert -->
+	<insert id="saveMatching" parameterType="com.springboot.leestudy.domain.matching.Entity.Matching" useGeneratedKeys="true" keyProperty="matching_code">
+  		insert into list_matching 
+  		values(
+  			0,
+  			#{student_name},
+  			#{teacher_name}, 
+  			0,
+  			0,
+  			0,
+			null,
+			null,
+			0
+  			)																																																																																																																										
+  	</insert>
+  	
+  	<select id="findMatchingByStudentName" parameterType="String" resultType="com.springboot.leestudy.domain.matching.Entity.Matching">
+  		select 
+	  		matching_code, 
+	  		student_name, 
+	  		teacher_name,
+	  		student_isready,
+	  		teacher_isready,
+	  		matching_isend,
+	  		matching_startdate,
+	  		matching_enddate
+	  	from list_matching
+	  	where student_name = #{student_name}
+	  	order by matching_code desc
+  	</select>
+  	
+  	<select id="findMatchingCountByStudentName" parameterType="String" resultType="Integer">
+  		select 
+	  		count(student_name)
+	  	from list_matching
+	  	where student_name = #{student_name}
+  	</select>
+  	
+  	<select id="findMatchingByTeacherName" parameterType="String" resultType="com.springboot.leestudy.domain.matching.Entity.Matching">
+  		select 
+	  		matching_code, 
+	  		student_name, 
+	  		teacher_name,
+	  		student_isready,
+	  		teacher_isready,
+	  		matching_isend,
+	  		matching_startdate,
+	  		matching_enddate
+	  	from list_matching
+	  	where teacher_name = #{teacher_name}
+	  	order by matching_code desc
+  	</select>
+  	
+  	<select id="findMatchingCountByTeacherName" parameterType="String" resultType="Integer">
+  		select 
+	  		count(teacher_name)
+	  	from list_matching
+	  	where teacher_name = #{teacher_name}
+  	</select>
+  	
+  	<select id="findMatchingByStudentTeacherName" parameterType="String" resultType="com.springboot.leestudy.domain.matching.Entity.Matching">
+  		select 
+	  		matching_code, 
+	  		student_name, 
+	  		teacher_name,
+	  		student_isready,
+	  		teacher_isready,
+	  		matching_isend,
+	  		matching_startdate,
+	  		matching_enddate
+	  	from list_matching
+	  	where teacher_name = #{teacher_name}
+	  	and student_name = #{student_name}
+	  	and matching_isend != 1 ;
+  	</select>
+  	
+  	<select id="findMatchingByMatchingCode" parameterType="Integer" resultType="com.springboot.leestudy.domain.matching.Entity.Matching">
+  		select 
+	  		matching_code, 
+	  		student_name, 
+	  		teacher_name,
+	  		student_isready,
+	  		teacher_isready,
+	  		matching_isend,
+	  		matching_startdate,
+	  		matching_enddate
+	  	from list_matching
+	  	where matching_code = #{matching_code}
+  	</select>
+  	
+  	<select id="checkMatchingIsExist" parameterType="com.springboot.leestudy.domain.matching.Entity.Matching" resultType="Integer">
+  		select 
+	  		count(matching_code)
+	  	from list_matching
+	  	where student_name = #{student_name}
+	  	and teacher_name = #{teacher_name}
+	  	and matching_isend != 1 
+  	</select>
+  	
+  	<update id="updateStudentIsReady" parameterType="com.springboot.leestudy.domain.matching.Entity.Matching">
+  		update list_matching
+	  	set student_isready = 1
+	  	where student_name = #{student_name}
+	  	and teacher_name = #{teacher_name}
+	  	and matching_isend != 1 
+  	</update>
+  	
+  	<update id="updateTeacherIsReady" parameterType="com.springboot.leestudy.domain.matching.Entity.Matching">
+  		update list_matching
+	  	set teacher_isready = 1
+	  	where student_name = #{student_name}
+	  	and teacher_name = #{teacher_name}
+	  	and matching_isend != 1 
+  	</update>
+  	
+  	<update id="updateStartDate" parameterType="com.springboot.leestudy.domain.matching.Entity.Matching">
+  		update list_matching
+	  	set matching_startdate = now()
+	  	where student_name = #{student_name}
+	  	and teacher_name = #{teacher_name}
+	  	and matching_isend != 1 
+  	</update>
+  	
+  	<update id="updateEndDate" parameterType="com.springboot.leestudy.domain.matching.Entity.Matching">
+  		update list_matching
+	  	set matching_isend = 1,
+	  	matching_enddate = now()
+	  	where student_name = #{student_name}
+	  	and teacher_name = #{teacher_name}
+	  	and matching_isend != 1
+  	</update>
+  	
+  	<delete id="deleteMatchingByStudentTeacherName" parameterType="com.springboot.leestudy.domain.matching.Entity.Matching" >
+  		delete from list_matching where student_name=#{student_name} and teacher_name=#{teacher_name}
+  	</delete>
+  	
+  	
+
+</mapper>

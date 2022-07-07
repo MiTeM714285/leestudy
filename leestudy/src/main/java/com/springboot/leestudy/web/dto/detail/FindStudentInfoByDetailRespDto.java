@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class FindStudentInfoByDetailRespDto {
+	private int usercode;
 	private String username;
 	private String picture; 
 	private String nickname; 

@@ -11,11 +11,11 @@
   <body>
 
     <nav th:replace="fragments/nav-login :: nav"><!-- thymeleaf header will be inserted here. --></nav>
-
     
     <div class="container">
       <div class="student-profile">
-        <img src="" alt="student_picture">
+        <img th:if="${not #strings. isEmpty(studentinfo.picture)}" th:src="${'/picture/custom/' + studentinfo.picture}" alt="picture" width="32" height="32">
+        <img th:if="${#strings. isEmpty(studentinfo.picture)}" th:src="${'/picture/' + 'profile.png'}" alt="picture" width="32" height="32">
         <div class="student-profile-right">
           <div class="student-profile-nickname" th:text="${studentinfo.nickname}"></div>
           <div class="student-profile-info">
@@ -46,7 +46,7 @@
             </div>
             <div class="student-btns">
               <button class="w-40 btn btn-sm btn-secondary" type="button">카카오톡 문의하기</button>
-              <button class="w-40 btn btn-sm btn-secondary" type="button">성사리스트 등록</button>
+              <button class="w-40 btn btn-sm btn-secondary addMatchingList" type="button">성사리스트 등록</button>
             </div>
           </div>
         </div>
@@ -74,7 +74,7 @@
         </div>
         <div class="student-detail-element">
           <div class="student-detail-title">가입일</div>
-            <p th:text="${studentinfo.createdate}"></p>
+            <p th:text="${#temporals.format(studentinfo.createdate, 'yyyy-MM-dd') }"></p>
             <hr/>
             <button class="w-100 btn btn-lg btn-secondary btnGoBack" type="button">돌아가기</button>
         </div>
@@ -82,8 +82,14 @@
     </div>
 
     <footer th:replace="fragments/footer :: footer"><!-- thymeleaf header will be inserted here. --></footer>
-
+	
     <script src='/static/js/bootstrap.min.js'></script>
+    <script th:inline="javascript">
+    /*<![CDATA[*/
+	    let studentName = /*[[ ${studentinfo.username} ]]*/ '0';
+	    let teacherName = /*[[ ${teacherName} ]]*/ '0';
+    /*]]*/
+	</script>
     <script src='/static/js/auth/detail/detail-student.js'></script>
   </body>
 </html>

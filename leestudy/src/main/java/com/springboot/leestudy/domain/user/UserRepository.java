@@ -29,9 +29,12 @@ public interface UserRepository {
 	public int deleteUserCommonByUsername(String username) throws Exception;
 	public int countUserCommonByRole(String role) throws Exception;
 	public int countUserStudentIsUrgent() throws Exception;
+	public int countUserCommonByUsername(String username);
 	public List<UserTeacherAll> findTeacherInfoBySearch(UserTeacherAll userTeacherAll) throws Exception;
 	public List<UserStudentAll> findStudentInfoBySearch(UserStudentAll userStudentAll) throws Exception;
 	public UserTeacherAll findTeacherInfoByDetail(String username) throws Exception;
 	public UserStudentAll findStudentInfoByDetail(String username) throws Exception;
+	public UserTeacherAll findTeacherInfoWriteReview(String username) throws Exception;
+	public UserStudentAll findStudentInfoWriteReview(String username) throws Exception;
 	public int updateProfileImg(UserCommon userCommon);
 }

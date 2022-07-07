@@ -49,6 +49,7 @@ public class AuthController {
 		newPrincipalDetails.getUserCommon().setAddress_part2(userCommon.getAddress_part2()); // 세션정보 갱신
 		return new ResponseEntity<>(new CustomResponseDto<PrincipalDetails>(1, "세션정보 - UserCommon",newPrincipalDetails), HttpStatus.OK);
 	}
+	
 	@GetMapping("/info-userdetail") // 유저(학생 및 선생) 정보 조회
 	public ResponseEntity<?> getUserDetail(@AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception {
 		String role = principalDetails.getRole();
