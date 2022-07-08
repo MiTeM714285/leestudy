@@ -16,5 +16,7 @@ public interface ReviewService {
 	public boolean findReviewIsExistByMatchingCode(int matching_code) throws Exception;
 	public List<Review> findReviewAll(FindReviewAllReqDto findReviewAllReqDto) throws Exception;
 	public Review findReviewByMatchingCode(int matching_code) throws Exception;
-	public int countUserCommonByUsername(String username);
+	public int countUserCommonByUsername(String username) throws Exception;
+	public int findReviewCountAll() throws Exception;
+	public double findReviewScorePercent() throws Exception;
 }

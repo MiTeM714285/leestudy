@@ -73,6 +73,7 @@
 			AND student_address_part2 LIKE '%${student_address_part2}%' 
 			AND teacher_name LIKE '%${teacher_name}%' 
 			AND student_name LIKE '%${student_name}%' 
+		order by review_code desc
   	</select>
   	
   	<select id="findReviewByMatchingCode" parameterType="Integer" resultType="com.springboot.leestudy.domain.review.Entity.Review">
@@ -105,6 +106,19 @@
   		from list_review
   		where
   			matching_code = #{matching_code}
+  		order by review_code desc
+  	</select>
+  	
+  	<!-- findReviewScorePercent 이전에 진행될 sql -->
+  	<select id="findReviewCountAll" resultType="Integer" >
+  		select count(review_code) from list_review
+  	</select>
+  	
+  	<!-- 고객만족도(리뷰평점 백분율) sql로, findReviewCountAll 결과가 1 이상일때 이 sql실행. -->
+  	<select id="findReviewScorePercent" resultType ="Double">
+  		select (sum(review_score_ontime)+sum(review_score_teaching)+avg(review_score_professionality)+avg(review_score_readyness)) 
+  		/ (5 * (count(review_score_ontime)+count(review_score_teaching)+count(review_score_professionality)+count(review_score_readyness))) 
+  		* 100 from list_review;
   	</select>
 
 </mapper>

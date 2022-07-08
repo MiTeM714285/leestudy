@@ -27,6 +27,16 @@ import lombok.RequiredArgsConstructor;
 public class ReviewController {
 	
 	private final ReviewService reviewService;
+	
+	@GetMapping("/reviewpercent")
+	public ResponseEntity<?> findReviewScorePercent() throws Exception { // 고객만족도(리뷰평점 백분율)
+		int reviewCount = reviewService.findReviewCountAll(); // 우선 리뷰 수 구하기
+		double percent = 0; // 리뷰 수가 없을때 0 반환.
+		if (reviewCount >= 1) { // 리뷰 수가 하나 이상이라면
+			percent = reviewService.findReviewScorePercent();
+		}
+		return new ResponseEntity<>(new CustomResponseDto<Double>(1, "리뷰평점 백분율 조회완료", percent), HttpStatus.OK);
+	}
 
 	@PostMapping("/savereview")
 	public ResponseEntity<?> saveReview(@Valid @RequestBody SaveReviewReqDto saveReviewReqDto, BindingResult bindingResult) throws Exception {

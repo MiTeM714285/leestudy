@@ -54,7 +54,17 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public int countUserCommonByUsername(String username) {
+	public int countUserCommonByUsername(String username) throws Exception {
 		return userRepository.countUserCommonByUsername(username);
+	}
+
+	@Override
+	public double findReviewScorePercent() throws Exception {
+		return reviewRepository.findReviewScorePercent();
+	}
+
+	@Override
+	public int findReviewCountAll() throws Exception {
+		return reviewRepository.findReviewCountAll();
 	}
 }

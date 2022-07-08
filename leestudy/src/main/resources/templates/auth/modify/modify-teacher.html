@@ -46,7 +46,7 @@
           <div class="form-modify-intro3-satisfaction">
             <img src="../../../static/images/join/satisfaction.png" alt="satisfaction">
             <div class="form-modify-intro3-population">
-              99.9%
+              <th:block th:text="${#numbers.formatInteger(percent,2,'COMMA')}"></th:block>% <!-- findReviewScorePercent 를 통한 조회 -->
             </div>
             <div class="form-modify-intro3-description">
               고객만족도
@@ -416,9 +416,6 @@
 		      <input class="form-check-input" onclick='PhonenumModifying(event)' type="checkbox">
 		      <label class="form-check-label" >수정하려면 체크하기</label>
 		    </div>
-        </div>
-        <div class="form-modify-teacher-furtherexplanation">
-          *연락처는 학생분들에게 선공개되지 않습니다. 가입 및 인증 용도입니다.
         </div>
         <div class="input-group">
           <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="form-control inputPhonenum1" aria-label="Text input with segmented dropdown button" placeholder="예)01012345678" disabled="disabled">

@@ -51,6 +51,7 @@ public class PageController {
 		List<String> addressPart1List = listsService.getAddressPart1ListAll();
 		int count_student = accountService.countUserCommonByRole("USER_STUDENT");
 		int count_teacher = accountService.countUserCommonByRole("USER_TEACHER");
+		double percent = reviewService.findReviewScorePercent();
 		
 		for(String category : subjectCategoryList) {
 			List<String> subjectNamesByCategory = listsService.getSubjectNameListBySubjectCategory(category);
@@ -62,6 +63,7 @@ public class PageController {
 		model.addAttribute("addressPart1List",addressPart1List);
 		model.addAttribute("count_student",count_student);
 		model.addAttribute("count_teacher",count_teacher);
+		model.addAttribute("percent",percent);
 		
 		return "join-student";
 	}
@@ -78,6 +80,7 @@ public class PageController {
 		List<String> addressPart1List = listsService.getAddressPart1ListAll();
 		int count_student = accountService.countUserCommonByRole("USER_STUDENT");
 		int count_teacher = accountService.countUserCommonByRole("USER_TEACHER");
+		double percent = reviewService.findReviewScorePercent();
 		
 		for(String category : subjectCategoryList) {
 			List<String> subjectNamesByCategory = listsService.getSubjectNameListBySubjectCategory(category);
@@ -91,6 +94,7 @@ public class PageController {
 		model.addAttribute("addressPart1List",addressPart1List);
 		model.addAttribute("count_student",count_student);
 		model.addAttribute("count_teacher",count_teacher);
+		model.addAttribute("percent",percent);
 		return "join-teacher";
 	}
 	
@@ -173,6 +177,8 @@ public class PageController {
 		List<String> addressPart1List = listsService.getAddressPart1ListAll();
 		int count_student = accountService.countUserCommonByRole("USER_STUDENT");
 		int count_teacher = accountService.countUserCommonByRole("USER_TEACHER");
+		double percent = reviewService.findReviewScorePercent();
+		
 		
 		for(String category : subjectCategoryList) {
 			List<String> subjectNamesByCategory = listsService.getSubjectNameListBySubjectCategory(category);
@@ -186,6 +192,7 @@ public class PageController {
 		model.addAttribute("addressPart1List",addressPart1List);
 		model.addAttribute("count_student",count_student);
 		model.addAttribute("count_teacher",count_teacher);
+		model.addAttribute("percent",percent);
 		return "auth/modify/modify-student";
 	}
 	
@@ -200,6 +207,7 @@ public class PageController {
 		List<String> addressPart1List = listsService.getAddressPart1ListAll();
 		int count_student = accountService.countUserCommonByRole("USER_STUDENT");
 		int count_teacher = accountService.countUserCommonByRole("USER_TEACHER");
+		double percent = reviewService.findReviewScorePercent();
 		
 		for(String category : subjectCategoryList) {
 			List<String> subjectNamesByCategory = listsService.getSubjectNameListBySubjectCategory(category);
@@ -215,6 +223,7 @@ public class PageController {
 		model.addAttribute("addressPart1List",addressPart1List);
 		model.addAttribute("count_student",count_student);
 		model.addAttribute("count_teacher",count_teacher);
+		model.addAttribute("percent",percent);
 		return "auth/modify/modify-teacher";
 	}
 	

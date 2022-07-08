@@ -12,4 +12,6 @@ public interface ReviewRepository {
 	public int findReviewCountByMatchingCode(int matching_code) throws Exception;
 	public List<Review> findReviewAll(Review review) throws Exception;
 	public Review findReviewByMatchingCode(int matching_code) throws Exception;
+	public double findReviewScorePercent() throws Exception;
+	public int findReviewCountAll() throws Exception;
 }
