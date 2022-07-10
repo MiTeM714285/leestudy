@@ -607,7 +607,7 @@ function PhonenumModifying(event) { // 전화번호 변경하고자 할때의 �
 	}
 }
 
-async function imgSubmit(e) { // 이미지 제출 함수
+async function imgSubmit(image) { // 이미지 제출 함수
 	let formData = new FormData(document.querySelector("form")); // 함수가 호출되면 해당 form을 저장
 	
 	const url = `/api/v1/account/modify-common/picture`;
@@ -618,7 +618,7 @@ async function imgSubmit(e) { // 이미지 제출 함수
 	};
 	const response = await fetch(url, option);
 	if(response.ok) {
-		profileImgUrl.src = e.target.result // 매개변수로 받았던 새 이미지파일을 profileImgUrl의 src로 지정
+		profileImgUrl.src = image.target.result // 매개변수로 받았던 새 이미지파일을 profileImgUrl의 src로 지정
 		alert("프로필 이미지 변경이 되었습니다.")
 		return response.json();
 	} else {
@@ -629,9 +629,9 @@ async function imgSubmit(e) { // 이미지 제출 함수
 
 fileInput.onchange = () => { // 이미지 파일을 새로 등록할시
 	let reader = new FileReader();
-	reader.onload = (e) => {
+	reader.onload = (image) => {
 		if (confirm("이미지를 변경하시겠습니까?")) {
-			const result = imgSubmit(e); // 막 넣은 이미지를 매개변수로 imgSubmit호출
+			const result = imgSubmit(image); // 막 넣은 이미지를 매개변수로 imgSubmit호출
 			console.log(JSON.stringify(result));
 		}
 	}
