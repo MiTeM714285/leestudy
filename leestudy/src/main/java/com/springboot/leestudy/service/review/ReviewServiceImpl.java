@@ -60,11 +60,12 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Override
 	public double findReviewScorePercent() throws Exception {
-		return reviewRepository.findReviewScorePercent();
-	}
-
-	@Override
-	public int findReviewCountAll() throws Exception {
-		return reviewRepository.findReviewCountAll();
+		int reviewCount = reviewRepository.findReviewCountAll(); // 우선 리뷰 수 구하기
+		double percent = 0; // 리뷰 수가 없을때 0 반환.
+		if (reviewCount >= 1) { // 리뷰 수가 하나 이상이라면
+			percent = reviewRepository.findReviewScorePercent();
+		}
+		
+		return percent;
 	}
 }

@@ -36,7 +36,7 @@ public class CoolSMSService {
 		params.put("to", phoneNumber); // 수신 측
 		params.put("from", "01065850377"); // 송신 측
 		params.put("type", "SMS");
-		params.put("text", "[이과외 인증번호]\n" + "[" + authenticationCode + "]" + "입니다.");
+		params.put("text", "이과외 인증번호 : "  + authenticationCode);
 		params.put("app_version", "leestudy app 1.0");
 		
 		try {
