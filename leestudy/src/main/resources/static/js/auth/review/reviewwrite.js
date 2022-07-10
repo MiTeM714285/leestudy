@@ -51,7 +51,7 @@ async function saveReview(matchinginfo, teacherinfo, studentinfo) {
 			teacher_price: teacherinfo.teacher_price,
 			teacher_gender: teacherinfo.teacher_gender,
 			student_nickname: studentinfo.student_nickname,
-			student_picture: studentinfo.student_nickname,
+			student_picture: studentinfo.student_picture,
 			student_address_part1: studentinfo.student_address_part1,
 			student_address_part2: studentinfo.student_address_part2,
 			student_student_grade: studentinfo.student_student_grade,

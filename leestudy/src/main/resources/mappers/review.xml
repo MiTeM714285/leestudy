@@ -116,7 +116,7 @@
   	
   	<!-- 고객만족도(리뷰평점 백분율) sql로, findReviewCountAll 결과가 1 이상일때 이 sql실행. -->
   	<select id="findReviewScorePercent" resultType ="Double">
-  		select (sum(review_score_ontime)+sum(review_score_teaching)+avg(review_score_professionality)+avg(review_score_readyness)) 
+  		select (sum(review_score_ontime)+sum(review_score_teaching)+sum(review_score_professionality)+sum(review_score_readyness)) 
   		/ (5 * (count(review_score_ontime)+count(review_score_teaching)+count(review_score_professionality)+count(review_score_readyness))) 
   		* 100 from list_review;
   	</select>

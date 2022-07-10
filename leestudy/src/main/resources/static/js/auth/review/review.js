@@ -182,6 +182,7 @@ async function load(data) {
 		          <div class="form-review-part2-1">
 		            <div class="form-review-part2-1-top">`
 		            
+		            console.log(data[i].student_picture)
 		if (data[i].student_picture != null && data[i].student_picture != "") { // 학생 사진 표현의 유무
 			formReviewElement += `<img src="/picture/custom/${data[i].student_picture}" class="student-picture" alt="student_picture">`
 		} else{

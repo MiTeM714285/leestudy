@@ -28,6 +28,7 @@ public class SaveReviewReqDto {
 	private String teacher_price;
 	private String teacher_gender;
 	private String student_nickname;
+	private String student_picture;
 	private String student_address_part1;
 	private String student_address_part2;
 	private String student_student_grade;
@@ -53,6 +54,7 @@ public class SaveReviewReqDto {
 			.teacher_price(teacher_price)
 			.teacher_gender(teacher_gender)
 			.student_nickname(student_nickname)
+			.student_picture(student_picture)
 			.student_address_part1(student_address_part1)
 			.student_address_part2(student_address_part2)
 			.student_student_grade(student_student_grade)
