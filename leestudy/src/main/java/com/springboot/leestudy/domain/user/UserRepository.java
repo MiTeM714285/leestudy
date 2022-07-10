@@ -14,7 +14,9 @@ import com.springboot.leestudy.domain.user.Entity.UserTeacherAll;
 @Mapper
 public interface UserRepository {
 	public UserCommon findUserCommonByUsername(String username) throws Exception;
+	public UserStudent findUserStudentByPhonenum(String student_phonenum) throws Exception;
 	public UserStudent findUserStudentByUsername(String username) throws Exception;
+	public UserTeacher findUserTeacherByPhonenum(String teacher_phonenum) throws Exception;
 	public UserTeacher findUserTeacherByUsername(String username) throws Exception;
 	public String findPasswordByUsername(String username) throws Exception;
 	public int saveUserCommon(UserCommon userCommon) throws Exception;

@@ -23,7 +23,6 @@ import com.springboot.leestudy.web.dto.CustomResponseDto;
 import com.springboot.leestudy.web.dto.auth.SaveUserCommonDto;
 import com.springboot.leestudy.web.dto.auth.SaveUserStudentDto;
 import com.springboot.leestudy.web.dto.auth.SaveUserTeacherDto;
-import com.springboot.leestudy.web.dto.auth.UsernameCheckReqDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -70,8 +69,8 @@ public class AuthController {
 	}
 	
 	@GetMapping("/join-common/username")
-	public ResponseEntity<?> checkUsername(@Valid UsernameCheckReqDto usernameCheckReqDto, BindingResult bindingResult) throws Exception {
-		boolean result = authService.checkUsername(usernameCheckReqDto.getUsername());
+	public ResponseEntity<?> checkUsername(@Valid String username) throws Exception {
+		boolean result = authService.checkUsername(username);
 		
 		if(result) {
 			return new ResponseEntity<>(new CustomResponseDto<Boolean>(1, "해당 아이디 사용가능", result), HttpStatus.OK);
@@ -102,6 +101,17 @@ public class AuthController {
 		}
 	}
 	
+	@GetMapping("/join-student/phonenum")
+	public ResponseEntity<?> checkPhonenumStudent(@Valid String student_phonenum) throws Exception {
+		boolean result = authService.checkPhonenumStudent(student_phonenum);
+		
+		if(result) {
+			return new ResponseEntity<>(new CustomResponseDto<Boolean>(1, "해당 전화번호 사용가능(학생)", result), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(new CustomResponseDto<Boolean>(-1, "중복된 전화번호입니다.(학생)", result), HttpStatus.BAD_REQUEST);
+		}
+	}
+	
 	@PostMapping("/join-teacher")
 	public ResponseEntity<?> saveUserTeacher(@Valid @RequestBody SaveUserTeacherDto saveUserTeacherDto, BindingResult bindingResult) throws Exception {
 		boolean result = authService.saveUserTeacher(saveUserTeacherDto);
@@ -110,6 +120,17 @@ public class AuthController {
 			return new ResponseEntity<>(new CustomResponseDto<Boolean>(1, "회원가입(선생) 완료", result), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(new CustomResponseDto<Boolean>(-1, "회원가입(선생) 실패", result), HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@GetMapping("/join-teacher/phonenum")
+	public ResponseEntity<?> checkPhonenumTeacher(@Valid String teacher_phonenum) throws Exception {
+		boolean result = authService.checkPhonenumTeacher(teacher_phonenum);
+		
+		if(result) {
+			return new ResponseEntity<>(new CustomResponseDto<Boolean>(1, "해당 전화번호 사용가능(학생)", result), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(new CustomResponseDto<Boolean>(-1, "중복된 전화번호입니다.(학생)", result), HttpStatus.BAD_REQUEST);
 		}
 	}
 	

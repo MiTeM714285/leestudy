@@ -24,6 +24,18 @@ public class AuthServiceImpl implements AuthService {
 	}
 
 	@Override
+	public boolean checkPhonenumStudent(String student_phonenum) throws Exception {
+		// TODO Auto-generated method stub
+		return userRepository.findUserStudentByPhonenum(student_phonenum) == null ? true : false;
+	}
+
+	@Override
+	public boolean checkPhonenumTeacher(String teacher_phonenum) throws Exception {
+		// TODO Auto-generated method stub
+		return userRepository.findUserTeacherByPhonenum(teacher_phonenum) == null ? true : false;
+	}
+	
+	@Override
 	public boolean saveUserCommon(String role, SaveUserCommonDto saveUserCommonDto) throws Exception {
 		// TODO Auto-generated method stub
 		return userRepository.saveUserCommon(saveUserCommonDto.toEntity(role)) > 0 ? true : false;
@@ -58,6 +70,7 @@ public class AuthServiceImpl implements AuthService {
 		// TODO Auto-generated method stub
 		return userRepository.findUserTeacherByUsername(username);
 	}
+
 
 
 }

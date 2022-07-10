@@ -65,11 +65,52 @@
   			)																																																																																																																										
   	</insert>
 
-	<!-- username 으로 UserCommon 조회 -->
+	<!-- username 으로 UserCommon 조회 (아이디 중복조회용)-->
   	<select id="findUserCommonByUsername" parameterType="String" resultType="com.springboot.leestudy.domain.user.Entity.UserCommon">
   		select usercode, username, password, nickname, picture, gender, age, address_part1, address_part2, isactive, role, createdate, updatedate
   		from user_common
   		where username = #{username}
+  	</select>
+  	
+  	<!-- 학생측 phonenum 으로 UserStudent 조회 (전화번호 중복조회용) -->
+  	<select id="findUserStudentByPhonenum" parameterType="String" resultType="com.springboot.leestudy.domain.user.Entity.UserStudent">
+  		select 
+  			username, 
+  			student_email, 
+  			student_phonenum, 
+  			student_isurgent, 
+  			student_student_grade, 
+  			student_subject, 
+  			student_price, 
+  			student_available_time, 
+  			student_available_remote, 
+  			student_request
+  		from user_student
+  		where student_phonenum = #{student_phonenum}
+  	</select>
+  	
+  	<!-- 선생측 phonenum 으로 UserStudent 조회 (전화번호 중복조회용) -->
+  	<select id="findUserTeacherByPhonenum" parameterType="String" resultType="com.springboot.leestudy.domain.user.Entity.UserTeacher">
+  		select 
+  			username, 
+  			teacher_email, 
+  			teacher_phonenum, 
+  			teacher_introduction, 
+  			teacher_university, 
+  			teacher_university_isgraduate, 
+  			teacher_university_major, 
+  			teacher_university_studentnum, 
+  			teacher_price, 
+  			teacher_detailprice,
+  			teacher_personality,
+  			teacher_available_remote,
+  			teacher_subject,
+  			teacher_available_time,
+  			teacher_teaching_detail,
+  			teacher_teaching_style,
+  			teacher_available_demonstration
+  		from user_teacher
+  		where teacher_phonenum = #{teacher_phonenum}
   	</select>
   	
   	<!-- usercode 으로 UserCommon 조회 -->

@@ -228,12 +228,15 @@ btnPhoneNumCheck1.onclick = async () => { // 인증번호 요청 버튼 클릭�
 	if (inputPhonenum1.value.length != 11) {
 		alert('전화번호는 숫자 11자로 입력 바랍니다.')
 	} else {
-		if(confirm("이 전화번호가 확실합니까?\n'확인' 을 누른 뒤 바꾸려면 회원가입을 다시 진행해 주십시오.")) {
-			inputPhonenum1.disabled = true;
-			alert("인증번호가 발송되었습니다.\n인증번호 입력란에 입력후 인증완료 버튼을 눌러주세요.")
-			inputPhonenum2.disabled = false; // 인증번호 입력란 잠금해제
-			btnPhoneNumCheck2.disabled = false; // 인증완료 버튼 잠금해제
-			sendSMSNum = await sendSMS(inputPhonenum1.value);
+		let phoneResult = await phonenumCheckStudent(inputPhonenum1.value);
+		if (phoneResult == true) {
+			if(confirm("이 전화번호가 확실합니까?\n'확인' 을 누른 뒤 바꾸려면 회원가입을 다시 진행해 주십시오.")) {
+				inputPhonenum1.disabled = true;
+				alert("인증번호가 발송되었습니다.\n인증번호 입력란에 입력후 인증완료 버튼을 눌러주세요.")
+				inputPhonenum2.disabled = false; // 인증번호 입력란 잠금해제
+				btnPhoneNumCheck2.disabled = false; // 인증완료 버튼 잠금해제
+				sendSMSNum = await sendSMS(inputPhonenum1.value);
+			}
 		}
 	}
 }
@@ -250,6 +253,21 @@ btnPhoneNumCheck2.onclick = () => { // 인증완료 버튼 클릭시
 		phoneNumCheckFlag = true;
 		alert("인증이 완료되었습니다.")
 	}
+}
+
+async function phonenumCheckStudent(student_phonenum) { // 전화번호 중복체크 함수
+	const url = `/api/v1/auth/join-student/phonenum?student_phonenum=${student_phonenum}`;
+	let responseData = false;
+	
+	await request(url)
+	.then(result => { // 중복이 아닐시
+		responseData = result.data; // result.data가 중복 여부 boolean
+	})
+	.catch(error => { // 중복일시
+		alert("중복된 전화번호입니다");
+		console.log(error);
+	})
+	return responseData; // 최종 중복 여부의 boolean
 }
 
 async function sendSMS(phoneNum) { // 인증번호 전송 함수
