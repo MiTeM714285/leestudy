@@ -210,6 +210,14 @@ function load(data) {
 		`
 	}
 	studentCardlistInner.innerHTML = studentCard;
+	const studentCards = document.querySelectorAll('.student-card') // 위에서 만들어진 모든 student-card
+	for (let i=0; i<data.length; i++) { // 성별에 따른 카드의 테두리 색 지정하기
+		if(data[i].gender == '남자') {
+			studentCards[i].style.borderColor = "#87CEFA"
+		} else if(data[i].gender == '여자') {
+			studentCards[i].style.borderColor = "#FFC0CB"
+		}
+	}
 }
 
 function goToStudentDetailPage(username) {

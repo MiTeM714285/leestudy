@@ -270,13 +270,14 @@ public class PageController {
 	}
 	
 	@GetMapping("/auth/review")
-	public String reviewList(@AuthenticationPrincipal PrincipalDetails principalDetails,  Model model) throws Exception {
+	public String reviewList(@Valid String teacher_name, @AuthenticationPrincipal PrincipalDetails principalDetails,  Model model) throws Exception {
 		model.addAttribute("role",principalDetails.getRole());
 		model.addAttribute("username",principalDetails.getUsername());
 		model.addAttribute("picture",principalDetails.getPicture());
 		
 		List<String> addressPart1List = listsService.getAddressPart1ListAll();
 		model.addAttribute("addressPart1List",addressPart1List);
+		model.addAttribute("teachername",teacher_name);
 		return "auth/review/review";
 	}
 	

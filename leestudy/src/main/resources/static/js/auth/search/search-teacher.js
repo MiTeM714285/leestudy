@@ -215,6 +215,14 @@ function load(data) {
 		`
 	}
 	teacherCardlistInner.innerHTML = teacherCard;
+	const teacherCards = document.querySelectorAll('.teacher-card') // 위에서 만들어진 모든 teacher-card
+	for (let i=0; i<data.length; i++) { // 성별에 따른 카드의 테두리 색 지정하기
+		if(data[i].gender == '남자') {
+			teacherCards[i].style.borderColor = "#87CEFA"
+		} else if(data[i].gender == '여자') {
+			teacherCards[i].style.borderColor = "#FFC0CB"
+		}
+	}
 }
 
 function goToTeacherDetailPage(username) {
