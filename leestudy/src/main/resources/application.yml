@@ -34,4 +34,5 @@ mybatis:
   - /mappers/*.xml
   
 file:
-  path: /Volumes/Data/JAVA/src/java_project_korea_2/leestudy/leestudy/src/main/resources/static/images/profile/
+  path: D:/web-jar/leestudy/images/profile/
+  # path: /Volumes/Data/JAVA/src/java_project_korea_2/leestudy/leestudy/src/main/resources/static/images/profile/
