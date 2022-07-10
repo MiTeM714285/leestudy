@@ -53,8 +53,8 @@
               <div class="location-text2" th:text="${teacherinfo.address_part1 + ', ' + teacherinfo.address_part2}">서울, 경기</div>
             </div>
             <div class="teacher-btns">
-              <button class="w-40 btn btn-sm btn-secondary" type="button">카카오톡 문의하기</button>
-              <button class="w-40 btn btn-sm btn-secondary addMatchingList" type="button">성사리스트 등록</button>
+              <div style="margin-right:12px" th:text="${'전화번호 : ' + teacherinfo.teacher_phonenum}"></div>
+              <button class="w-40 btn btn-sm btn-secondary addMatchingList" style="margin-right:4px" type="button">성사리스트 등록</button>
               <button class="w-40 btn btn-sm btn-secondary findReview" type="button" th:onclick="gotoReviewByTeacherName([[${teacherinfo.username}]])">리뷰 살펴보기</button>
             </div>
           </div>

@@ -67,6 +67,8 @@ textarea {
 }
 
 .teacher-btns{
+	display:flex;
+	justify-content:center;
     margin-top: 4px;
     text-align: center;
 }

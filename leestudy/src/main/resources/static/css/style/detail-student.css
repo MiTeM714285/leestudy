@@ -67,7 +67,9 @@ textarea {
 }
 
 .student-btns{
-    margin-top: 10px;
+	display:flex;
+	justify-content:center;
+    margin-top: 4px;
     text-align: center;
 }
 

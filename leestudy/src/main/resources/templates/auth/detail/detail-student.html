@@ -45,7 +45,7 @@
               <div class="location-text2" th:text="${studentinfo.address_part1 + ', ' + studentinfo.address_part2}"></div>
             </div>
             <div class="student-btns">
-              <button class="w-40 btn btn-sm btn-secondary" type="button">카카오톡 문의하기</button>
+              <div style="margin-right:12px" th:text="${'전화번호 : ' + studentinfo.student_phonenum}"></div>
               <button class="w-40 btn btn-sm btn-secondary addMatchingList" type="button">성사리스트 등록</button>
             </div>
           </div>
