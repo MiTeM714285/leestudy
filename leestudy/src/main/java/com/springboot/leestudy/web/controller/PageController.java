@@ -277,7 +277,7 @@ public class PageController {
 		
 		List<String> addressPart1List = listsService.getAddressPart1ListAll();
 		model.addAttribute("addressPart1List",addressPart1List);
-		model.addAttribute("teachername",teacher_name);
+		model.addAttribute("teacher_name",teacher_name);
 		return "auth/review/review";
 	}
 	

@@ -73,3 +73,7 @@ async function saveMachingList() { // UserCommon DB저장 함수
 		})
 		.catch(error => console.log(error));
 }
+
+function gotoReviewByTeacherName(teacher_name) { // 리뷰 살펴보기 버튼 클릭시 실행
+	location.href=`/auth/review?teacher_name=${teacher_name}`
+}

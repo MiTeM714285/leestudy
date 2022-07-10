@@ -1,11 +1,12 @@
+history.replaceState({}, null, location.pathname)
+
 const selectAddr1 = document.querySelector('.selectAddr1'); // 주소(시) 콤보박스
 const selectAddr2 = document.querySelector('.selectAddr2'); // 주소(구) 콤보박스
 let selectAddr1Value = "" // 주소(시) 값
 let selectAddr2Value = "" // 주소(구) 값
 const btnReviewListAll = document.querySelector('.btnReviewListAll'); // 전체 리뷰 보기 버튼
 
-
-findReviewAll("","","","")
+findReviewAll("","",teacher_name,"") // 우선 선생님 정보의 '리뷰 살펴보기' 로 인한 매개변수인 teacher_name을 주입, teacher_name가 없으면 그냥 전체조회
 
 if(role == 'USER_STUDENT') { // 학생이라면
 	const btnReviewListByStudentName = document.querySelector('.btnReviewListByStudentName'); // 내가 쓴 리뷰 보기 버튼
