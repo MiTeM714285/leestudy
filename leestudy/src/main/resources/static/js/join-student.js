@@ -225,7 +225,7 @@ async function saveUserStudent() { // UserStudent DB저장 함수
 		})
 		.then(() => { 
 			alert('이과외에 오신것을 환영합니다.')
-			window.location.replace("/auth/login");
+			window.location.replace("/login");
 		})
 		.catch(error => console.log(error));
 }
