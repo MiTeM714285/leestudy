@@ -141,4 +141,12 @@ public class AuthController {
 		         + "location.href=\"/auth/login\";"
 		         + "</script>";
 	}
+	
+	@GetMapping("/wrongccess") // 잘못된 접근시 이쪽으로
+	public String wrongAccess() throws Exception {
+		return "<script>"
+		         + "alert(\"잘못된 접근입니다.\");"
+		         + "history.back()"
+		         + "</script>";
+	}
 }

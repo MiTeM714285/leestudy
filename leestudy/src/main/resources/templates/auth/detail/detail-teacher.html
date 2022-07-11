@@ -54,7 +54,7 @@
             </div>
             <div class="teacher-btns">
               <div style="margin-right:12px" th:text="${'전화번호 : ' + teacherinfo.teacher_phonenum}"></div>
-              <button class="w-40 btn btn-sm btn-secondary addMatchingList" style="margin-right:4px" type="button">성사리스트 등록</button>
+              <button th:if="${role == 'USER_STUDENT'}" class="w-40 btn btn-sm btn-secondary addMatchingList" style="margin-right:4px" type="button">성사리스트 등록</button>
               <button class="w-40 btn btn-sm btn-secondary findReview" type="button" th:onclick="gotoReviewByTeacherName([[${teacherinfo.username}]])">리뷰 살펴보기</button>
             </div>
           </div>

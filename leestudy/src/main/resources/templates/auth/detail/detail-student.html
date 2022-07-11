@@ -46,7 +46,7 @@
             </div>
             <div class="student-btns">
               <div style="margin-right:12px" th:text="${'전화번호 : ' + studentinfo.student_phonenum}"></div>
-              <button class="w-40 btn btn-sm btn-secondary addMatchingList" type="button">성사리스트 등록</button>
+              <button th:if="${role == 'USER_TEACHER'}" class="w-40 btn btn-sm btn-secondary addMatchingList" type="button">성사리스트 등록</button>
             </div>
           </div>
         </div>

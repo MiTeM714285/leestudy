@@ -110,6 +110,9 @@ public class PageController {
 	
 	@GetMapping("/auth/search/student")
 	public String searchStudent(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) throws Exception {
+		if(principalDetails.getRole().equals("USER_STUDENT")) { // 선생 전용 페이지라 학생은 접근불가
+			return "redirect:/api/v1/auth/wrongccess";
+		}
 		int count_student = accountService.countUserStudentIsUrgent();
 		List<String> subjectCategoryList = listsService.getSubjectCategoryListAll();
 		List<String> addressPart1List = listsService.getAddressPart1ListAll();
@@ -124,7 +127,11 @@ public class PageController {
 	
 	@GetMapping("/auth/search/teacher")
 	public String searchTeacher(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) throws Exception {
+		if(principalDetails.getRole().equals("USER_TEACHER")) { // 학생 전용 페이지라 선생은 접근불가
+			return "redirect:/api/v1/auth/wrongccess";
+		}
 		int count_teacher = accountService.countUserCommonByRole("USER_TEACHER");
+		
 		List<String> subjectCategoryList = listsService.getSubjectCategoryListAll();
 		List<String> addressPart1List = listsService.getAddressPart1ListAll();
 		
@@ -138,6 +145,9 @@ public class PageController {
 	
 	@GetMapping("/auth/detail/student")
 	public String detailStudent(@Valid String username, @AuthenticationPrincipal PrincipalDetails principalDetails, Model model) throws Exception {
+		if(principalDetails.getRole().equals("USER_STUDENT")) { // 선생 전용 페이지라 학생은 접근불가
+			return "redirect:/api/v1/auth/wrongccess";
+		}
 		FindStudentInfoByDetailRespDto findStudentInfoByDetailRespDto = detailService.findStudentInfoByDetail(username);
 		model.addAttribute("role",principalDetails.getRole());
 		model.addAttribute("teacherName",principalDetails.getUsername());
@@ -169,6 +179,9 @@ public class PageController {
 	
 	@GetMapping("/auth/modify/student")
 	public String modifyStudent(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) throws Exception {
+		if(principalDetails.getRole().equals("USER_TEACHER")) { // 학생 전용 페이지라 선생은 접근불가
+			return "redirect:/api/v1/auth/wrongccess";
+		}
 		
 		// 주소(시), 과목 카테고리, 과목 이름 리스트를 불러와서 Model에 속성 저장
 		
@@ -198,6 +211,9 @@ public class PageController {
 	
 	@GetMapping("/auth/modify/teacher")
 	public String modifyTeacher(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) throws Exception {
+		if(principalDetails.getRole().equals("USER_STUDENT")) { // 선생 전용 페이지라 학생은 접근불가
+			return "redirect:/api/v1/auth/wrongccess";
+		}
 		// 성격, 주소(시), 과목 카테고리, 과목 이름, 대학명 리스트를 불러와서 Model에 속성 저장
 		
 		List<String> personalityNameList = listsService.getPersonalityNameListAll();
@@ -254,6 +270,9 @@ public class PageController {
 	
 	@GetMapping("/auth/review/write")
 	public String reviewWrite(@Valid int matching_code, @AuthenticationPrincipal PrincipalDetails principalDetails,  Model model) throws Exception {
+		if(principalDetails.getRole().equals("USER_TEACHER")) { // 학생 전용 페이지라 선생은 접근불가
+			return "redirect:/api/v1/auth/wrongccess";
+		}
 		model.addAttribute("role",principalDetails.getRole());
 		model.addAttribute("picture",principalDetails.getPicture());
 		
@@ -271,6 +290,7 @@ public class PageController {
 	
 	@GetMapping("/auth/review")
 	public String reviewList(@Valid String teacher_name, @AuthenticationPrincipal PrincipalDetails principalDetails,  Model model) throws Exception {
+		
 		model.addAttribute("role",principalDetails.getRole());
 		model.addAttribute("username",principalDetails.getUsername());
 		model.addAttribute("picture",principalDetails.getPicture());
